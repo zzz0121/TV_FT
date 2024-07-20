@@ -1,3 +1,12 @@
+### 接口
+
+```list
+  https://ghproxy.net/raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
+  https://ghproxy.net/https://raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
+  https://cdn.jsdelivr.net/gh/zzz0121/TV_FT/user_result.txt
+  https://raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
+```
+
 # 电视频道菜单自定义与直播源接口更新工具
 
 自定义频道菜单，根据模板文件的直播源接口，自动获取并更新最新的直播源接口，校验并生成可用的频道接口文件
@@ -94,7 +103,7 @@ Fork 本项目并开启工作流更新
 
 [更多详细教程](./docs/tutorial.md)
 
-如果您不想折腾，刚好我的配置符合您的需求，可以使用以下链接：
+如果您不想折腾，下面配置符合您的需求，可以使用以下链接：
 
 - 接口源：https://ghproxy.net/raw.githubusercontent.com/Guovin/TV/gd/result.txt
 - 数据源：https://ghproxy.net/raw.githubusercontent.com/Guovin/TV/gd/source.json
@@ -107,6 +116,3 @@ Fork 本项目并开启工作流更新
 
 [MIT](./LICENSE) License &copy; 2024-PRESENT [Govin](https://github.com/guovin)
 
-## 赞赏
-
-![image](./docs/images/appreciate.jpg)
