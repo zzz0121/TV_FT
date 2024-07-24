@@ -65,7 +65,6 @@ Name: CCTV-13, URL: http://[2409:8087:5e00:24::1e]:6060/200000001898/46000008980
 Name: CCTV-13, URL: http://[2409:8087:1e03:21::2]:6060/cms001/ch00000090990000001328/index.m3u8, Date: 12-26-2023, Resolution: None, Response Time: inf ms
 Name: CCTV-13, URL: http://[2409:8087:74F1:0021::0008]:80/PLTV/88888888/224/3221226438/1.m3u8, Date: 11-21-2023, Resolution: None, Response Time: inf ms
 Name: CCTV-13, URL: http://[2409:8087:7004:20:1000::22]:6610/yinhe/2/ch00000090990000001328/index.m3u8?virtualDomain=yinhe.live_hls.zte.com, Date: 08-28-2023, Resolution: None, Response Time: inf ms
-Name: CCTV-13, URL: http://[2409:8087:5011:1020::1f]/180000001001/00000001000000000045000000287929/main.m3u8?IASHttpSessionId=OTT, Date: 04-13-2023, Resolution: None, Response Time: inf ms
 Name: CCTV-14, URL: http://[2409:8087:5e00:24::1e]:6060/200000001898/460000089800010207/1.m3u8, Date: 06-11-2024, Resolution: None, Response Time: inf ms
 Name: CCTV-14, URL: http://[2409:8087:1e03:21::2]:6060/cms001/ch00000090990000001240/index.m3u8, Date: 12-26-2023, Resolution: None, Response Time: inf ms
 Name: CCTV-14, URL: http://[2409:8087:74F1:0021::0008]:80/PLTV/88888888/224/3221226166/1.m3u8, Date: 11-21-2023, Resolution: None, Response Time: inf ms
@@ -109,7 +108,6 @@ Name: 浙江卫视, URL: http://[2409:8087:7001:20:3::3]:80/dbiptv.sn.chinamobil
 Name: 浙江卫视, URL: http://[2409:8087:7000:20:1000::22]:6060/yinhe/2/ch00000090990000001345/index.m3u8?virtualDomain=yinhe.live_hls.zte.com, Date: 02-13-2024, Resolution: None, Response Time: inf ms
 Name: 浙江卫视, URL: http://[2409:8087:1a01:df::4077]/ottrrs.hl.chinamobile.com/PLTV/88888888/8/3221226339/index.m3u8, Date: 12-30-2023, Resolution: None, Response Time: inf ms
 Name: 浙江卫视, URL: http://[2409:8087:1e03:21::2]:6060/cms001/ch00000090990000001023/index.m3u8, Date: 12-27-2023, Resolution: None, Response Time: inf ms
-Name: 浙江卫视, URL: http://[2409:8087:7004:20:1000::22]:6610/yinhe/2/ch00000090990000001345/index.m3u8?virtualDomain=yinhe.live_hls.zte.com, Date: 12-16-2023, Resolution: None, Response Time: inf ms
 Name: 江苏卫视, URL: http://[2409:8087:5e00:24::1e]:6060/000000001000/1000000001000001828/1.m3u8, Date: 07-11-2024, Resolution: None, Response Time: inf ms
 Name: 江苏卫视, URL: http://[2409:8087:5e00:24::1e]:6060/000000001000/1000000001000004684/1.m3u8, Date: 07-11-2024, Resolution: None, Response Time: inf ms
 Name: 江苏卫视, URL: http://[2409:8087:5e00:24::1e]:6060/000000001000/4796340999304424198/1.m3u8, Date: 07-11-2024, Resolution: None, Response Time: inf ms
@@ -364,9 +362,9 @@ Name: 优漫卡通, URL: http://[2409:8087:5e00:24::1e]:6060/200000001898/460000
 Name: 优漫卡通, URL: http://[2409:8087:1a0b:df::4005]:80/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225656/index.m3u8, Date: 04-21-2024, Resolution: None, Response Time: inf ms
 Name: 优漫卡通, URL: http://[2409:8087:7004:20:1000::22]:6610/yinhe/2/ch00000090990000001065/index.m3u8?virtualDomain=yinhe.live_hls.zte.com, Date: 12-16-2023, Resolution: None, Response Time: inf ms
 Name: 优漫卡通, URL: http://[2409:8087:5011:1020::1f]/180000001001/00000000000000020000000000182321/main.m3u8?IASHttpSessionId=OTT, Date: 04-13-2023, Resolution: None, Response Time: inf ms
+Name: 哈哈炫动, URL: http://[2409:8087:5e00:24::1e]:6060/200000001898/460000089800010117/1.m3u8, Date: 07-22-2024, Resolution: 1024x576, Response Time: inf ms
 Name: 哈哈炫动, URL: http://[2409:8087:5e00:24::1e]:6060/000000001000/1000000002000000172/1.m3u8, Date: 07-11-2024, Resolution: None, Response Time: inf ms
 Name: 哈哈炫动, URL: http://[2409:8087:5e00:24::1e]:6060/000000001000/5000000011000031123/1.m3u8, Date: 07-11-2024, Resolution: None, Response Time: inf ms
-Name: 哈哈炫动, URL: http://[2409:8087:5e00:24::1e]:6060/200000001898/460000089800010117/1.m3u8, Date: 06-24-2024, Resolution: 1024x576, Response Time: inf ms
 Name: 哈哈炫动, URL: http://[2409:8087:1a0b:df::4001]:80/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225657/index.m3u8, Date: 04-21-2024, Resolution: None, Response Time: inf ms
 Name: 哈哈炫动, URL: http://[2409:8087:1e03:21::2]:6060/cms001/ch00000090990000001232/index.m3u8, Date: 12-26-2023, Resolution: None, Response Time: inf ms
 Name: 哈哈炫动, URL: http://[2409:8087:74F1:0021::0008]:80/PLTV/88888888/224/3221225668/1.m3u8, Date: 11-21-2023, Resolution: None, Response Time: inf ms
@@ -377,7 +375,7 @@ Name: 黑莓动画, URL: http://[2409:8087:1a0b:df::4006]:80/ottrrs.hl.chinamobi
 Name: 黑莓动画, URL: http://[2409:8087:5e00:24::1e]:6060/200000001898/460000089800010002/1.m3u8, Date: 04-27-2024, Resolution: None, Response Time: inf ms
 Name: 黑莓动画, URL: http://[2409:8087:2001:20:2800:0:df6e:eb15]:80/wh7f454c46tw1756633734_-1487356125/ott.mobaibox.com/PLTV/3/224/3221225555/index.m3u8?icpid=3&RTS=1674386167&from=40&popid=40&hms_devid=2115&prioritypopid=40&vqe=3, Date: 02-13-2024, Resolution: None, Response Time: inf ms
 Name: 黑莓动画, URL: http://[2409:8087:3869:8021:1001::e5]:6610/PLTV/88888910/224/3221225672/index.m3u8, Date: 04-13-2023, Resolution: None, Response Time: inf ms
-Name: 黑莓电影, URL: http://[2409:8087:1a0b:df::4014]:80/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225743/index.m3u8, Date: 07-22-2024, Resolution: 1920x1080, Response Time: inf ms
+Name: 黑莓电影, URL: http://[2409:8087:1a0b:df::4014]:80/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225743/index.m3u8, Date: 07-23-2024, Resolution: 1920x1080, Response Time: inf ms
 Name: 黑莓电影, URL: http://[2409:8087:5e00:24::1e]:6060/000000001000/1000000004000019624/1.m3u8, Date: 07-22-2024, Resolution: 1920x1080, Response Time: inf ms
 Name: 黑莓电影, URL: http://[2409:8087:5e00:24::1e]:6060/000000001000/8785669936177902664/1.m3u8, Date: 07-11-2024, Resolution: None, Response Time: inf ms
 Name: 黑莓电影, URL: http://[2409:8087:5e00:24::1e]:6060/200000001898/460000089800010073/1.m3u8, Date: 05-02-2024, Resolution: 1920x1080, Response Time: inf ms
