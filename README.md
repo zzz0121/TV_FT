@@ -6,6 +6,9 @@
   https://cdn.jsdelivr.net/gh/zzz0121/TV_FT/user_result.txt
   https://raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
 ```
+```
+查看历史变更：https://github.githistory.xyz/zzz0121/TV_FT/blob/master/user_result.txt
+```
 
 # 电视频道菜单自定义与直播源接口更新工具
 
