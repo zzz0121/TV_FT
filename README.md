@@ -1,38 +1,14 @@
-<div align="center">
-  <img src="./static/images/logo.png" alt="logo"/>
-  <h1 align="center">电视直播源更新工具</h1>
-</div>
+### 接口
 
-自定义频道菜单，根据模板文件的直播源接口，自动获取并更新最新的直播源接口，校验并生成可用的频道接口文件
-
-<p align="center">
-  <a href="https://github.com/Guovin/TV/releases/latest">
-    <img src="https://img.shields.io/github/v/release/guovin/tv" />
-  </a>
-  <a href="https://www.python.org/">
-    <img src="https://img.shields.io/badge/python-%20%3E%3D%203.8-47c219" />
-  </a>
-  <a href="https://github.com/Guovin/TV/releases/latest">
-    <img src="https://img.shields.io/github/downloads/guovin/tv/total" />
-  </a>
-  <a href="https://hub.docker.com/repository/docker/guovern/tv-requests">
-    <img src="https://img.shields.io/docker/pulls/guovern/tv-requests?label=docker:requests" />
-  </a>
-   <a href="https://hub.docker.com/repository/docker/guovern/tv-driver">
-    <img src="https://img.shields.io/docker/pulls/guovern/tv-driver?label=docker:driver" />
-  </a>
-</p>
-
-[English](./README_en.md) | 中文
-
-## 特点
-
-- 自定义模板，生成您想要的频道分类与频道顺序
-- 支持多种获取源方式：组播源、酒店源、订阅源、线上检索
-- 接口测速验效，响应时间、分辨率优先级，过滤无效接口
-- 定时执行，北京时间每日 6:00 与 18:00 执行更新
-- 支持多种运行方式：工作流、命令行、界面软件、Docker
-- 更多功能请见[配置参数](./docs/config.md)
+```list
+  https://ghproxy.net/raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
+  https://ghproxy.net/https://raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
+  https://cdn.jsdelivr.net/gh/zzz0121/TV_FT/user_result.txt
+  https://raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
+```
+```
+查看历史变更：https://github.githistory.xyz/zzz0121/TV_FT/blob/master/user_result.txt
+```
 
 ## 配置
 
