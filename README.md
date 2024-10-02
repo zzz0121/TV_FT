@@ -1,13 +1,13 @@
 ### 接口
 
 ```list
-  https://ghproxy.net/raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
-  https://ghproxy.net/https://raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
-  https://cdn.jsdelivr.net/gh/zzz0121/TV_FT/user_result.txt
-  https://raw.githubusercontent.com/zzz0121/TV_FT/master/user_result.txt
+  https://ghproxy.net/raw.githubusercontent.com/zzz0121/TV_FT/refs/heads/master/output/result.txt
+  https://ghproxy.net/https://raw.githubusercontent.com/zzz0121/TV_FT/master/output/result.txt
+  https://cdn.jsdelivr.net/gh/zzz0121/TV_FT/output/result.txt
+  https://raw.githubusercontent.com/zzz0121/TV_FT/master/output/result.txt
 ```
 ```
-查看历史变更：https://github.githistory.xyz/zzz0121/TV_FT/blob/master/user_result.txt
+查看历史变更：https://ghproxy.net/raw.githubusercontent.com/zzz0121/TV_FT/refs/heads/master/output/result.txt
 ```
 
 ## 配置
