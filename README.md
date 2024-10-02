@@ -98,6 +98,3 @@ Fork 本项目并开启工作流更新
 
 [MIT](./LICENSE) License &copy; 2024-PRESENT [Govin](https://github.com/guovin)
 
-## 赞赏
-
-![image](./static/images/appreciate.jpg)
