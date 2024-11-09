@@ -28,7 +28,7 @@ async def get_channels_by_hotel(callback=None):
     Get the channels by multicase
     """
     channels = {}
-    pageUrl = "http://tonkiang.us/hoteliptv.php"
+    pageUrl = "http://www.foodieguide.com/iptvsearch/hoteliptv.php"
     proxy = None
     open_proxy = config.open_proxy
     open_driver = config.open_driver
@@ -41,7 +41,7 @@ async def get_channels_by_hotel(callback=None):
     start_time = time()
 
     def process_region_by_hotel(region):
-        nonlocal proxy, open_driver, page_num
+        nonlocal proxy
         name = f"{region}"
         info_list = []
         driver = None
@@ -106,7 +106,7 @@ async def get_channels_by_hotel(callback=None):
                             driver.execute_script("arguments[0].click();", page_link)
                         else:
                             request_url = (
-                                f"{pageUrl}?isp={name}&page={page}&code={code}"
+                                f"{pageUrl}?net={name}&page={page}&code={code}"
                             )
                             page_soup = retry_func(
                                 lambda: get_soup_requests(request_url, proxy=proxy),

@@ -32,7 +32,7 @@ async def get_channels_by_multicast(names, callback=None):
     Get the channels by multicase
     """
     channels = {}
-    pageUrl = "http://tonkiang.us/hoteliptv.php"
+    pageUrl = "http://www.foodieguide.com/iptvsearch/hoteliptv.php"
     proxy = None
     open_proxy = config.open_proxy
     open_driver = config.open_driver
@@ -53,7 +53,7 @@ async def get_channels_by_multicast(names, callback=None):
         merge_objects(search_region_type_result, fofa_result)
 
     def process_channel_by_multicast(region, type):
-        nonlocal proxy, open_driver, page_num, start_time
+        nonlocal proxy
         name = f"{region}{type}"
         info_list = []
         driver = None
@@ -112,7 +112,7 @@ async def get_channels_by_multicast(names, callback=None):
                             driver.execute_script("arguments[0].click();", page_link)
                         else:
                             request_url = (
-                                f"{pageUrl}?isp={name}&page={page}&code={code}"
+                                f"{pageUrl}?net={name}&page={page}&code={code}"
                             )
                             page_soup = retry_func(
                                 lambda: get_soup_requests(request_url, proxy=proxy),

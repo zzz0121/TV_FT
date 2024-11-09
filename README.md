@@ -21,7 +21,7 @@
   </div>
   <br>
   <div>
-  🏠广东频道: 广东珠江, 广东体育, 广东新闻, 广东卫视, 大湾区卫视, 广州影视, 广州竞赛, 江门综合, 江门侨乡生活, 佛山综合, 深圳卫视, 汕头综合, 汕头经济, 汕头文旅, 茂名综合, 茂名公共
+  🏠广东频道: 广东珠江, 广东体育, 广东新闻, 广东民生, 广东卫视, 大湾区卫视, 广州综合, 广州影视, 广州竞赛, 江门综合, 江门侨乡生活, 佛山综合, 深圳卫视, 汕头综合, 汕头经济, 汕头文旅, 茂名综合, 茂名公共
   </div>
   <br>
   <div>
@@ -70,23 +70,27 @@
   <a href="https://hub.docker.com/repository/docker/guovern/tv-requests">
     <img src="https://img.shields.io/docker/pulls/guovern/tv-requests?label=docker:requests" />
   </a>
-   <a href="https://hub.docker.com/repository/docker/guovern/tv-driver">
+  <a href="https://hub.docker.com/repository/docker/guovern/tv-driver">
     <img src="https://img.shields.io/docker/pulls/guovern/tv-driver?label=docker:driver" />
+  </a>
+  <a href="https://github.com/Guovin/TV/fork">
+    <img src="https://img.shields.io/github/forks/guovin/tv" />
   </a>
 </p>
 
 [English](./README_en.md) | 中文
 
-## 特点
+## ✅ 特点
 
-- 自定义模板，生成您想要的频道
-- 支持多种获取源方式：组播源、酒店源、订阅源、关键字搜索
-- 接口测速验效，响应时间、分辨率优先级，过滤无效接口
-- 定时执行，北京时间每日 6:00 与 18:00 执行更新
-- 支持多种运行方式：工作流、命令行、GUI 软件、Docker(amd64/arm64)
-- 更多功能请见[配置参数](./docs/config.md)
+- ✅ 自定义模板，生成您想要的频道
+- ✅ 支持多种获取源方式：组播源、酒店源、订阅源、关键字搜索
+- ✅ 接口测速验效，响应时间、分辨率优先级，过滤无效接口
+- ✅ 偏好设置：IPv6、接口来源排序优先级与数量配置、接口白名单
+- ✅ 定时执行，北京时间每日 6:00 与 18:00 执行更新
+- ✅ 支持多种运行方式：工作流、命令行、GUI 软件、Docker(amd64/arm64)
+- ✨ 更多功能请见[配置参数](./docs/config.md)
 
-## 最新结果：
+## 🔗 最新结果
 
 - 接口源：
 
@@ -104,11 +108,11 @@ https://ghproxy.net/raw.githubusercontent.com/Guovin/TV/gd/output/result.txt
 https://ghproxy.net/raw.githubusercontent.com/Guovin/TV/gd/source.json
 ```
 
-## 配置
+## ⚙️ 配置
 
 [配置参数](./docs/config.md)
 
-## 快速上手
+## 🚀 快速上手
 
 ### 方式一：工作流
 
@@ -117,8 +121,14 @@ Fork 本项目并开启工作流更新，具体步骤请见[详细教程](./docs
 ### 方式二：命令行
 
 ```python
-pip3 install pipenv
+pip install pipenv
+```
+
+```python
 pipenv install
+```
+
+```python
 pipenv run build
 ```
 
@@ -136,47 +146,61 @@ pipenv run ui
 
 ### 方式四：Docker
 
-- requests：轻量级，性能要求低，更新速度快，稳定性不确定（推荐订阅源使用此版本）
 - driver：性能要求较高，更新速度较慢，稳定性、成功率高；修改配置 open_driver = False 可切换到 request 版本（推荐酒店源、组播源、关键字搜索使用此版本）
+- requests：轻量级，性能要求低，更新速度快，稳定性不确定（推荐订阅源使用此版本）
 
-建议都试用一次，选择自己合适的版本。
+建议都试用一次，选择自己合适的版本
 
-```bash
 1. 拉取镜像：
-requests：
-docker pull guovern/tv-requests:latest
-
-driver：
+- driver：
+```bash
 docker pull guovern/tv-driver:latest
+```
+
+- requests：
+```bash
+docker pull guovern/tv-requests:latest
+```
 
 2. 运行容器：
-docker run -d -p 8000:8000 guovern/tv-requests 或 tv-driver
+- driver：
+```bash
+docker run -d -p 8000:8000 guovern/tv-driver
+```
+
+- requests：
+```bash
+docker run -d -p 8000:8000 guovern/tv-requests
+```
 
 卷挂载参数（可选）：
 实现宿主机文件与容器文件同步，修改模板、配置、获取更新结果文件可直接在宿主机文件夹下操作
 
-配置文件：
--v 宿主机路径/config:/tv-requests/config 或 tv-driver/config
-
-结果文件：
--v 宿主机路径/output:/tv-requests/output 或 tv-driver/output
-
-例：docker run -v /etc/docker/config:/tv-requests/config -v /etc/docker/output:/tv-requests/output -d -p 8000:8000 guovern/tv-requests
-
-3. 查看更新结果：访问（域名:8000）
+以宿主机路径/etc/docker为例：
+- driver：
+```bash
+docker run -v /etc/docker/config:/tv-driver/config -v /etc/docker/output:/tv-driver/output -d -p 8000:8000 guovern/tv-driver
 ```
 
-#### 注：方式一至三更新完成后的结果文件链接：http://本地 ip:8000 或 http://localhost:8000
+- requests：
+```bash
+docker run -v /etc/docker/config:/tv-requests/config -v /etc/docker/output:/tv-requests/output -d -p 8000:8000 guovern/tv-requests
+```
 
-## 更新日志
+3. 更新结果：
+- 接口地址：ip:8000
+- 接口详情：ip:8000/result
+- 测速日志：ip:8000/log
+
+## 🗓️ 更新日志
 
 [更新日志](./CHANGELOG.md)
 
-## 许可证
+## ⚖️ 许可证
 
 [MIT](./LICENSE) License &copy; 2024-PRESENT [Govin](https://github.com/guovin)
 
-## 赞赏
+## 💰️ 赞赏
 
 <div>请我喝杯咖啡☕️吧~</div>
 
@@ -184,6 +208,6 @@ docker run -d -p 8000:8000 guovern/tv-requests 或 tv-driver
 | ----------------------------------------- | ------------------------------------------- |
 | ![支付宝扫码](./static/images/alipay.jpg) | ![微信扫码](./static/images/appreciate.jpg) |
 
-## 免责声明
+## 📣 免责声明
 
 本项目仅供学习交流用途，接口数据均来源于网络，如有侵权，请联系删除
