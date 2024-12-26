@@ -2,8 +2,8 @@ name: 'Update schedule'
 
 on:
 schedule:
-  - cron: '0 0 1 * *'   # 每月1号的00:00更新
-  - cron: '0 0 15 * *'  # 每月15号的00:00更新
+  - cron: '0 0 1 * *'
+  - cron: '0 0 15 * *'
   workflow_dispatch:
     branches:
       - master
