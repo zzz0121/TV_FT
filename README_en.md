@@ -217,10 +217,22 @@ It's recommended to try each one and choose the version that suits you
 docker pull guovern/iptv-api:latest
 ```
 
+🚀 Proxy acceleration (recommended for users in China):
+
+```bash
+docker pull docker.1ms.run/guovern/iptv-api:latest
+```
+
 - iptv-api:lite
 
 ```bash
 docker pull guovern/iptv-api:lite
+```
+
+🚀 Proxy acceleration (recommended for users in China):
+
+```bash
+docker pull docker.1ms.run/guovern/iptv-api:lite
 ```
 
 2. Run the container:

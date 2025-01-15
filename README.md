@@ -211,10 +211,22 @@ pipenv run ui
 docker pull guovern/iptv-api:latest
 ```
 
+🚀 代理加速（推荐国内用户使用）：
+
+```bash
+docker pull docker.1ms.run/guovern/iptv-api:latest
+```
+
 - iptv-api:lite：
 
 ```bash
 docker pull guovern/iptv-api:lite
+```
+
+🚀 代理加速（推荐国内用户使用）：
+
+```bash
+docker pull docker.1ms.run/guovern/iptv-api:lite
 ```
 
 2. 运行容器：

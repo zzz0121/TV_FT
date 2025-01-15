@@ -296,10 +296,22 @@ If you do not understand the software configuration options, do not change anyth
 docker pull guovern/iptv-api:latest
 ```
 
-- iptv-api:lite:
+🚀 Proxy acceleration (recommended for users in China):
+
+```bash
+docker pull docker.1ms.run/guovern/iptv-api:latest
+```
+
+- iptv-api:lite
 
 ```bash
 docker pull guovern/iptv-api:lite
+```
+
+🚀 Proxy acceleration (recommended for users in China):
+
+```bash
+docker pull docker.1ms.run/guovern/iptv-api:lite
 ```
 
 ### 2. Run the container:
