@@ -60,7 +60,8 @@
 ## Features
 
 - ✅ Customize the template to generate the channel you want
-- ✅ Supports multiple source acquisition methods: multicast source, hotel source, subscription source, keyword search
+- ✅ Supports multiple source acquisition methods: local source, multicast source, hotel source, subscription source,
+  keyword search
 - ✅ Interface speed verification, obtain delay, speed, resolution, filter invalid interface
 - ✅ Preferences: IPv4、IPv6, priority and quantity of interface source sorting, and interface whitelist
 - ✅ Scheduled execution at 6:00 AM and 18:00 PM Beijing time daily
