@@ -429,8 +429,9 @@ def remove_duplicates_from_tuple_list(tuple_list, seen, flag=None, force_str=Non
             matcher = re.search(flag, item_first)
             if matcher:
                 part = matcher.group(1)
-        if part not in seen:
-            seen.add(part)
+        seen_num = seen.get(part, 0)
+        if (seen_num < config.sort_duplicate_limit) or (seen_num == 0 and config.sort_duplicate_limit == 0):
+            seen[part] = seen_num + 1
             unique_list.append(item)
     return unique_list
 
@@ -483,7 +484,7 @@ def remove_cache_info(string):
     """
     Remove the cache info from the string
     """
-    return re.sub(r"[.*]?\$?cache:.*", "", string)
+    return re.sub(r"[.*]?\$?-?cache:.*", "", string)
 
 
 def resource_path(relative_path, persistent=False):

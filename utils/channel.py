@@ -605,7 +605,7 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     get_resolution = open_filter_resolution and check_ffmpeg_installed_status()
     sort_timeout = config.sort_timeout
     need_sort_data = copy.deepcopy(data)
-    process_nested_dict(need_sort_data, seen=set(), flag=r"cache:(.*)", force_str="!")
+    process_nested_dict(need_sort_data, seen={}, flag=r"cache:(.*)", force_str="!")
     result = {}
     semaphore = asyncio.Semaphore(10)
 
