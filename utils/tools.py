@@ -446,16 +446,16 @@ def process_nested_dict(data, seen, flag=None, force_str=None):
             data[key] = remove_duplicates_from_tuple_list(value, seen, flag, force_str)
 
 
-url_domain_compile = re.compile(
-    constants.url_domain_pattern
+url_host_compile = re.compile(
+    constants.url_host_pattern
 )
 
 
-def get_url_domain(url):
+def get_url_host(url):
     """
-    Get the url domain
+    Get the url host
     """
-    matcher = url_domain_compile.search(url)
+    matcher = url_host_compile.search(url)
     if matcher:
         return matcher.group()
     return None
@@ -475,7 +475,7 @@ def format_url_with_cache(url, cache=None):
     """
     Format the URL with cache
     """
-    cache = cache or get_url_domain(url) or ""
+    cache = cache or get_url_host(url) or ""
     return add_url_info(url, f"cache:{cache}") if cache else url
 
 
