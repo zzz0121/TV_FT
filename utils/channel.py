@@ -696,9 +696,9 @@ def write_channel_to_file(data, ipv6=False, callback=None):
             print()
         if config.open_update_time:
             update_time_url = next(
-                (get_total_urls(info_list, ipv_type_prefer, origin_type_prefer)[0]
-                 for channel_obj in data.values()
-                 for info_list in channel_obj.values() if info_list),
+                (urls[0] for channel_obj in data.values()
+                 for info_list in channel_obj.values()
+                 if (urls := get_total_urls(info_list, ipv_type_prefer, origin_type_prefer))),
                 "url"
             )
             if config.update_time_position == "top":
