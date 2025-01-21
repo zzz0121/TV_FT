@@ -122,23 +122,36 @@ Adjust the configuration as needed, here is the default configuration descriptio
 
 `user_` prefix).
 
-- Subscription sources (`config/subscribe.txt`):
+- Subscription sources (`config/subscribe.txt`)
+
   Supports txt and m3u addresses as subscriptions, the program will read the channel interface data in sequence.
   ![Subscription sources](./images/subscribe.png 'Subscription sources')
 
-- Blacklist (`config/blacklist.txt`):
+
+- Local sources（`config/local.txt`）
+
+  The channel interface data comes from local files, and the program will read the channel interface data in sequence.
+  ![Local sources](./images/local.png 'Local sources')
+
+
+- Blacklist (`config/blacklist.txt`)
+
   Interfaces that match the blacklist keywords will be filtered and not collected, such as low-quality interfaces with
   ads.
   ![Blacklist](./images/blacklist.png 'Blacklist')
 
-- Whitelist (`config/whitelist.txt`):
+
+- Whitelist (`config/whitelist.txt`)
+
   Interfaces or subscription sources in the whitelist will not participate in speed testing and will be prioritized at
   the top of the results. Fill in the channel name to directly retain the record in the final result, such as: CCTV-1,
   interface address, only filling in the interface address will apply to all channels, multiple records are entered on
   separate lines.
   ![Whitelist](./images/whitelist.png 'Whitelist')
 
-- Multicast data (`config/rtp`):
+
+- Multicast data (`config/rtp`)
+
   In addition, you can also maintain multicast source data yourself, the files are located in the config/rtp directory,
   and the file naming format is: `region_operator.txt`.
   ![Multicast data](./images/rtp.png 'Multicast data')
@@ -209,6 +222,7 @@ created when forking)
 Or proxy address:
 https://cdn.jsdelivr.net/gh/your\_github\_username/repository\_name (corresponding to the TV created when forking)
 @master/output/user\_result.txt
+
 ![Username and Repository Name](./images/rep-info.png 'Username and Repository Name')
 
 If you can access this link and it returns the updated interface content, then your live source interface link has been
@@ -224,6 +238,7 @@ successfully created! Simply copy and paste this link into software like `TVBox`
 If you want to modify the update frequency (default: 6:00 AM and 18:00 PM Beijing time daily), you can modify the
 `on: schedule: - cron` field:
 ![.github/workflows/main.yml](./images/schedule-cron.png '.github/workflows/main.yml')
+
 If you want to perform updates every 2 days, you can modify it like this:
 
 ```bash

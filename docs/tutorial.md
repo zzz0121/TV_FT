@@ -107,22 +107,32 @@ IPTV-API是一个可高度自定义的IPTV接口更新项目📺，自定义频�
 
 #### 同理你可以自定义订阅源、黑名单、白名单（建议复制文件重命名添加`user_`前缀）
 
-- 订阅源（`config/subscribe.txt`）：
+- 订阅源（`config/subscribe.txt`）
+
   支持txt和m3u地址作为订阅，程序将依次读取其中的频道接口数据
   ![订阅源](./images/subscribe.png '订阅源')
 
 
-- 黑名单（`config/blacklist.txt`）：
+- 本地源（`config/local.txt`）
+
+  频道接口数据来源于本地文件，程序将依次读取其中的频道接口数据
+  ![本地源](./images/local.png '本地源')
+
+
+- 黑名单（`config/blacklist.txt`）
+
   符合黑名单关键字的接口将会被过滤，不会被收集，比如含广告等低质量接口
   ![黑名单](./images/blacklist.png '黑名单')
 
 
-- 白名单（`config/whitelist.txt`）：
+- 白名单（`config/whitelist.txt`）
+
   白名单内的接口或订阅源获取的接口将不会参与测速，优先排序至结果最前。填写频道名称会直接保留该记录至最终结果，如：CCTV-1,接口地址，只填写接口地址则对所有频道生效，多条记录换行输入。
   ![白名单](./images/whitelist.png '白名单')
 
 
-- 组播数据（`config/rtp`）：
+- 组播数据（`config/rtp`）
+
   此外，对于组播源数据你也可以自行维护，文件位于config/rtp目录下，文件命名格式为：`地区_运营商.txt`
   ![组播数据](./images/rtp.png '组播数据')
 
