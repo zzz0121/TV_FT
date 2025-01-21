@@ -84,10 +84,11 @@ class ConfigManager:
     @property
     def ipv_type_prefer(self):
         return [
-            type.strip().lower()
-            for type in self.config.get(
+            ipv_type_value.lower()
+            for ipv_type in self.config.get(
                 "Settings", "ipv_type_prefer", fallback=""
             ).split(",")
+            if (ipv_type_value := ipv_type.strip())
         ]
 
     @property
@@ -117,13 +118,13 @@ class ConfigManager:
     @property
     def origin_type_prefer(self):
         return [
-            origin.strip().lower()
+            origin_value.lower()
             for origin in self.config.get(
                 "Settings",
                 "origin_type_prefer",
                 fallback="",
             ).split(",")
-            if origin.strip().lower()
+            if (origin_value := origin.strip())
         ]
 
     @property
