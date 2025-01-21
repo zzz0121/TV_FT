@@ -214,7 +214,7 @@ pipenv run ui
 
 It's recommended to try each one and choose the version that suits you
 
-#### 1. Pull the image:
+#### 1. Pull the image
 
 - iptv-api
 
@@ -240,7 +240,7 @@ docker pull guovern/iptv-api:lite
 docker pull docker.1ms.run/guovern/iptv-api:lite
 ```
 
-#### 2. Run the container:
+#### 2. Run the container
 
 - iptv-api
 
@@ -261,16 +261,18 @@ and retrieving updated result files can be directly operated in the host machine
 
 Taking the host path /etc/docker as an example:
 
-- iptv-api：
+- iptv-api
 
 ```bash
-docker run -v /etc/docker/config:/iptv-api/config -v /etc/docker/output:/iptv-api/output -d -p 8000:8000 guovern/iptv-api
+-v /etc/docker/config:/iptv-api/config
+-v /etc/docker/output:/iptv-api/output
 ```
 
-- iptv-api:lite：
+- iptv-api:lite
 
 ```bash
-docker run -v /etc/docker/config:/iptv-api-lite/config -v /etc/docker/output:/iptv-api-lite/output -d -p 8000:8000 guovern/iptv-api:lite
+-v /etc/docker/config:/iptv-api-lite/config
+-v /etc/docker/output:/iptv-api-lite/output
 ```
 
 ##### Environment Variables:
@@ -288,7 +290,7 @@ docker run -v /etc/docker/config:/iptv-api-lite/config -v /etc/docker/output:/ip
 -e UPDATE_CRON2="0 10 * * *"
 ```
 
-#### 3. Update results:
+#### 3. Update results
 
 - API address: `ip:8000`
 - m3u api：`ip:8000/m3u`
