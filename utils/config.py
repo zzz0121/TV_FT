@@ -86,17 +86,21 @@ class ConfigManager:
         return [
             type.strip().lower()
             for type in self.config.get(
-                "Settings", "ipv_type_prefer", fallback="auto"
+                "Settings", "ipv_type_prefer", fallback=""
             ).split(",")
         ]
 
     @property
     def ipv4_num(self):
-        return self.config.getint("Settings", "ipv4_num", fallback=15)
+        return self.config.getint("Settings", "ipv4_num", fallback=5) if self.config.get(
+            "Settings", "ipv_type_prefer", fallback=""
+        ) else ""
 
     @property
     def ipv6_num(self):
-        return self.config.getint("Settings", "ipv6_num", fallback=15)
+        return self.config.getint("Settings", "ipv6_num", fallback=5) if self.config.get(
+            "Settings", "ipv_type_prefer", fallback=""
+        ) else ""
 
     @property
     def ipv6_support(self):
@@ -105,6 +109,7 @@ class ConfigManager:
     @property
     def ipv_limit(self):
         return {
+            "all": self.urls_limit,
             "ipv4": self.ipv4_num,
             "ipv6": self.ipv6_num,
         }
@@ -140,6 +145,7 @@ class ConfigManager:
     @property
     def source_limits(self):
         return {
+            "all": self.urls_limit,
             "local": self.local_num,
             "hotel": self.hotel_num,
             "multicast": self.multicast_num,
