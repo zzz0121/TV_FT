@@ -207,7 +207,7 @@ pipenv run ui
   版本运行模式（推荐酒店源、组播源、关键字搜索使用此版本）
 - iptv-api:lite（精简版本）：轻量级，性能要求低，更新速度快，稳定性不确定（推荐订阅源使用此版本）
 
-1. 拉取镜像：
+#### 1. 拉取镜像：
 
 - iptv-api：
 
@@ -233,7 +233,7 @@ docker pull guovern/iptv-api:lite
 docker pull docker.1ms.run/guovern/iptv-api:lite
 ```
 
-2. 运行容器：
+#### 2. 运行容器：
 
 - iptv-api：
 
@@ -247,7 +247,8 @@ docker run -d -p 8000:8000 guovern/iptv-api
 docker run -d -p 8000:8000 guovern/iptv-api:lite
 ```
 
-卷挂载参数（可选）：
+##### 挂载（推荐）：
+
 实现宿主机文件与容器文件同步，修改模板、配置、获取更新结果文件可直接在宿主机文件夹下操作
 
 以宿主机路径/etc/docker 为例：
@@ -264,13 +265,22 @@ docker run -v /etc/docker/config:/iptv-api/config -v /etc/docker/output:/iptv-ap
 docker run -v /etc/docker/config:/iptv-api-lite/config -v /etc/docker/output:/iptv-api-lite/output -d -p 8000:8000 guovern/iptv-api:lite
 ```
 
-端口环境变量：
+##### 环境变量：
+
+- 端口
 
 ```bash
 -e APP_PORT=8000
 ```
 
-3. 更新结果：
+- 定时执行时间
+
+```bash
+-e UPDATE_CRON1="0 22 * * *"
+-e UPDATE_CRON2="0 10 * * *"
+```
+
+#### 3. 更新结果：
 
 - 接口地址：`ip:8000`
 - m3u 接口：`ip:8000/m3u`

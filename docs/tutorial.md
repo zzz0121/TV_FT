@@ -301,7 +301,7 @@ docker run -d -p 8000:8000 guovern/iptv-api
 docker run -d -p 8000:8000 guovern/iptv-api:lite
 ```
 
-#### 卷挂载参数（可选）：
+#### 挂载（推荐）：
 
 实现宿主机文件与容器文件同步，修改模板、配置、获取更新结果文件可直接在宿主机文件夹下操作
 
@@ -321,10 +321,19 @@ docker run -v /etc/docker/config:/iptv-api-lite/config -v /etc/docker/output:/ip
 
 ##### 注意：如果重新拉取镜像进行更新版本后，涉及到配置文件变更或增加新配置时，务必覆盖主机的旧配置文件（config目录），因为主机的配置文件是无法自动更新的，否则容器还是以旧配置运行。
 
-#### 端口环境变量：
+#### 环境变量：
+
+- 端口
 
 ```bash
 -e APP_PORT=8000
+```
+
+- 定时执行时间
+
+```bash
+-e UPDATE_CRON1="0 22 * * *"
+-e UPDATE_CRON2="0 10 * * *"
 ```
 
 ### 3.更新结果：

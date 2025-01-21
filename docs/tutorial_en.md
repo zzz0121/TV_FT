@@ -328,7 +328,7 @@ docker run -d -p 8000:8000 guovern/iptv-api
 docker run -d -p 8000:8000 guovern/iptv-api:lite
 ```
 
-#### Volume mount parameters (optional):
+#### Mount (recommended):
 
 To synchronize files between the host and the container, modify templates, configurations, and obtain update result
 files directly in the host folder.
@@ -349,10 +349,19 @@ docker run -v /etc/docker/config:/iptv-api-lite/config -v /etc/docker/output:/ip
 
 ##### Note: If you pull the image again to update the version, and there are changes or additions to the configuration files, be sure to overwrite the old configuration files in the host (config directory), as the host configuration files cannot be updated automatically. Otherwise, the container will still run with the old configuration.
 
-#### Port environment variables:
+#### Environment Variables:
+
+- Port
 
 ```bash
 -e APP_PORT=8000
+```
+
+- Scheduled execution time
+
+```bash
+-e UPDATE_CRON1="0 22 * * *"
+-e UPDATE_CRON2="0 10 * * *"
 ```
 
 ### 3. Update results:
