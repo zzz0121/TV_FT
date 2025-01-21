@@ -602,6 +602,7 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     """
     ipv6_proxy = None if (not config.open_ipv6 or ipv6) else constants.ipv6_proxy
     open_filter_resolution = config.open_filter_resolution
+    min_resolution = config.min_resolution_value
     get_resolution = open_filter_resolution and check_ffmpeg_installed_status()
     sort_timeout = config.sort_timeout
     need_sort_data = copy.deepcopy(data)
@@ -609,9 +610,10 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     result = {}
     semaphore = asyncio.Semaphore(10)
 
-    async def limited_get_speed(info, ipv6_proxy, filter_resolution, timeout, callback):
+    async def limited_get_speed(info, ipv6_proxy, filter_resolution, min_resolution, timeout, callback):
         async with semaphore:
-            return await get_speed(info[0], ipv6_proxy=ipv6_proxy, filter_resolution=filter_resolution, timeout=timeout,
+            return await get_speed(info[0], ipv6_proxy=ipv6_proxy, filter_resolution=filter_resolution,
+                                   min_resolution=min_resolution, timeout=timeout,
                                    callback=callback)
 
     tasks = [
@@ -620,6 +622,7 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
                 info,
                 ipv6_proxy=ipv6_proxy,
                 filter_resolution=get_resolution,
+                min_resolution=min_resolution,
                 timeout=sort_timeout,
                 callback=callback,
             )
@@ -633,7 +636,6 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     open_supply = config.open_supply
     open_filter_speed = config.open_filter_speed
     min_speed = config.min_speed
-    min_resolution = config.min_resolution_value
     for cate, obj in data.items():
         for name, info_list in obj.items():
             info_list = sort_urls(name, info_list, supply=open_supply, filter_speed=open_filter_speed,
