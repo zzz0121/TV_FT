@@ -338,7 +338,7 @@ class ConfigManager:
 
     @property
     def sort_duplicate_limit(self):
-        return self.config.getint("Settings", "sort_duplicate_limit", fallback=2)
+        return self.config.getint("Settings", "sort_duplicate_limit", fallback=3)
 
     def load(self):
         """
