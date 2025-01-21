@@ -461,8 +461,8 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
     Append channel data to total info data
     """
     init_info_data(info_data, cate, name)
-    urls = [x[0].partition("$")[0] for x in info_data[cate][name] if x[0]]
-    url_hosts = [get_url_host(url) for url in urls]
+    urls = set([x[0].partition("$")[0] for x in info_data[cate][name] if x[0]])
+    url_hosts = set([get_url_host(url) for url in urls])
     for item in data:
         try:
             url, date, resolution, *rest = item
@@ -475,14 +475,14 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                 url_host = get_url_host(url_partition[0])
                 url_info = url_partition[2]
                 white_info = url_info and url_info.startswith("!")
-                if not not white_info:
+                if not white_info:
                     if pure_url in urls:
                         continue
                     if url_host in url_hosts:
                         for p_url in urls:
                             if get_url_host(p_url) == url_host and len(p_url) < len(pure_url):
                                 urls.remove(p_url)
-                                urls.append(pure_url)
+                                urls.add(pure_url)
                                 for index, info in enumerate(info_data[cate][name]):
                                     if info[0] and get_url_host(info[0]) == url_host:
                                         info_data[cate][name][index] = (url, date, resolution, url_origin)
@@ -498,8 +498,8 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                         check and check_url_ipv_type(pure_url) and not check_url_by_keywords(url, blacklist))
                 ):
                     info_data[cate][name].append((url, date, resolution, url_origin))
-                    urls.append(pure_url)
-                    url_hosts.append(url_host)
+                    urls.add(pure_url)
+                    url_hosts.add(url_host)
         except:
             continue
 
