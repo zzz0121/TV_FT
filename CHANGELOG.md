@@ -14,6 +14,7 @@
 - 🐛 修复无结果状态文件写入报错（#841）
 - 🐛 修复GUI无法保存测速延迟设置
 - 🐛 修复Docker版本文件丢失（#800）
+- 🪄 `open_use_old_result`更名为`open_history`
 - 🪄 优化对接口中`%`符号的转义处理（#853）
 - 🪄 优化以接口Host去重（#846）
 - 🪄 支持协议类型偏好`ipv_type_prefer`可设置为空，可实现全部类型按速率排序输出结果
@@ -31,6 +32,7 @@
 - 🐛 Fixed error writing to file in no result state (#841)
 - 🐛 Fixed GUI unable to save speed test delay settings
 - 🐛 Fixed Docker version file loss issue (#800)
+- 🪄 `open_use_old_result` renamed to `open_history`
 - 🪄 Optimized escaping of `%` symbol in interfaces (#853)
 - 🪄 Optimized deduplication by interface host (#846)
 - 🪄 Supported setting `ipv_type_prefer` to empty, allowing all types to be sorted by speed for output results
