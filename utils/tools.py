@@ -220,19 +220,6 @@ def get_total_urls(info_list, ipv_type_prefer, origin_type_prefer):
             else:
                 continue
 
-    if config.open_supply:
-        ipv_type_total = list(dict.fromkeys(ipv_type_prefer + (["ipv4", "ipv6"] if ipv_prefer_bool else [])))
-        if len(total_urls) < urls_limit:
-            for origin in origin_type_prefer:
-                if len(total_urls) >= urls_limit:
-                    break
-                for ipv_type in ipv_type_total:
-                    if len(total_urls) >= urls_limit:
-                        break
-                    extra_urls = categorized_urls[origin][ipv_type][: config.source_limits.get(origin, urls_limit)]
-                    total_urls.extend(extra_urls)
-                    total_urls = list(dict.fromkeys(total_urls))[:urls_limit]
-
     total_urls = list(dict.fromkeys(total_urls))[:urls_limit]
 
     if not config.open_url_info:
