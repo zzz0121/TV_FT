@@ -206,13 +206,15 @@ def get_total_urls(info_list, ipv_type_prefer, origin_type_prefer):
         for ipv_type in ipv_type_prefer:
             if len(total_urls) >= urls_limit:
                 break
-            if ipv_num[ipv_type] < config.ipv_limit[ipv_type]:
+            ipv_type_num = ipv_num[ipv_type]
+            ipv_type_limit = config.ipv_limit[ipv_type] or urls_limit
+            if ipv_type_num < ipv_type_limit:
                 urls = categorized_urls[origin][ipv_type]
                 if not urls:
                     break
                 limit = min(
-                    max(config.source_limits.get(origin, urls_limit) - ipv_num[ipv_type], 0),
-                    max(config.ipv_limit[ipv_type] - ipv_num[ipv_type], 0),
+                    max(config.source_limits.get(origin, urls_limit) - ipv_type_num, 0),
+                    max(ipv_type_limit - ipv_type_num, 0),
                 )
                 limit_urls = urls[:limit]
                 total_urls.extend(limit_urls)
