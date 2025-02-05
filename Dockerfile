@@ -28,7 +28,7 @@ COPY . $APP_WORKDIR
 
 COPY --from=builder /app/.venv /.venv
 
-RUN apk update && apk add --no-cache cron ffmpeg \
+RUN apk update && apk add --no-cache dcron ffmpeg \
   && if [ "$LITE" = False ]; then apk add --no-cache chromium chromium-driver; fi
 
 EXPOSE $APP_PORT
