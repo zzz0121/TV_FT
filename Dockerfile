@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY Pipfile* ./
 
-RUN apk update && apk add --no-cache gcc musl-dev libffi-dev zlib-dev \
+RUN apk update && apk add --no-cache zlib-dev jpeg-dev \
   && pip install pipenv \
   && PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy \
   && if [ "$LITE" = False ]; then pipenv install selenium; fi
