@@ -1,4 +1,4 @@
-FROM python:3.13 AS builder
+FROM python:3.13-alpine AS builder
 
 ARG LITE=False
 
@@ -6,7 +6,8 @@ WORKDIR /app
 
 COPY Pipfile* ./
 
-RUN pip install pipenv \
+RUN apk update && apk add --no-cache gcc musl-dev libffi-dev zlib-dev \
+  && pip install pipenv \
   && PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy \
   && if [ "$LITE" = False ]; then pipenv install selenium; fi
 
