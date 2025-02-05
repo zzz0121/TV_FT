@@ -1,4 +1,4 @@
-FROM python:3.13 AS builder
+FROM python:3.13-alpine AS builder
 
 ARG LITE=False
 
@@ -10,7 +10,7 @@ RUN pip install pipenv \
   && PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy \
   && if [ "$LITE" = False ]; then pipenv install selenium; fi
 
-FROM python:3.13-slim
+FROM python:3.13-alpine
 
 ARG APP_WORKDIR=/iptv-api
 ARG LITE=False
@@ -28,13 +28,8 @@ COPY . $APP_WORKDIR
 
 COPY --from=builder /app/.venv /.venv
 
-COPY --from=mwader/static-ffmpeg:7.1 /ffmpeg /usr/bin/
-COPY --from=mwader/static-ffmpeg:7.1 /ffprobe /usr/bin/
-
-RUN apt-get update && apt-get install -y --no-install-recommends cron \
-  && if [ "$LITE" = False ]; then apt-get install -y --no-install-recommends chromium chromium-driver; fi \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+RUN apk update && apk add --no-cache cron ffmpeg \
+  && if [ "$LITE" = False ]; then apk add --no-cache chromium chromium-driver; fi
 
 EXPOSE $APP_PORT
 
