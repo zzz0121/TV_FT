@@ -119,7 +119,7 @@ Adjust the configuration as needed, here is the default configuration descriptio
 3. Enabling keyword search (disabled by default) will significantly increase the update time, not recommended to enable.
 4. For ordinary users, please pay attention to whether there are changes in configuration items when updating the program version.
    If the configuration is not updated in time, it may cause problems that are difficult to troubleshoot.
-6. For advanced users, when creating user_config.ini, you can only enter the configuration items you want to modify,
+5. For advanced users, when creating user_config.ini, you can only enter the configuration items you want to modify,
    without copying all config.ini. Note that the `[Settings]` above the configuration file must be retained, otherwise the custom
    configuration below will not take effect. (Technical details: ini section needs to be consistent, user_config.ini overwrites
    the configuration of the same section and id in config.ini)
