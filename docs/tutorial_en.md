@@ -96,7 +96,8 @@ Like editing templates, modify the runtime configuration.
 
 1. Create a file.
 2. Name the configuration file `user_config.ini`.
-3. Paste the default configuration.
+3. Paste the default configuration. (Advanced users can refer to the Tips below to enter only the configuration items
+   they want to modify. Note that the `[Settings]` at the top of the configuration file must be retained.)
 4. Modify the template and result file configuration:
     - source_file = config/user_demo.txt
     - final_file = output/user_result.txt
