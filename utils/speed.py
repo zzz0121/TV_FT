@@ -333,7 +333,8 @@ def sort_urls(name, data, supply=config.open_supply, filter_speed=config.open_fi
     Sort the urls with info
     """
     filter_data = []
-    for url, date, resolution, origin in data:
+    for item in data:
+        url, date, resolution, origin = item["url"], item["date"], item["resolution"], item["origin"]
         result = {
             "url": remove_cache_info(url),
             "date": date,
@@ -369,7 +370,4 @@ def sort_urls(name, data, supply=config.open_supply, filter_speed=config.open_fi
                 result["resolution"] = resolution
                 filter_data.append(result)
     filter_data.sort(key=sort_urls_key, reverse=True)
-    return [
-        (item["url"], item["date"], item["resolution"], item["origin"])
-        for item in filter_data
-    ]
+    return filter_data

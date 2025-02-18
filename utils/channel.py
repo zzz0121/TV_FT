@@ -33,16 +33,22 @@ from utils.tools import (
     format_url_with_cache,
     get_url_host
 )
+from utils.types import ChannelData, OriginType
 
 
-def format_channel_data(url: str, origin: str = None) -> tuple:
+def format_channel_data(url: str, origin: OriginType) -> ChannelData:
     """
     Format the channel data
     """
     info = url.partition("$")[2]
-    url_origin = "whitelist" if info and info.startswith("!") else origin
+    url_origin: OriginType = "whitelist" if info and info.startswith("!") else origin
     url = format_url_with_cache(url) if url_origin == origin else url
-    return url, None, None, url_origin
+    return {
+        "url": url,
+        "date": None,
+        "resolution": None,
+        "origin": url_origin
+    }
 
 
 def get_channel_data_from_file(channels, file, whitelist, open_local=config.open_local, local_data=None):
@@ -67,7 +73,12 @@ def get_channel_data_from_file(channels, file, whitelist, open_local=config.open
                     category_dict[name] = []
                 if name in whitelist:
                     for whitelist_url in whitelist[name]:
-                        category_dict[name].append((whitelist_url, None, None, "whitelist"))
+                        category_dict[name].append({
+                            "url": whitelist_url,
+                            "date": None,
+                            "resolution": None,
+                            "origin": "whitelist",
+                        })
                 if open_local:
                     if url:
                         data = format_channel_data(url, "local")
@@ -297,7 +308,11 @@ def get_results_from_soup(soup, name):
                             date, resolution = get_channel_info(
                                 info_element.get_text(strip=True)
                             )
-                            results.append((url, date, resolution))
+                            results.append({
+                                "url": url,
+                                "date": date,
+                                "resolution": resolution,
+                            })
     return results
 
 
@@ -359,7 +374,11 @@ def get_results_from_soup_requests(soup, name):
                         text_info = get_channel_info(text)
                         date, resolution = text_info
                 if url:
-                    results.append((url, date, resolution))
+                    results.append({
+                        "url": url,
+                        "date": date,
+                        "resolution": resolution,
+                    })
     return results
 
 
@@ -462,12 +481,11 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
     Append channel data to total info data
     """
     init_info_data(info_data, cate, name)
-    urls = set([x[0].partition("$")[0] for x in info_data[cate][name] if x[0]])
+    urls = set([x["url"].partition("$")[0] for x in info_data[cate][name] if x["url"]])
     url_hosts = set([get_url_host(url) for url in urls])
     for item in data:
         try:
-            url, date, resolution, *rest = item
-            url_origin = origin or (rest[0] if rest else None)
+            url, date, resolution, url_origin = item["url"], item["date"], item["resolution"], origin or item["origin"]
             if not url_origin:
                 continue
             if url:
@@ -486,7 +504,12 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                                 urls.add(pure_url)
                                 for index, info in enumerate(info_data[cate][name]):
                                     if info[0] and get_url_host(info[0]) == url_host:
-                                        info_data[cate][name][index] = (url, date, resolution, url_origin)
+                                        info_data[cate][name][index] = ({
+                                            "url": url,
+                                            "date": date,
+                                            "resolution": resolution,
+                                            "origin": url_origin,
+                                        })
                                         break
                                 break
                         continue
@@ -498,7 +521,12 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                         or (
                         check and check_url_ipv_type(pure_url) and not check_url_by_keywords(url, blacklist))
                 ):
-                    info_data[cate][name].append((url, date, resolution, url_origin))
+                    info_data[cate][name].append({
+                        "url": url,
+                        "date": date,
+                        "resolution": resolution,
+                        "origin": url_origin,
+                    })
                     urls.add(pure_url)
                     url_hosts.add(url_host)
         except:
@@ -767,16 +795,21 @@ def get_channel_data_cache_with_compare(data, new_data):
         for name, url_info in obj.items():
             if url_info and cate in data and name in data[cate]:
                 new_urls = {
-                    new_url.partition("$")[0]: new_resolution
-                    for new_url, _, new_resolution, _ in url_info
+                    info["url"].partition("$")[0]: info["resolution"]
+                    for info in url_info
                 }
                 updated_data = []
                 for info in data[cate][name]:
-                    url, date, resolution, origin = info
+                    url = info["url"]
                     base_url = url.partition("$")[0]
                     if base_url in new_urls:
                         resolution = new_urls[base_url]
-                        updated_data.append((url, date, resolution, origin))
+                        updated_data.append({
+                            "url": url,
+                            "date": info["date"],
+                            "resolution": resolution,
+                            "origin": info["origin"],
+                        })
                 data[cate][name] = updated_data
 
 
@@ -786,6 +819,10 @@ def format_channel_url_info(data):
     """
     for obj in data.values():
         for url_info in obj.values():
-            for i, (url, date, resolution, origin) in enumerate(url_info):
-                url = remove_cache_info(url)
-                url_info[i] = (url, date, resolution, origin)
+            for i, info in enumerate(url_info):
+                url_info[i] = {
+                    "url": remove_cache_info(info["url"]),
+                    "date": info["date"],
+                    "resolution": info["resolution"],
+                    "origin": info["origin"],
+                }

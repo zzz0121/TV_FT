@@ -190,9 +190,9 @@ async def get_channels_by_hotel(callback=None):
                         if url:
                             search_region_result[region].append((url, date, None))
         urls = [
-            {"region": region, "url": f"http://{url}/ZHGXTV/Public/json/live_interface.txt"}
+            {"region": region, "url": f"http://{item["url"]}/ZHGXTV/Public/json/live_interface.txt"}
             for region, result in search_region_result.items()
-            for url, _, _ in result
+            for item in result
         ]
         request_channels = await get_channels_by_subscribe_urls(
             urls, hotel=True, retry=False, error_print=False

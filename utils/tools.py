@@ -99,8 +99,9 @@ def filter_by_date(data):
     start_date = datetime.datetime.now() - datetime.timedelta(days=use_recent_days)
     recent_data = []
     unrecent_data = []
-    for (url, date, resolution, origin), response_time in data:
-        item = ((url, date, resolution, origin), response_time)
+    for info, response_time in data:
+        item = (info, response_time)
+        date = info["date"]
         if date:
             date = datetime.datetime.strptime(date, "%m-%d-%Y")
             if date >= start_date:
@@ -159,7 +160,8 @@ def get_total_urls(info_list, ipv_type_prefer, origin_type_prefer):
         origin_type_prefer = ["all"]
     categorized_urls = {origin: {ipv_type: [] for ipv_type in ipv_type_prefer} for origin in origin_type_prefer}
     total_urls = []
-    for url, _, resolution, origin in info_list:
+    for info in info_list:
+        url, origin, resolution = info["url"], info["origin"], info["resolution"]
         if not origin:
             continue
 
@@ -236,9 +238,9 @@ def get_total_urls_from_sorted_data(data):
     """
     total_urls = []
     if len(data) > config.urls_limit:
-        total_urls = [url for (url, _, _, _), _ in filter_by_date(data)]
+        total_urls = [channel_data["url"] for channel_data, _ in filter_by_date(data)]
     else:
-        total_urls = [url for (url, _, _, _), _ in data]
+        total_urls = [channel_data["url"] for channel_data, _ in data]
     return list(dict.fromkeys(total_urls))[: config.urls_limit]
 
 
