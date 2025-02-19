@@ -411,13 +411,13 @@ def get_result_file_content(show_content=False, file_type=None):
     return response
 
 
-def remove_duplicates_from_tuple_list(tuple_list, seen, flag=None, force_str=None):
+def remove_duplicates_from_list(data_list, seen, flag=None, force_str=None):
     """
-    Remove duplicates from tuple list
+    Remove duplicates from data list
     """
     unique_list = []
-    for item in tuple_list:
-        item_first = item[0]
+    for item in data_list:
+        item_first = item["url"]
         part = item_first
         if force_str:
             info = item_first.partition("$")[2]
@@ -442,7 +442,7 @@ def process_nested_dict(data, seen, flag=None, force_str=None):
         if isinstance(value, dict):
             process_nested_dict(value, seen, flag, force_str)
         elif isinstance(value, list):
-            data[key] = remove_duplicates_from_tuple_list(value, seen, flag, force_str)
+            data[key] = remove_duplicates_from_list(value, seen, flag, force_str)
 
 
 url_host_compile = re.compile(

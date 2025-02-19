@@ -109,7 +109,7 @@ async def get_channels_by_subscribe_urls(
                         url = format_url_with_cache(
                             url, cache=subscribe_url if (multicast or hotel) else None
                         )
-                        value = url if multicast else (url, None, None)
+                        value = url if multicast else {"url": url, "date": None, "resolution": None}
                         name = format_channel_name(name)
                         if name in channels:
                             if multicast:
