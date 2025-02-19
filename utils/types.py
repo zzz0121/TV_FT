@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Union
 
 OriginType = Literal["local", "whitelist", "subscribe", "hotel", "multicast", "online_search"]
-IPvType = Literal["ipv4", "ipv6"]
+IPvType = Literal["ipv4", "ipv6", None]
 
 
 class ChannelData(TypedDict):
@@ -12,6 +12,7 @@ class ChannelData(TypedDict):
     date: str | None
     resolution: str | None
     origin: OriginType
+    ipv_type: IPvType
 
 
 CategoryChannelData = dict[str, dict[str, list[ChannelData]]]

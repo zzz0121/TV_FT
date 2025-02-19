@@ -12,7 +12,7 @@ from multidict import CIMultiDictProxy
 
 import utils.constants as constants
 from utils.config import config
-from utils.tools import is_ipv6, remove_cache_info, get_resolution_value
+from utils.tools import remove_cache_info, get_resolution_value
 from utils.types import TestResult, ChannelTestResult, TestResultCacheData
 
 http.cookies._is_legal_key = lambda _: True
@@ -272,7 +272,7 @@ async def check_stream_delay(url_info):
         return -1
 
 
-async def get_speed(url, ipv6_proxy=None, filter_resolution=config.open_filter_resolution,
+async def get_speed(url, is_ipv6=False, ipv6_proxy=None, filter_resolution=config.open_filter_resolution,
                     min_resolution=config.min_resolution_value, timeout=config.sort_timeout,
                     callback=None) -> TestResult:
     """
@@ -281,7 +281,6 @@ async def get_speed(url, ipv6_proxy=None, filter_resolution=config.open_filter_r
     data: TestResult = {'speed': None, 'delay': None, 'resolution': None}
     try:
         cache_key = None
-        url_is_ipv6 = is_ipv6(url)
         if "$" in url:
             url, _, cache_info = url.partition("$")
             matcher = re.search(r"cache:(.*)", cache_info)
@@ -295,7 +294,7 @@ async def get_speed(url, ipv6_proxy=None, filter_resolution=config.open_filter_r
                     data = cache_item
                     break
         else:
-            if ipv6_proxy and url_is_ipv6:
+            if is_ipv6 and ipv6_proxy:
                 data['speed'] = float("inf")
                 data['delay'] = 0
                 data['resolution'] = "1920x1080"
@@ -333,14 +332,16 @@ def sort_urls(name, data, supply=config.open_supply, filter_speed=config.open_fi
     """
     filter_data = []
     for item in data:
-        url, date, resolution, origin = item["url"], item["date"], item["resolution"], item["origin"]
+        url, date, resolution, origin, ipv_type = item["url"], item["date"], item["resolution"], item["origin"], item[
+            "ipv_type"]
         result: ChannelTestResult = {
             "url": remove_cache_info(url),
             "date": date,
             "delay": None,
             "speed": None,
             "resolution": resolution,
-            "origin": origin
+            "origin": origin,
+            "ipv_type": ipv_type,
         }
         if origin == "whitelist":
             filter_data.append(result)
@@ -357,7 +358,7 @@ def sort_urls(name, data, supply=config.open_supply, filter_speed=config.open_fi
                 try:
                     if logger:
                         logger.info(
-                            f"Name: {name}, URL: {result["url"]}, Date: {date}, Delay: {avg_delay} ms, Speed: {avg_speed:.2f} M/s, Resolution: {resolution}"
+                            f"Name: {name}, URL: {result["url"]}, IPv_Type: {ipv_type}, Date: {date}, Delay: {avg_delay} ms, Speed: {avg_speed:.2f} M/s, Resolution: {resolution}"
                         )
                 except Exception as e:
                     print(e)

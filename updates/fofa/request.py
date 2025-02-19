@@ -225,7 +225,7 @@ def process_fofa_json_url(url, region, open_sort, hotel_name="酒店源"):
                                         f"{url}{item_url}", f"{region}{hotel_name}"
                                     )
                                 )
-                                data = {"url": total_url, "date": None, "resolution": None}
+                                data = {"url": total_url}
                                 if item_name not in channels:
                                     channels[item_name] = [data]
                                 else:

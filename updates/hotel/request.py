@@ -188,7 +188,7 @@ async def get_channels_by_hotel(callback=None):
                         url = item.get("url")
                         date = item.get("date")
                         if url:
-                            search_region_result[region].append({"url": url, "date": date, "resolution": None})
+                            search_region_result[region].append({"url": url, "date": date})
         urls = [
             {"region": region, "url": f"http://{item["url"]}/ZHGXTV/Public/json/live_interface.txt"}
             for region, result in search_region_result.items()
