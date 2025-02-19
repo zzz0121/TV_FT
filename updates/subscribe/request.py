@@ -49,10 +49,12 @@ async def get_channels_by_subscribe_urls(
     multicast_name = constants.origin_map["multicast"]
     subscribe_name = constants.origin_map["subscribe"]
 
-    def process_subscribe_channels(subscribe_info):
+    def process_subscribe_channels(subscribe_info: str | dict) -> defaultdict:
+        region = ""
+        url_type = ""
         if (multicast or hotel) and isinstance(subscribe_info, dict):
             region = subscribe_info.get("region")
-            type = subscribe_info.get("type", "")
+            url_type = subscribe_info.get("type", "")
             subscribe_url = subscribe_info.get("url")
         else:
             subscribe_url = subscribe_info
@@ -111,13 +113,13 @@ async def get_channels_by_subscribe_urls(
                         name = format_channel_name(name)
                         if name in channels:
                             if multicast:
-                                if value not in channels[name][region][type]:
-                                    channels[name][region][type].append(value)
+                                if value not in channels[name][region][url_type]:
+                                    channels[name][region][url_type].append(value)
                             elif value not in channels[name]:
                                 channels[name].append(value)
                         else:
                             if multicast:
-                                channels[name][region][type] = [value]
+                                channels[name][region][url_type] = [value]
                             else:
                                 channels[name] = [value]
         except Exception as e:
