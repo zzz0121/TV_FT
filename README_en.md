@@ -25,6 +25,8 @@
 
 [中文](./README.md) | English
 
+✨💻[IPTV-Web](https://github.com/Guovin/iptv-web): IPTV live stream management platform, supports online playback and other features, under development...
+
 - [✅ Features](#features)
 - [🔗 Latest results](#latest-results)
 - [⚙️ Config parameter](#Config)
@@ -73,6 +75,16 @@
 - Interface source:
 
 ```bash
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
+```
+
+```bash
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
+```
+
+or
+
+```bash
 https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.m3u
 ```
 
@@ -81,6 +93,12 @@ https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.txt
 ```
 
 - Data source:
+
+```bash
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
+```
+
+or
 
 ```bash
 https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/source.json
