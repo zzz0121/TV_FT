@@ -19,6 +19,7 @@ from flask import send_file, make_response
 
 import utils.constants as constants
 from utils.config import config
+from utils.types import ChannelData
 
 
 def get_logger(path, level=logging.ERROR, init=False):
@@ -148,7 +149,7 @@ def get_resolution_value(resolution_str):
     return 0
 
 
-def get_total_urls(info_list, ipv_type_prefer, origin_type_prefer):
+def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_prefer) -> list:
     """
     Get the total urls from info list
     """

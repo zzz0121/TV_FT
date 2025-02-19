@@ -33,7 +33,7 @@ from utils.tools import (
     format_url_with_cache,
     get_url_host
 )
-from utils.types import ChannelData, OriginType
+from utils.types import ChannelData, OriginType, CategoryChannelData
 
 
 def format_channel_data(url: str, origin: OriginType) -> ChannelData:
@@ -51,7 +51,8 @@ def format_channel_data(url: str, origin: OriginType) -> ChannelData:
     }
 
 
-def get_channel_data_from_file(channels, file, whitelist, open_local=config.open_local, local_data=None):
+def get_channel_data_from_file(channels, file, whitelist, open_local=config.open_local,
+                               local_data=None) -> CategoryChannelData:
     """
     Get the channel data from the file
     """
@@ -92,7 +93,7 @@ def get_channel_data_from_file(channels, file, whitelist, open_local=config.open
     return channels
 
 
-def get_channel_items():
+def get_channel_items() -> CategoryChannelData:
     """
     Get the channel items from the source file
     """
@@ -120,9 +121,9 @@ def get_channel_items():
                     if cate in old_result:
                         for name, info_list in data.items():
                             urls = [
-                                item[0].partition("$")[0]
+                                url.partition("$")[0]
                                 for item in info_list
-                                if item[0]
+                                if (url := item["url"])
                             ]
                             if name in old_result[cate]:
                                 for info in old_result[cate][name]:
@@ -598,31 +599,31 @@ def append_total_data(
                 "Total:",
                 len(data.get(cate, {}).get(name, [])),
             )
-    if config.open_keep_all:
-        extra_cate = "📥其它频道"
-        for method, result in total_result:
-            if config.open_method[method]:
-                origin_method = get_origin_method_name(method)
-                if not origin_method:
-                    continue
-                for name, urls in result.items():
-                    if name in names:
+        if config.open_keep_all:
+            extra_cate = "📥其它频道"
+            for method, result in total_result:
+                if config.open_method[method]:
+                    origin_method = get_origin_method_name(method)
+                    if not origin_method:
                         continue
-                    print(f"{name}:", end=" ")
-                    if config.open_history or config.open_local:
-                        old_info_list = channel_obj.get(name, [])
-                        if old_info_list:
-                            append_old_data_to_info_data(
-                                data, extra_cate, name, old_info_list
-                            )
-                    append_data_to_info_data(
-                        data, extra_cate, name, urls, origin=origin_method, whitelist=whitelist, blacklist=blacklist
-                    )
-                    print(name, f"{method.capitalize()}:", len(urls), end=", ")
-                    print(
-                        "Total:",
-                        len(data.get(cate, {}).get(name, [])),
-                    )
+                    for name, urls in result.items():
+                        if name in names:
+                            continue
+                        print(f"{name}:", end=" ")
+                        if config.open_history or config.open_local:
+                            old_info_list = channel_obj.get(name, [])
+                            if old_info_list:
+                                append_old_data_to_info_data(
+                                    data, extra_cate, name, old_info_list
+                                )
+                        append_data_to_info_data(
+                            data, extra_cate, name, urls, origin=origin_method, whitelist=whitelist, blacklist=blacklist
+                        )
+                        print(name, f"{method.capitalize()}:", len(urls), end=", ")
+                        print(
+                            "Total:",
+                            len(data.get(cate, {}).get(name, [])),
+                        )
 
 
 async def process_sort_channel_list(data, ipv6=False, callback=None):
