@@ -84,12 +84,12 @@ def check_m3u8_valid(headers: CIMultiDictProxy[str] | dict[any, any]) -> bool:
     return any(item in content_type for item in ['application/vnd.apple.mpegurl', 'audio/mpegurl', 'audio/x-mpegurl'])
 
 
-async def get_speed_m3u8(url: str, filter_resolution: bool = config.open_filter_resolution,
+async def get_speed_m3u8(url: str, resolution: str = None, filter_resolution: bool = config.open_filter_resolution,
                          timeout: int = config.sort_timeout) -> dict[str, float | None]:
     """
     Get the speed of the m3u8 url with a total timeout
     """
-    info = {'speed': None, 'delay': None, 'resolution': None}
+    info = {'speed': None, 'delay': None, 'resolution': resolution}
     location = None
     try:
         url = quote(url, safe=':/?$&=@[]%').partition('$')[0]
@@ -97,7 +97,7 @@ async def get_speed_m3u8(url: str, filter_resolution: bool = config.open_filter_
             headers = await get_m3u8_headers(url, session)
             location = headers.get('Location')
             if location:
-                info.update(await get_speed_m3u8(location, filter_resolution, timeout))
+                info.update(await get_speed_m3u8(location, resolution, filter_resolution, timeout))
             elif check_m3u8_valid(headers):
                 m3u8_obj = m3u8.load(url, timeout=2)
                 playlists = m3u8_obj.data.get('playlists')
@@ -130,7 +130,7 @@ async def get_speed_m3u8(url: str, filter_resolution: bool = config.open_filter_
     except:
         pass
     finally:
-        if filter_resolution and not location and info['delay'] is not None:
+        if not resolution and filter_resolution and not location and info['delay'] is not None:
             info['resolution'] = await get_resolution_ffprobe(url, timeout)
         return info
 
@@ -272,13 +272,14 @@ async def check_stream_delay(url_info):
         return -1
 
 
-async def get_speed(url, is_ipv6=False, ipv6_proxy=None, filter_resolution=config.open_filter_resolution,
+async def get_speed(url, is_ipv6=False, ipv6_proxy=None, resolution=None,
+                    filter_resolution=config.open_filter_resolution,
                     min_resolution=config.min_resolution_value, timeout=config.sort_timeout,
                     callback=None) -> TestResult:
     """
     Get the speed (response time and resolution) of the url
     """
-    data: TestResult = {'speed': None, 'delay': None, 'resolution': None}
+    data: TestResult = {'speed': None, 'delay': None, 'resolution': resolution}
     try:
         cache_key = None
         if "$" in url:
@@ -300,11 +301,12 @@ async def get_speed(url, is_ipv6=False, ipv6_proxy=None, filter_resolution=confi
                 data['resolution'] = "1920x1080"
             elif constants.rtmp_url_pattern.match(url) is not None:
                 start_time = time()
-                data['resolution'] = await get_resolution_ffprobe(url, timeout)
+                if not data['resolution'] and filter_resolution:
+                    data['resolution'] = await get_resolution_ffprobe(url, timeout)
                 data['delay'] = int(round((time() - start_time) * 1000))
                 data['speed'] = float("inf") if data['resolution'] is not None else 0
             else:
-                data.update(await get_speed_m3u8(url, filter_resolution, timeout))
+                data.update(await get_speed_m3u8(url, resolution, filter_resolution, timeout))
             if cache_key:
                 cache.setdefault(cache_key, []).append(data)
     finally:
