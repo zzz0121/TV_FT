@@ -31,7 +31,11 @@ demo_txt_pattern = re.compile(r"^([^,，]+)[,，]?(?!#genre#)" + r"(" + url_patt
 
 txt_pattern = re.compile(r"^([^,，]+)[,，](?!#genre#)" + r"(" + url_pattern.pattern + r")")
 
+multiline_txt_pattern = re.compile(r"^([^,，]+)[,，](?!#genre#)" + r"(" + url_pattern.pattern + r")", re.MULTILINE)
+
 m3u_pattern = re.compile(r"^#EXTINF:-1.*?[，,](.*?)\n" + r"(" + url_pattern.pattern + r")")
+
+multiline_m3u_pattern = re.compile(r"^#EXTINF:-1.*?[，,](.*?)\n" + r"(" + url_pattern.pattern + r")", re.MULTILINE)
 
 sub_pattern = re.compile(
     r"-|_|\((.*?)\)|（(.*?)）|\[(.*?)]|「(.*?)」| |｜|频道|普清|标清|高清|HD|hd|超清|超高|超高清|中央|央视|电视台|台|电信|联通|移动")

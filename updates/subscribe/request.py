@@ -82,11 +82,10 @@ async def get_channels_by_subscribe_urls(
                 data = get_name_url(
                     content,
                     pattern=(
-                        constants.m3u_pattern
+                        constants.multiline_m3u_pattern
                         if "#EXTM3U" in content
-                        else constants.txt_pattern
-                    ),
-                    multiline=True,
+                        else constants.multiline_txt_pattern
+                    )
                 )
                 for item in data:
                     name = item["name"]

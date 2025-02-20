@@ -509,12 +509,11 @@ def write_content_into_txt(content, path=None, position=None, callback=None):
         callback()
 
 
-def get_name_url(content, pattern, multiline=False, check_url=True):
+def get_name_url(content, pattern, check_url=True):
     """
     Get name and url from content
     """
-    flag = re.MULTILINE if multiline else 0
-    matches = pattern.findall(content, flag)
+    matches = pattern.findall(content)
     channels = [
         {"name": match[0].strip(), "url": match[1].strip()}
         for match in matches
