@@ -438,16 +438,11 @@ def process_nested_dict(data, seen, flag=None, force_str=None):
             data[key] = remove_duplicates_from_list(value, seen, flag, force_str)
 
 
-url_host_compile = re.compile(
-    constants.url_host_pattern
-)
-
-
 def get_url_host(url):
     """
     Get the url host
     """
-    matcher = url_host_compile.search(url)
+    matcher = constants.url_host_pattern.search(url)
     if matcher:
         return matcher.group()
     return None
@@ -519,7 +514,7 @@ def get_name_url(content, pattern, multiline=False, check_url=True):
     Get name and url from content
     """
     flag = re.MULTILINE if multiline else 0
-    matches = re.findall(pattern, content, flag)
+    matches = pattern.findall(content, flag)
     channels = [
         {"name": match[0].strip(), "url": match[1].strip()}
         for match in matches
@@ -544,14 +539,13 @@ def get_urls_from_file(path: str) -> list:
     """
     real_path = get_real_path(resource_path(path))
     urls = []
-    url_pattern = constants.url_pattern
     if os.path.exists(real_path):
         with open(real_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if line.startswith("#"):
                     continue
-                match = re.search(url_pattern, line)
+                match = constants.url_pattern.search(line)
                 if match:
                     urls.append(match.group().strip())
     return urls
@@ -563,14 +557,13 @@ def get_name_urls_from_file(path: str) -> dict[str, list]:
     """
     real_path = get_real_path(resource_path(path))
     name_urls = defaultdict(list)
-    txt_pattern = constants.txt_pattern
     if os.path.exists(real_path):
         with open(real_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if line.startswith("#"):
                     continue
-                name_url = get_name_url(line, pattern=txt_pattern)
+                name_url = get_name_url(line, pattern=constants.txt_pattern)
                 if name_url and name_url[0]:
                     name = name_url[0]["name"]
                     url = name_url[0]["url"]

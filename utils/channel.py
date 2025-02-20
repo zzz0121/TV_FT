@@ -151,7 +151,7 @@ def format_channel_name(name):
     name = cc.convert(name)
     for region in constants.region_list:
         name = name.replace(f"{region}｜", "")
-    name = re.sub(constants.sub_pattern, "", name)
+    name = constants.sub_pattern.sub("", name)
     for old, new in constants.replace_dict.items():
         name = name.replace(old, new)
     return name.lower()
@@ -416,10 +416,7 @@ def get_channel_url(text):
     Get the url from text
     """
     url = None
-    url_search = re.search(
-        constants.url_pattern,
-        text,
-    )
+    url_search = constants.url_pattern.search(text)
     if url_search:
         url = url_search.group()
     return url

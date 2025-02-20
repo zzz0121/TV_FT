@@ -298,7 +298,7 @@ async def get_speed(url, is_ipv6=False, ipv6_proxy=None, filter_resolution=confi
                 data['speed'] = float("inf")
                 data['delay'] = 0
                 data['resolution'] = "1920x1080"
-            elif re.match(constants.rtmp_url_pattern, url) is not None:
+            elif constants.rtmp_url_pattern.match(url) is not None:
                 start_time = time()
                 data['resolution'] = await get_resolution_ffprobe(url, timeout)
                 data['delay'] = int(round((time() - start_time) * 1000))
