@@ -85,7 +85,7 @@ IPTV-API是一个可高度自定义的IPTV接口更新项目📺，自定义频�
 
 1. 创建文件
 2. 配置文件命名为`user_config.ini`
-3. 粘贴默认配置 （高级用户可以参见下方 Tips 说明只输入想要修改的配置项，注意配置文件上方的 `[Settings]` 必须保留）
+3. 粘贴默认配置 （创建`user_config.ini`可以只输入想要修改的配置项即可，无需全部复制 config.ini，注意配置文件上方的`[Settings]`必须保留，否则下方的自定义配置不生效）
 4. 修改模板和结果文件配置：
     - source_file = config/user_demo.txt
     - final_file = output/user_result.txt
@@ -104,9 +104,6 @@ IPTV-API是一个可高度自定义的IPTV接口更新项目📺，自定义频�
 =False`（GUI：取消勾选显示接口信息）关闭该功能
 2. 如果你的网络确定支持IPv6，可修改配置:`ipv6_support =True`(GUI：勾选跳过IPv6检测）跳过支持性检查
 3. 开启关键字搜索（默认关闭）会大幅增加更新耗时，不推荐开启
-4. 对于普通用户，请注意更新程序版本时关注配置项是否存在变更，如果配置未及时更新，可能会导致难以排查的问题。
-5. 对于高级用户，创建 user_config.ini 可以只输入想要修改的配置项即可，无需全部复制 config.ini，注意配置文件上方的 `[Settings]` 必须保留，
-   否则下方的自定义配置不生效。（技术详情：ini section 需要保持一致，user_config.ini 覆盖 config.ini 中同 section，同 id 的配置）
 
 #### 同理你可以自定义订阅源、黑名单、白名单（建议复制文件重命名添加`user_`前缀）
 
