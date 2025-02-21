@@ -464,7 +464,8 @@ def init_info_data(data, cate, name):
         data[cate][name] = []
 
 
-def append_data_to_info_data(info_data, cate, name, data, origin=None, check=True, whitelist=None, blacklist=None):
+def append_data_to_info_data(info_data, cate, name, data, origin=None, check=True, whitelist=None, blacklist=None,
+                             ipv_type_data=None):
     """
     Append channel data to total info data
     """
@@ -484,11 +485,16 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                 url_host = get_url_host(url_partition[0])
                 url_info = url_partition[2]
                 white_info = url_info and url_info.startswith("!")
-                if not white_info:
-                    if pure_url in urls:
-                        continue
+                if not white_info and pure_url in urls:
+                    continue
+                if not ipv_type:
+                    if ipv_type_data:
+                        ipv_type = ipv_type_data.get(url_host, None)
                     if not ipv_type:
                         ipv_type = "ipv6" if check_url_ipv6(pure_url) else "ipv4"
+                        if ipv_type_data:
+                            ipv_type_data[url_host] = ipv_type
+                if not white_info:
                     if url_host in url_hosts:
                         for p_url in urls:
                             if get_url_host(p_url) == url_host and len(p_url) < len(pure_url):
@@ -535,7 +541,7 @@ def get_origin_method_name(method):
     return "hotel" if method.startswith("hotel_") else method
 
 
-def append_old_data_to_info_data(info_data, cate, name, data, whitelist=None, blacklist=None):
+def append_old_data_to_info_data(info_data, cate, name, data, whitelist=None, blacklist=None, ipv_type_data=None):
     """
     Append history and local channel data to total info data
     """
@@ -545,7 +551,8 @@ def append_old_data_to_info_data(info_data, cate, name, data, whitelist=None, bl
         name,
         data,
         whitelist=whitelist,
-        blacklist=blacklist
+        blacklist=blacklist,
+        ipv_type_data=ipv_type_data
     )
     local_len = len([item for item in data if item["origin"] in ["local", 'whitelist']])
     print("History:", len(data) - local_len, end=", ")
@@ -587,11 +594,18 @@ def append_total_data(
     ]
     whitelist = get_urls_from_file(constants.whitelist_path)
     blacklist = get_urls_from_file(constants.blacklist_path)
+    url_hosts_ipv_type = {}
+    for obj in data.values():
+        for value_list in obj.values():
+            for value in value_list:
+                if value_ipv_type := value.get("ipv_type", None):
+                    url_hosts_ipv_type[get_url_host(value["url"])] = value_ipv_type
     for cate, channel_obj in items:
         for name, old_info_list in channel_obj.items():
             print(f"{name}:", end=" ")
             if old_info_list and (config.open_history or config.open_local):
-                append_old_data_to_info_data(data, cate, name, old_info_list, whitelist=whitelist, blacklist=blacklist)
+                append_old_data_to_info_data(data, cate, name, old_info_list, whitelist=whitelist, blacklist=blacklist,
+                                             ipv_type_data=url_hosts_ipv_type)
             for method, result in total_result:
                 if config.open_method[method]:
                     origin_method = get_origin_method_name(method)
@@ -599,7 +613,8 @@ def append_total_data(
                         continue
                     name_results = get_channel_results_by_name(name, result)
                     append_data_to_info_data(
-                        data, cate, name, name_results, origin=origin_method, whitelist=whitelist, blacklist=blacklist
+                        data, cate, name, name_results, origin=origin_method, whitelist=whitelist, blacklist=blacklist,
+                        ipv_type_data=url_hosts_ipv_type
                     )
                     print(f"{method.capitalize()}:", len(name_results), end=", ")
             print_channel_number(data, cate, name)
@@ -618,10 +633,12 @@ def append_total_data(
                             old_info_list = channel_obj.get(name, [])
                             if old_info_list:
                                 append_old_data_to_info_data(
-                                    data, extra_cate, name, old_info_list
+                                    data, extra_cate, name, old_info_list, whitelist=whitelist, blacklist=blacklist,
+                                    ipv_type_data=url_hosts_ipv_type
                                 )
                         append_data_to_info_data(
-                            data, extra_cate, name, urls, origin=origin_method, whitelist=whitelist, blacklist=blacklist
+                            data, extra_cate, name, urls, origin=origin_method, whitelist=whitelist,
+                            blacklist=blacklist, ipv_type_data=url_hosts_ipv_type
                         )
                         print(name, f"{method.capitalize()}:", len(urls), end=", ")
                         print_channel_number(data, cate, name)
