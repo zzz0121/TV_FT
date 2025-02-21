@@ -344,8 +344,7 @@ docker run -d -p 8000:8000 guovern/iptv-api:lite
 - 定时执行时间
 
 ```bash
--e UPDATE_CRON1="0 22 * * *"
--e UPDATE_CRON2="0 10 * * *"
+-e UPDATE_CRON="0 22,10 * * *"
 ```
 
 ### 3. 更新结果

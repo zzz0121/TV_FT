@@ -25,7 +25,8 @@
 
 [中文](./README.md) | English
 
-✨💻[IPTV-Web](https://github.com/Guovin/iptv-web): IPTV live stream management platform, supports online playback and other features, under development...
+✨💻[IPTV-Web](https://github.com/Guovin/iptv-web): IPTV live stream management platform, supports online playback and
+other features, under development...
 
 - [✅ Features](#features)
 - [🔗 Latest results](#latest-results)
@@ -287,8 +288,7 @@ Taking the host path /etc/docker as an example:
 - Scheduled execution time
 
 ```bash
--e UPDATE_CRON1="0 22 * * *"
--e UPDATE_CRON2="0 10 * * *"
+-e UPDATE_CRON="0 22,10 * * *"
 ```
 
 #### 3. Update results
