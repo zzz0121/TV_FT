@@ -13,6 +13,8 @@ subscribe_path = os.path.join(config_path, "subscribe.txt")
 
 result_path = os.path.join(output_path, "result_new.txt")
 
+rtmp_result_path = os.path.join(output_path, "rtmp_result_new.txt")
+
 cache_path = os.path.join(output_path, "cache.pkl")
 
 sort_log_path = os.path.join(output_path, "sort.log")

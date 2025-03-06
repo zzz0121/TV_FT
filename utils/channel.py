@@ -43,6 +43,7 @@ def format_channel_data(url: str, origin: OriginType) -> ChannelData:
     url_origin: OriginType = "whitelist" if info and info.startswith("!") else origin
     url = format_url_with_cache(url) if url_origin == origin else url
     return {
+        "id": hash(url),
         "url": url,
         "date": None,
         "resolution": None,
@@ -75,6 +76,7 @@ def get_channel_data_from_file(channels, file, whitelist, open_local=config.open
                 if name in whitelist:
                     for whitelist_url in whitelist[name]:
                         category_dict[name].append({
+                            "id": hash(whitelist_url),
                             "url": whitelist_url,
                             "date": None,
                             "resolution": None,
@@ -467,12 +469,16 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
     url_hosts = set([get_url_host(url) for url in urls])
     for item in data:
         try:
-            url, date, resolution, url_origin, ipv_type = (item["url"], item.get("date", None),
-                                                           item.get("resolution", None),
-                                                           origin or item["origin"], item.get("ipv_type", None))
+            channel_id, url, date, resolution, url_origin, ipv_type = (
+                item.get("id", None), item["url"], item.get("date", None),
+                item.get("resolution", None),
+                origin or item["origin"],
+                item.get("ipv_type", None))
             if not url_origin:
                 continue
             if url:
+                if not channel_id:
+                    channel_id = hash(url)
                 url_partition = url.partition("$")
                 pure_url = url_partition[0]
                 url_host = get_url_host(url_partition[0])
@@ -496,6 +502,7 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                                 for index, info in enumerate(info_data[cate][name]):
                                     if info["url"] and get_url_host(info["url"]) == url_host:
                                         info_data[cate][name][index] = {
+                                            "id": channel_id,
                                             "url": url,
                                             "date": date,
                                             "resolution": resolution,
@@ -514,6 +521,7 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                         check and check_ipv_type_match(ipv_type) and not check_url_by_keywords(url, blacklist))
                 ):
                     info_data[cate][name].append({
+                        "id": channel_id,
                         "url": url,
                         "date": date,
                         "resolution": resolution,
@@ -703,6 +711,7 @@ def write_channel_to_file(data, ipv6=False, callback=None):
     """
     try:
         path = constants.result_path
+        rtmp_path = constants.rtmp_result_path
         if not os.path.exists("output"):
             os.makedirs("output")
         no_result_name = []
@@ -713,9 +722,12 @@ def write_channel_to_file(data, ipv6=False, callback=None):
         origin_type_prefer = config.origin_type_prefer
         first_cate = True
         content = ""
+        rtmp_content = ""
+        rtmp_url = "rtmp://localhost:1935/live/"
         for cate, channel_obj in data.items():
             print(f"\n{cate}:", end=" ")
             content += f"{'\n\n' if not first_cate else ''}{cate},#genre#"
+            rtmp_content += f"{'\n\n' if not first_cate else ''}{cate},#genre#"
             first_cate = False
             channel_obj_keys = channel_obj.keys()
             names_len = len(list(channel_obj_keys))
@@ -728,32 +740,40 @@ def write_channel_to_file(data, ipv6=False, callback=None):
                     if open_empty_category:
                         no_result_name.append(name)
                     continue
-                for url in channel_urls:
-                    content += f"\n{name},{url}"
+                for item in channel_urls:
+                    content += f"\n{name},{item["url"]}"
+                    rtmp_content += f"\n{name},{rtmp_url}{item["id"]}"
                     if callback:
                         callback()
             print()
         if open_empty_category and no_result_name:
             print("\n🈳 No result channel name:")
             content += "\n\n🈳无结果频道,#genre#"
+            rtmp_content += "\n\n🈳无结果频道,#genre#"
             for i, name in enumerate(no_result_name):
                 end_char = ", " if i < len(no_result_name) - 1 else ""
                 print(name, end=end_char)
                 content += f"\n{name},url"
+                rtmp_content += f"\n{name},url"
             print()
         if config.open_update_time:
-            update_time_url = next(
+            update_time_item = next(
                 (urls[0] for channel_obj in data.values()
                  for info_list in channel_obj.values()
                  if (urls := get_total_urls(info_list, ipv_type_prefer, origin_type_prefer))),
-                "url"
+                {"id": "id", "url": "url"}
             )
+            now = get_datetime_now()
             if config.update_time_position == "top":
-                content = f"🕘️更新时间,#genre#\n{get_datetime_now()},{update_time_url}\n\n{content}"
+                content = f"🕘️更新时间,#genre#\n{now},{update_time_item["url"]}\n\n{content}"
+                rtmp_content = f"🕘️更新时间,#genre#\n{now},{rtmp_url}{update_time_item["id"]}\n\n{rtmp_content}"
             else:
-                content += f"\n\n🕘️更新时间,#genre#\n{get_datetime_now()},{update_time_url}"
+                content += f"\n\n🕘️更新时间,#genre#\n{now},{update_time_item["url"]}"
+                rtmp_content += f"\n\n🕘️更新时间,#genre#\n{now},{rtmp_url}{update_time_item["id"]}"
         with open(path, "w", encoding="utf-8") as f:
             f.write(content)
+        with open(rtmp_path, "w", encoding="utf-8") as f:
+            f.write(rtmp_content)
     except Exception as e:
         print(f"❌ Write channel to file failed: {e}")
 
@@ -821,6 +841,7 @@ def get_channel_data_cache_with_compare(data, new_data):
                     if base_url in new_urls:
                         resolution = new_urls[base_url]
                         updated_data.append({
+                            "id": info["id"],
                             "url": url,
                             "date": info["date"],
                             "resolution": resolution,
@@ -838,6 +859,7 @@ def format_channel_url_info(data):
         for url_info in obj.values():
             for i, info in enumerate(url_info):
                 url_info[i] = {
+                    "id": info.get("id", hash(info["url"])),
                     "url": remove_cache_info(info["url"]),
                     "date": info["date"],
                     "resolution": info["resolution"],

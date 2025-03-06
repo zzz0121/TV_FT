@@ -169,6 +169,7 @@ class UpdateSource:
                 )
                 self.pbar.close()
                 update_file(user_final_file, constants.result_path)
+                update_file("output/rtmp_result.txt", constants.rtmp_result_path)
                 if config.open_history:
                     if open_sort:
                         get_channel_data_cache_with_compare(

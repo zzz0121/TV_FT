@@ -162,14 +162,15 @@ def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_pr
     categorized_urls = {origin: {ipv_type: [] for ipv_type in ipv_type_prefer} for origin in origin_type_prefer}
     total_urls = []
     for info in info_list:
-        url, origin, resolution, url_ipv_type = info["url"], info["origin"], info["resolution"], info["ipv_type"]
+        channel_id, url, origin, resolution, url_ipv_type = info["id"], info["url"], info["origin"], info["resolution"], \
+            info["ipv_type"]
         if not origin:
             continue
 
         if origin == "whitelist":
             w_url, _, w_info = url.partition("$")
             w_info_value = w_info.partition("!")[2] or "白名单"
-            total_urls.append(add_url_info(w_url, w_info_value))
+            total_urls.append({"id": channel_id, "url": add_url_info(w_url, w_info_value)})
             continue
 
         if origin == "subscribe" and "/rtp/" in url:
@@ -195,9 +196,9 @@ def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_pr
 
         if ipv_prefer_bool:
             if url_ipv_type in ipv_type_prefer:
-                categorized_urls[origin][url_ipv_type].append(url)
+                categorized_urls[origin][url_ipv_type].append({"id": channel_id, "url": url})
         else:
-            categorized_urls[origin]["all"].append(url)
+            categorized_urls[origin]["all"].append({"id": channel_id, "url": url})
 
     ipv_num = {ipv_type: 0 for ipv_type in ipv_type_prefer}
     urls_limit = config.urls_limit
@@ -223,12 +224,12 @@ def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_pr
             else:
                 continue
 
-    total_urls = list(dict.fromkeys(total_urls))[:urls_limit]
+    total_urls = total_urls[:urls_limit]
 
     if not config.open_url_info:
-        return [url.partition("$")[0] for url in total_urls]
-    else:
-        return total_urls
+        for item in total_urls:
+            item["url"] = item["url"].partition("$")[0]
+    return total_urls
 
 
 def get_total_urls_from_sorted_data(data):
@@ -380,11 +381,11 @@ def convert_to_m3u(first_channel_name=None):
             print(f"✅ M3U result file generated at: {m3u_file_path}")
 
 
-def get_result_file_content(show_content=False, file_type=None):
+def get_result_file_content(show_content=False, file_type=None, rtmp=False):
     """
     Get the content of the result file
     """
-    user_final_file = resource_path(config.final_file)
+    user_final_file = resource_path("output/rtmp_result.txt") if rtmp else resource_path(config.final_file)
     result_file = (
         os.path.splitext(user_final_file)[0] + f".{file_type}"
         if file_type
@@ -617,3 +618,26 @@ def join_url(url1: str, url2: str) -> str:
     if not url1.endswith("/"):
         url1 += "/"
     return url1 + url2
+
+
+def find_by_id(data: dict, id: int) -> dict:
+    """
+    Find the nested dict by id
+    :param data: target data
+    :param id: target id
+    :return: target dict
+    """
+    if isinstance(data, dict) and 'id' in data and data['id'] == id:
+        return data
+    for key, value in data.items():
+        if isinstance(value, dict):
+            result = find_by_id(value, id)
+            if result is not None:
+                return result
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict):
+                    result = find_by_id(item, id)
+                    if result is not None:
+                        return result
+    return {}

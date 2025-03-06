@@ -334,9 +334,11 @@ def sort_urls(name, data, supply=config.open_supply, filter_speed=config.open_fi
     """
     filter_data = []
     for item in data:
-        url, date, resolution, origin, ipv_type = item["url"], item["date"], item["resolution"], item["origin"], item[
+        channel_id, url, date, resolution, origin, ipv_type = item["id"], item["url"], item["date"], item["resolution"], \
+        item["origin"], item[
             "ipv_type"]
         result: ChannelTestResult = {
+            "id": channel_id,
             "url": remove_cache_info(url),
             "date": date,
             "delay": None,
