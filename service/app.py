@@ -3,19 +3,20 @@ import pickle
 import sys
 
 sys.path.append(os.path.dirname(sys.path[0]))
-from flask import Flask, send_from_directory, make_response, jsonify
-from utils.tools import get_result_file_content, get_ip_address, resource_path, find_by_id
+from flask import Flask, send_from_directory, make_response, jsonify, redirect
+from utils.tools import get_result_file_content, get_ip_address, resource_path
 from utils.config import config
 import utils.constants as constants
 import subprocess
 
 app = Flask(__name__)
 
-with open(
-        resource_path(constants.cache_path, persistent=True),
-        "rb",
-) as f:
-    channel_data = pickle.load(f)
+result_data_path = resource_path(constants.result_data_path)
+if os.path.exists(result_data_path):
+    with open(result_data_path, "rb") as f:
+        result_data = pickle.load(f)
+else:
+    result_data = []
 
 
 @app.route("/")
@@ -64,7 +65,11 @@ def show_log():
 
 @app.route('/rtmp/<channel_id>', methods=['GET'])
 def run_rtmp(channel_id):
-    url = find_by_id(channel_data, int(channel_id)).get("url", "")
+    url = ''
+    for item in result_data:
+        if item['id'] == int(channel_id):
+            url = item.get('url', '')
+            break
     if not url:
         return jsonify({'Error': 'Url not found'}), 400
     cmd = [
@@ -82,13 +87,8 @@ def run_rtmp(channel_id):
         f'rtmp://localhost:1935/live/{channel_id}'
     ]
     try:
-        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
-
-        if process.returncode == 0:
-            return jsonify({'Message': 'Stream pushed successfully', 'Output': stdout.decode()}), 200
-        else:
-            return jsonify({'Error': 'Error pushing stream', 'Details': stderr.decode()}), 500
+        subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return redirect(f'rtmp://localhost:1935/live/{channel_id}')
     except Exception as e:
         return jsonify({'Error': str(e)}), 500
 

@@ -28,7 +28,10 @@ from utils.tools import (
     get_name_urls_from_file,
     get_logger,
     get_datetime_now,
-    get_url_host, check_url_ipv6, check_ipv_type_match
+    get_url_host,
+    check_url_ipv6,
+    check_ipv_type_match,
+    get_ip_address
 )
 from utils.types import ChannelData, OriginType, CategoryChannelData
 
@@ -76,6 +79,7 @@ def get_channel_data_from_file(channels, file, whitelist, open_local=config.open
                         category_dict[name].append({
                             "id": hash(whitelist_url),
                             "url": whitelist_url,
+                            "host": get_url_host(whitelist_url),
                             "date": None,
                             "resolution": None,
                             "origin": "whitelist",
@@ -716,8 +720,6 @@ def write_channel_to_file(data, ipv6=False, callback=None):
     Write channel to file
     """
     try:
-        path = constants.result_path
-        rtmp_path = constants.rtmp_result_path
         if not os.path.exists("output"):
             os.makedirs("output")
         no_result_name = []
@@ -729,7 +731,8 @@ def write_channel_to_file(data, ipv6=False, callback=None):
         first_cate = True
         content = ""
         rtmp_content = ""
-        rtmp_url = "rtmp://localhost:1935/live/"
+        rtmp_url = f"{get_ip_address()}/rtmp/"
+        result_data = []
         for cate, channel_obj in data.items():
             print(f"\n{cate}:", end=" ")
             content += f"{'\n\n' if not first_cate else ''}{cate},#genre#"
@@ -740,6 +743,7 @@ def write_channel_to_file(data, ipv6=False, callback=None):
             for i, name in enumerate(channel_obj_keys):
                 info_list = data.get(cate, {}).get(name, [])
                 channel_urls = get_total_urls(info_list, ipv_type_prefer, origin_type_prefer)
+                result_data += channel_urls
                 end_char = ", " if i < names_len - 1 else ""
                 print(f"{name}:", len(channel_urls), end=end_char)
                 if not channel_urls:
@@ -776,10 +780,12 @@ def write_channel_to_file(data, ipv6=False, callback=None):
             else:
                 content += f"\n\n🕘️更新时间,#genre#\n{now},{update_time_item["url"]}"
                 rtmp_content += f"\n\n🕘️更新时间,#genre#\n{now},{rtmp_url}{update_time_item["id"]}"
-        with open(path, "w", encoding="utf-8") as f:
+        with open(constants.result_path, "w", encoding="utf-8") as f:
             f.write(content)
-        with open(rtmp_path, "w", encoding="utf-8") as f:
+        with open(constants.rtmp_result_path, "w", encoding="utf-8") as f:
             f.write(rtmp_content)
+        with open(constants.result_data_path, "wb") as f:
+            pickle.dump(result_data, f)
     except Exception as e:
         print(f"❌ Write channel to file failed: {e}")
 
