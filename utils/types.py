@@ -10,6 +10,7 @@ class ChannelData(TypedDict):
     """
     id: int
     url: str
+    host: str
     date: str | None
     resolution: str | None
     origin: OriginType

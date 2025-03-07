@@ -23,13 +23,11 @@ from utils.tools import (
     get_total_urls,
     process_nested_dict,
     add_url_info,
-    remove_cache_info,
     resource_path,
     get_urls_from_file,
     get_name_urls_from_file,
     get_logger,
     get_datetime_now,
-    format_url_with_cache,
     get_url_host, check_url_ipv6, check_ipv_type_match
 )
 from utils.types import ChannelData, OriginType, CategoryChannelData
@@ -41,10 +39,10 @@ def format_channel_data(url: str, origin: OriginType) -> ChannelData:
     """
     info = url.partition("$")[2]
     url_origin: OriginType = "whitelist" if info and info.startswith("!") else origin
-    url = format_url_with_cache(url) if url_origin == origin else url
     return {
         "id": hash(url),
         "url": url,
+        "host": get_url_host(url),
         "date": None,
         "resolution": None,
         "origin": url_origin,
@@ -255,7 +253,7 @@ def get_channel_multicast_result(result, search_result):
                 "url":
                     add_url_info(
                         total_url,
-                        f"{result_region}{result_type}{multicast_name}{('-cache:' + url) if config.open_sort else ''}",
+                        f"{result_region}{result_type}{multicast_name}",
                     ),
                 "date": date,
                 "resolution": resolution,
@@ -469,11 +467,14 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
     url_hosts = set([get_url_host(url) for url in urls])
     for item in data:
         try:
-            channel_id, url, date, resolution, url_origin, ipv_type = (
-                item.get("id", None), item["url"], item.get("date", None),
+            channel_id, url, host, date, resolution, url_origin, ipv_type = (
+                item.get("id", None), item["url"],
+                item.get("host", None),
+                item.get("date", None),
                 item.get("resolution", None),
                 origin or item["origin"],
-                item.get("ipv_type", None))
+                item.get("ipv_type", None)
+            )
             if not url_origin:
                 continue
             if url:
@@ -481,29 +482,31 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                     channel_id = hash(url)
                 url_partition = url.partition("$")
                 pure_url = url_partition[0]
-                url_host = get_url_host(url_partition[0])
+                if not host:
+                    host = get_url_host(url_partition[0])
                 url_info = url_partition[2]
                 white_info = url_info and url_info.startswith("!")
                 if not white_info and pure_url in urls:
                     continue
                 if not ipv_type:
                     if ipv_type_data:
-                        ipv_type = ipv_type_data.get(url_host, None)
+                        ipv_type = ipv_type_data.get(host, None)
                     if not ipv_type:
                         ipv_type = "ipv6" if check_url_ipv6(pure_url) else "ipv4"
                         if ipv_type_data:
-                            ipv_type_data[url_host] = ipv_type
+                            ipv_type_data[host] = ipv_type
                 if not white_info:
-                    if url_host in url_hosts:
+                    if host in url_hosts:
                         for p_url in urls:
-                            if get_url_host(p_url) == url_host and len(p_url) < len(pure_url):
+                            if get_url_host(p_url) == host and len(p_url) < len(pure_url):
                                 urls.remove(p_url)
                                 urls.add(pure_url)
                                 for index, info in enumerate(info_data[cate][name]):
-                                    if info["url"] and get_url_host(info["url"]) == url_host:
+                                    if info["url"] and get_url_host(info["url"]) == host:
                                         info_data[cate][name][index] = {
                                             "id": channel_id,
                                             "url": url,
+                                            "host": host,
                                             "date": date,
                                             "resolution": resolution,
                                             "origin": url_origin,
@@ -523,13 +526,14 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                     info_data[cate][name].append({
                         "id": channel_id,
                         "url": url,
+                        "host": host,
                         "date": date,
                         "resolution": resolution,
                         "origin": url_origin,
                         "ipv_type": ipv_type
                     })
                     urls.add(pure_url)
-                    url_hosts.add(url_host)
+                    url_hosts.add(host)
         except Exception as e:
             print(f"Error on append data to info data: {e}")
             continue
@@ -655,14 +659,15 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     get_resolution = open_filter_resolution and check_ffmpeg_installed_status()
     sort_timeout = config.sort_timeout
     need_sort_data = copy.deepcopy(data)
-    process_nested_dict(need_sort_data, seen={}, flag=r"cache:(.*)", force_str="!")
+    process_nested_dict(need_sort_data, seen={}, force_str="!")
     result = {}
     semaphore = asyncio.Semaphore(10)
 
-    async def limited_get_speed(url, is_ipv6, ipv6_proxy, resolution, filter_resolution, min_resolution, timeout,
+    async def limited_get_speed(url, cache_key, is_ipv6, ipv6_proxy, resolution, filter_resolution, min_resolution,
+                                timeout,
                                 callback):
         async with semaphore:
-            return await get_speed(url, is_ipv6=is_ipv6, ipv6_proxy=ipv6_proxy,
+            return await get_speed(url, cache_key, is_ipv6=is_ipv6, ipv6_proxy=ipv6_proxy,
                                    resolution=resolution, filter_resolution=filter_resolution,
                                    min_resolution=min_resolution, timeout=timeout,
                                    callback=callback)
@@ -671,6 +676,7 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
         asyncio.create_task(
             limited_get_speed(
                 info["url"],
+                cache_key=info["host"],
                 is_ipv6=info["ipv_type"] == "ipv6",
                 ipv6_proxy=ipv6_proxy_url,
                 resolution=info["resolution"],
@@ -849,20 +855,3 @@ def get_channel_data_cache_with_compare(data, new_data):
                             "ipv_type": info["ipv_type"]
                         })
                 data[cate][name] = updated_data
-
-
-def format_channel_url_info(data):
-    """
-    Format channel url info, remove cache, add resolution to url
-    """
-    for obj in data.values():
-        for url_info in obj.values():
-            for i, info in enumerate(url_info):
-                url_info[i] = {
-                    "id": info.get("id", hash(info["url"])),
-                    "url": remove_cache_info(info["url"]),
-                    "date": info["date"],
-                    "resolution": info["resolution"],
-                    "origin": info["origin"],
-                    "ipv_type": info["ipv_type"]
-                }

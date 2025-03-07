@@ -19,7 +19,6 @@ from utils.channel import (
     process_sort_channel_list,
     write_channel_to_file,
     get_channel_data_cache_with_compare,
-    format_channel_url_info,
 )
 from utils.config import config
 from utils.tools import (
@@ -103,7 +102,7 @@ class UpdateSource:
     def get_urls_len(self, is_filter: bool = False) -> int:
         data = copy.deepcopy(self.channel_data)
         if is_filter:
-            process_nested_dict(data, seen={}, flag=r"cache:(.*)", force_str="!")
+            process_nested_dict(data, seen={}, force_str="!")
         processed_urls = set(
             url_info["url"]
             for channel_obj in data.values()
@@ -157,8 +156,6 @@ class UpdateSource:
                         ipv6=ipv6_support,
                         callback=sort_callback,
                     )
-                else:
-                    format_channel_url_info(self.channel_data)
                 self.total = self.get_urls_len()
                 self.pbar = tqdm(total=self.total, desc="Writing")
                 self.start_time = time()

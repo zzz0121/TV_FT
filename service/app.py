@@ -64,13 +64,20 @@ def show_log():
 
 @app.route('/rtmp/<channel_id>', methods=['GET'])
 def run_rtmp(channel_id):
-    url = find_by_id(channel_data, channel_id).get("url", None)
+    url = find_by_id(channel_data, int(channel_id)).get("url", "")
     if not url:
         return jsonify({'Error': 'Url not found'}), 400
     cmd = [
         'ffmpeg',
-        '-i', url,
-        '-c', 'copy',
+        '-i', url.partition('$')[0],
+        '-c:v', 'libx264',
+        '-preset', 'ultrafast',
+        '-tune', 'zerolatency',
+        '-b:v', '2500k',
+        '-maxrate', '2500k',
+        '-bufsize', '5000k',
+        '-g', '50',
+        '-c:a', 'aac',
         '-f', 'flv',
         f'rtmp://localhost:1935/live/{channel_id}'
     ]

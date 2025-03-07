@@ -406,22 +406,18 @@ def get_result_file_content(show_content=False, file_type=None, rtmp=False):
     return response
 
 
-def remove_duplicates_from_list(data_list, seen, flag=None, force_str=None):
+def remove_duplicates_from_list(data_list, seen, force_str=None):
     """
     Remove duplicates from data list
     """
     unique_list = []
     for item in data_list:
         item_first = item["url"]
-        part = item_first
+        part = item["host"]
         if force_str:
             info = item_first.partition("$")[2]
             if info and info.startswith(force_str):
                 continue
-        if flag:
-            matcher = re.search(flag, item_first)
-            if matcher:
-                part = matcher.group(1)
         seen_num = seen.get(part, 0)
         if (seen_num < config.sort_duplicate_limit) or (seen_num == 0 and config.sort_duplicate_limit == 0):
             seen[part] = seen_num + 1
@@ -429,15 +425,15 @@ def remove_duplicates_from_list(data_list, seen, flag=None, force_str=None):
     return unique_list
 
 
-def process_nested_dict(data, seen, flag=None, force_str=None):
+def process_nested_dict(data, seen, force_str=None):
     """
     Process nested dict
     """
     for key, value in data.items():
         if isinstance(value, dict):
-            process_nested_dict(value, seen, flag, force_str)
+            process_nested_dict(value, seen, force_str)
         elif isinstance(value, list):
-            data[key] = remove_duplicates_from_list(value, seen, flag, force_str)
+            data[key] = remove_duplicates_from_list(value, seen, force_str)
 
 
 def get_url_host(url):
