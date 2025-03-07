@@ -8,9 +8,12 @@ from utils.tools import get_result_file_content, get_ip_address, resource_path
 from utils.config import config
 import utils.constants as constants
 import subprocess
+import atexit
 
 app = Flask(__name__)
-
+nginx_dir = resource_path(os.path.join('utils', 'nginx-rtmp-win32'))
+nginx_path = resource_path(os.path.join(nginx_dir, 'nginx.exe'))
+stop_path = resource_path(os.path.join(nginx_dir, 'stop.bat'))
 result_data_path = resource_path(constants.result_data_path)
 if os.path.exists(result_data_path):
     with open(result_data_path, "rb") as f:
@@ -93,9 +96,27 @@ def run_rtmp(channel_id):
         return jsonify({'Error': str(e)}), 500
 
 
+def stop_rtmp_service():
+    if sys.platform == "win32":
+        try:
+            os.chdir(nginx_dir)
+            subprocess.Popen([stop_path], shell=True)
+        except Exception as e:
+            print(f"❌ Rtmp service stop failed: {e}")
+
+
 def run_service():
     try:
         if not os.environ.get("GITHUB_ACTIONS"):
+            if sys.platform == "win32":
+                original_dir = os.getcwd()
+                try:
+                    os.chdir(nginx_dir)
+                    subprocess.Popen([nginx_path], shell=True)
+                except Exception as e:
+                    print(f"❌ Rtmp service start failed: {e}")
+                finally:
+                    os.chdir(original_dir)
             ip_address = get_ip_address()
             print(f"📄 Result content: {ip_address}/content")
             print(f"📄 Log content: {ip_address}/log")
@@ -107,6 +128,8 @@ def run_service():
     except Exception as e:
         print(f"❌ Service start failed: {e}")
 
+
+atexit.register(stop_rtmp_service)
 
 if __name__ == "__main__":
     run_service()
