@@ -22,10 +22,8 @@ from utils.channel import (
 )
 from utils.config import config
 from utils.tools import (
-    update_file,
     get_pbar_remaining,
     get_ip_address,
-    convert_to_m3u,
     process_nested_dict,
     format_interval,
     check_ipv6_support,
@@ -91,11 +89,11 @@ class UpdateSource:
                 self.tasks.append(task)
                 setattr(self, result_attr, await task)
 
-    def pbar_update(self, name: str = ""):
+    def pbar_update(self, name: str = "", item_name: str = ""):
         if self.pbar.n < self.total:
             self.pbar.update()
             self.update_progress(
-                f"正在进行{name}, 剩余{self.total - self.pbar.n}个接口, 预计剩余时间: {get_pbar_remaining(n=self.pbar.n, total=self.total, start_time=self.start_time)}",
+                f"正在进行{name}, 剩余{self.total - self.pbar.n}个{item_name}, 预计剩余时间: {get_pbar_remaining(n=self.pbar.n, total=self.total, start_time=self.start_time)}",
                 int((self.pbar.n / self.total) * 100),
             )
 
@@ -144,7 +142,7 @@ class UpdateSource:
                     urls_total = self.get_urls_len()
                     self.total = self.get_urls_len(is_filter=True)
                     print(f"Total urls: {urls_total}, need to sort: {self.total}")
-                    sort_callback = lambda: self.pbar_update(name="测速")
+                    sort_callback = lambda: self.pbar_update(name="测速", item_name="接口")
                     self.update_progress(
                         f"正在测速排序, 共{urls_total}个接口, {self.total}个接口需要进行测速",
                         0,
@@ -156,17 +154,16 @@ class UpdateSource:
                         ipv6=ipv6_support,
                         callback=sort_callback,
                     )
-                self.total = self.get_urls_len()
+                self.total = 12
                 self.pbar = tqdm(total=self.total, desc="Writing")
                 self.start_time = time()
                 write_channel_to_file(
                     self.channel_data,
                     ipv6=ipv6_support,
-                    callback=lambda: self.pbar_update(name="写入结果"),
+                    first_channel_name=channel_names[0],
+                    callback=lambda: self.pbar_update(name="写入结果", item_name="文件"),
                 )
                 self.pbar.close()
-                update_file(user_final_file, constants.result_path)
-                update_file("output/rtmp_result.txt", constants.rtmp_result_path)
                 if config.open_history:
                     if open_sort:
                         get_channel_data_cache_with_compare(
@@ -177,7 +174,6 @@ class UpdateSource:
                             "wb",
                     ) as file:
                         pickle.dump(channel_data_cache, file)
-                convert_to_m3u(channel_names[0])
                 print(
                     f"🥳 Update completed! Total time spent: {format_interval(time() - main_start_time)}. Please check the {user_final_file} file!"
                 )

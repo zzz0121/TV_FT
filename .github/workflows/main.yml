@@ -78,24 +78,11 @@ jobs:
           except: 
             final_m3u_file = "output/result.m3u"
           print(final_m3u_file)')
-          if [[ -f "$final_file" ]]; then
-            git add -f "$final_file"
-          fi
-          if [[ -f "$final_m3u_file" ]]; then
-            git add -f "$final_m3u_file"
-          fi
-          if [[ -f "output/cache.pkl" ]]; then
-            git add -f "output/cache.pkl"
-          fi
-          if [[ -f "output/sort.log" ]]; then
-            git add -f "output/sort.log"
-          fi
-          if [[ -f "updates/fofa/fofa_hotel_region_result.pkl" ]]; then
-            git add -f "updates/fofa/fofa_hotel_region_result.pkl"
-          fi
-          if [[ -f "updates/fofa/fofa_multicast_region_result.pkl" ]]; then
-            git add -f "updates/fofa/fofa_multicast_region_result.pkl"
-          fi
+          for file in "$final_file" "$final_m3u_file" "output/ipv4/result.txt" "output/ipv6/result.txt" "output/rtmp.txt" "output/ipv4/rtmp.txt" "output/ipv6/rtmp.txt" "output/cache/result_data.pkl" "output/cache/cache.pkl" "output/log/sort.log" "updates/fofa/fofa_hotel_region_result.pkl" "updates/fofa/fofa_multicast_region_result.pkl"; do
+            if [[ -f "$file" ]]; then
+              git add -f "$file"
+            fi
+          done
           if ! git diff --staged --quiet; then
             git commit -m "Github Action Auto Updated"
             git push --force

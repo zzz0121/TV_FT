@@ -346,6 +346,10 @@ class ConfigManager:
     def cdn_url(self):
         return self.config.get("Settings", "cdn_url", fallback="")
 
+    @property
+    def open_rtmp(self):
+        return self.config.getboolean("Settings", "open_rtmp", fallback=True)
+
     def load(self):
         """
         Load the config

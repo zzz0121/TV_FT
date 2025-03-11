@@ -31,7 +31,8 @@ from utils.tools import (
     get_url_host,
     check_url_ipv6,
     check_ipv_type_match,
-    get_ip_address
+    get_ip_address,
+    convert_to_m3u, custom_print
 )
 from utils.types import ChannelData, OriginType, CategoryChannelData
 
@@ -715,77 +716,121 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     return result
 
 
-def write_channel_to_file(data, ipv6=False, callback=None):
+def process_write_content(path: str,
+                          data: CategoryChannelData,
+                          rtmp_url: str = None,
+                          open_empty_category: bool = False,
+                          ipv_type_prefer: list[str] = None,
+                          origin_type_prefer: list[str] = None,
+                          first_channel_name: str = None,
+                          enable_print: bool = False,
+                          callback=None
+                          ):
+    """
+    Get channel write content
+    :param path: write into path
+    :param rtmp_url: rtmp url
+    :param open_empty_category: show empty category
+    :param ipv_type_prefer: ipv type prefer
+    :param origin_type_prefer: origin type prefer
+    :param first_channel_name: the first channel name
+    :param callback: callback function
+    """
+    content = ""
+    no_result_name = []
+    first_cate = True
+    result_data = []
+    custom_print.disable = not enable_print
+    for cate, channel_obj in data.items():
+        custom_print(f"\n{cate}:", end=" ")
+        content += f"{'\n\n' if not first_cate else ''}{cate},#genre#"
+        first_cate = False
+        channel_obj_keys = channel_obj.keys()
+        names_len = len(list(channel_obj_keys))
+        for i, name in enumerate(channel_obj_keys):
+            info_list = data.get(cate, {}).get(name, [])
+            channel_urls = get_total_urls(info_list, ipv_type_prefer, origin_type_prefer)
+            result_data += channel_urls
+            end_char = ", " if i < names_len - 1 else ""
+            custom_print(f"{name}:", len(channel_urls), end=end_char)
+            if not channel_urls:
+                if open_empty_category:
+                    no_result_name.append(name)
+                continue
+            for item in channel_urls:
+                content += f"\n{name},{rtmp_url}{item["id"]}" if rtmp_url else f"\n{name},{item["url"]}"
+        custom_print()
+    if open_empty_category and no_result_name:
+        custom_print("\n🈳 No result channel name:")
+        content += "\n\n🈳无结果频道,#genre#"
+        for i, name in enumerate(no_result_name):
+            end_char = ", " if i < len(no_result_name) - 1 else ""
+            custom_print(name, end=end_char)
+            content += f"\n{name},url"
+        custom_print()
+    if config.open_update_time:
+        update_time_item = next(
+            (urls[0] for channel_obj in data.values()
+             for info_list in channel_obj.values()
+             if (urls := get_total_urls(info_list, ipv_type_prefer, origin_type_prefer))),
+            {"id": "id", "url": "url"}
+        )
+        now = get_datetime_now()
+        value = f"{rtmp_url}{update_time_item["id"]}" if rtmp_url else update_time_item["url"]
+        if config.update_time_position == "top":
+            content = f"🕘️更新时间,#genre#\n{now},{value}\n\n{content}"
+        else:
+            content += f"\n\n🕘️更新时间,#genre#\n{now},{value}"
+    if rtmp_url:
+        if os.path.exists(constants.result_data_path):
+            with open(constants.result_data_path, "rb") as f:
+                result_data += pickle.load(f)
+                result_data = list({item["id"]: item for item in result_data}.values())
+        with open(constants.result_data_path, "wb") as f:
+            pickle.dump(result_data, f)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+        if callback:
+            callback()
+    convert_to_m3u(path, first_channel_name)
+    if callback:
+        callback()
+
+
+def write_channel_to_file(data, ipv6=False, first_channel_name=None, callback=None):
     """
     Write channel to file
     """
     try:
-        if not os.path.exists("output"):
-            os.makedirs("output")
-        no_result_name = []
+        dir_list = ["output", "output/ipv4", "output/ipv6", "output/cache", "output/log"]
+        for dir_name in dir_list:
+            os.makedirs(dir_name, exist_ok=True)
         open_empty_category = config.open_empty_category
         ipv_type_prefer = list(config.ipv_type_prefer)
         if any(pref in ipv_type_prefer for pref in ["自动", "auto"]):
             ipv_type_prefer = ["ipv6", "ipv4"] if ipv6 else ["ipv4", "ipv6"]
         origin_type_prefer = config.origin_type_prefer
-        first_cate = True
-        content = ""
-        rtmp_content = ""
         rtmp_url = f"{get_ip_address()}/rtmp/"
-        result_data = []
-        for cate, channel_obj in data.items():
-            print(f"\n{cate}:", end=" ")
-            content += f"{'\n\n' if not first_cate else ''}{cate},#genre#"
-            rtmp_content += f"{'\n\n' if not first_cate else ''}{cate},#genre#"
-            first_cate = False
-            channel_obj_keys = channel_obj.keys()
-            names_len = len(list(channel_obj_keys))
-            for i, name in enumerate(channel_obj_keys):
-                info_list = data.get(cate, {}).get(name, [])
-                channel_urls = get_total_urls(info_list, ipv_type_prefer, origin_type_prefer)
-                result_data += channel_urls
-                end_char = ", " if i < names_len - 1 else ""
-                print(f"{name}:", len(channel_urls), end=end_char)
-                if not channel_urls:
-                    if open_empty_category:
-                        no_result_name.append(name)
-                    continue
-                for item in channel_urls:
-                    content += f"\n{name},{item["url"]}"
-                    rtmp_content += f"\n{name},{rtmp_url}{item["id"]}"
-                    if callback:
-                        callback()
-            print()
-        if open_empty_category and no_result_name:
-            print("\n🈳 No result channel name:")
-            content += "\n\n🈳无结果频道,#genre#"
-            rtmp_content += "\n\n🈳无结果频道,#genre#"
-            for i, name in enumerate(no_result_name):
-                end_char = ", " if i < len(no_result_name) - 1 else ""
-                print(name, end=end_char)
-                content += f"\n{name},url"
-                rtmp_content += f"\n{name},url"
-            print()
-        if config.open_update_time:
-            update_time_item = next(
-                (urls[0] for channel_obj in data.values()
-                 for info_list in channel_obj.values()
-                 if (urls := get_total_urls(info_list, ipv_type_prefer, origin_type_prefer))),
-                {"id": "id", "url": "url"}
+        file_list = [
+            {"path": resource_path(config.final_file), "enable_log": True},
+            {"path": resource_path(constants.ipv4_result_path), "ipv_type_prefer": ["ipv4"]},
+            {"path": resource_path(constants.ipv6_result_path), "ipv_type_prefer": ["ipv6"]},
+            {"path": resource_path(constants.rtmp_result_path), "rtmp_url": rtmp_url},
+            {"path": resource_path(constants.ipv4_rtmp_result_path), "rtmp_url": rtmp_url, "ipv_type_prefer": ["ipv4"]},
+            {"path": resource_path(constants.ipv6_rtmp_result_path), "rtmp_url": rtmp_url, "ipv_type_prefer": ["ipv6"]},
+        ]
+        for file in file_list:
+            process_write_content(
+                path=file["path"],
+                data=data,
+                rtmp_url=file.get("rtmp_url", None),
+                open_empty_category=open_empty_category,
+                ipv_type_prefer=file.get("ipv_type_prefer", ipv_type_prefer),
+                origin_type_prefer=origin_type_prefer,
+                first_channel_name=first_channel_name,
+                enable_print=file.get("enable_log", False),
+                callback=callback,
             )
-            now = get_datetime_now()
-            if config.update_time_position == "top":
-                content = f"🕘️更新时间,#genre#\n{now},{update_time_item["url"]}\n\n{content}"
-                rtmp_content = f"🕘️更新时间,#genre#\n{now},{rtmp_url}{update_time_item["id"]}\n\n{rtmp_content}"
-            else:
-                content += f"\n\n🕘️更新时间,#genre#\n{now},{update_time_item["url"]}"
-                rtmp_content += f"\n\n🕘️更新时间,#genre#\n{now},{rtmp_url}{update_time_item["id"]}"
-        with open(constants.result_path, "w", encoding="utf-8") as f:
-            f.write(content)
-        with open(constants.rtmp_result_path, "w", encoding="utf-8") as f:
-            f.write(rtmp_content)
-        with open(constants.result_data_path, "wb") as f:
-            pickle.dump(result_data, f)
     except Exception as e:
         print(f"❌ Write channel to file failed: {e}")
 

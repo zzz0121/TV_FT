@@ -170,7 +170,7 @@ def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_pr
         if origin == "whitelist":
             w_url, _, w_info = url.partition("$")
             w_info_value = w_info.partition("!")[2] or "白名单"
-            total_urls.append({"id": channel_id, "url": add_url_info(w_url, w_info_value)})
+            total_urls.append({"id": channel_id, "url": add_url_info(w_url, w_info_value), "ipv_type": url_ipv_type})
             continue
 
         if origin == "subscribe" and "/rtp/" in url:
@@ -196,9 +196,9 @@ def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_pr
 
         if ipv_prefer_bool:
             if url_ipv_type in ipv_type_prefer:
-                categorized_urls[origin][url_ipv_type].append({"id": channel_id, "url": url})
+                categorized_urls[origin][url_ipv_type].append({"id": channel_id, "url": url, "ipv_type": url_ipv_type})
         else:
-            categorized_urls[origin]["all"].append({"id": channel_id, "url": url})
+            categorized_urls[origin]["all"].append({"id": channel_id, "url": url, "ipv_type": url_ipv_type})
 
     ipv_num = {ipv_type: 0 for ipv_type in ipv_type_prefer}
     urls_limit = config.urls_limit
@@ -344,13 +344,12 @@ def get_ip_address():
         return f"http://{ip}:{config.app_port}"
 
 
-def convert_to_m3u(first_channel_name=None):
+def convert_to_m3u(path=None, first_channel_name=None):
     """
     Convert result txt to m3u format
     """
-    user_final_file = resource_path(config.final_file)
-    if os.path.exists(user_final_file):
-        with open(user_final_file, "r", encoding="utf-8") as file:
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as file:
             m3u_output = f'#EXTM3U x-tvg-url="{join_url(config.cdn_url, 'https://raw.githubusercontent.com/fanmingming/live/main/e.xml')}"\n'
             current_group = None
             for line in file:
@@ -375,26 +374,25 @@ def convert_to_m3u(first_channel_name=None):
                         if current_group:
                             m3u_output += f' group-title="{current_group}"'
                         m3u_output += f",{original_channel_name}\n{channel_link}\n"
-            m3u_file_path = os.path.splitext(user_final_file)[0] + ".m3u"
+            m3u_file_path = os.path.splitext(path)[0] + ".m3u"
             with open(m3u_file_path, "w", encoding="utf-8") as m3u_file:
                 m3u_file.write(m3u_output)
-            print(f"✅ M3U result file generated at: {m3u_file_path}")
+            # print(f"✅ M3U result file generated at: {m3u_file_path}")
 
 
-def get_result_file_content(show_content=False, file_type=None, rtmp=False):
+def get_result_file_content(path=None, show_content=False, file_type=None):
     """
     Get the content of the result file
     """
-    user_final_file = resource_path("output/rtmp_result.txt") if rtmp else resource_path(config.final_file)
     result_file = (
-        os.path.splitext(user_final_file)[0] + f".{file_type}"
+        os.path.splitext(path)[0] + f".{file_type}"
         if file_type
-        else user_final_file
+        else path
     )
     if os.path.exists(result_file):
         if config.open_m3u_result:
             if file_type == "m3u" or not file_type:
-                result_file = os.path.splitext(user_final_file)[0] + ".m3u"
+                result_file = os.path.splitext(path)[0] + ".m3u"
             if file_type != "txt" and show_content == False:
                 return send_file(result_file, as_attachment=True)
         with open(result_file, "r", encoding="utf-8") as file:
@@ -637,3 +635,11 @@ def find_by_id(data: dict, id: int) -> dict:
                     if result is not None:
                         return result
     return {}
+
+
+def custom_print(*args, **kwargs):
+    """
+    Custom print
+    """
+    if not custom_print.disable:
+        print(*args, **kwargs)

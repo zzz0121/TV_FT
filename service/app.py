@@ -24,7 +24,7 @@ else:
 
 @app.route("/")
 def show_index():
-    return get_result_file_content()
+    return get_result_file_content(resource_path(config.final_file))
 
 
 @app.route("/favicon.ico")
@@ -35,22 +35,81 @@ def favicon():
 
 @app.route("/txt")
 def show_txt():
-    return get_result_file_content(file_type="txt")
+    return get_result_file_content(path=resource_path(config.final_file), file_type="txt")
+
+
+@app.route("/ipv4/txt")
+def show_ipv4_txt():
+    return get_result_file_content(path=resource_path(constants.ipv4_result_path), file_type="txt")
+
+
+@app.route("/ipv6/txt")
+def show_ipv6_txt():
+    return get_result_file_content(path=resource_path(constants.ipv6_result_path), file_type="txt")
 
 
 @app.route("/rtmp-txt")
 def show_rtmp_txt():
-    return get_result_file_content(file_type="txt", rtmp=True)
+    return get_result_file_content(path=resource_path(constants.rtmp_result_path), file_type="txt")
+
+
+@app.route("/ipv4/rtmp-txt")
+def show_ipv4_rtmp_txt():
+    return get_result_file_content(path=resource_path(constants.ipv4_rtmp_result_path), file_type="txt")
+
+
+@app.route("/ipv6/rtmp-txt")
+def show_ipv6_rtmp_txt():
+    return get_result_file_content(path=resource_path(constants.ipv6_rtmp_result_path), file_type="txt")
 
 
 @app.route("/m3u")
 def show_m3u():
-    return get_result_file_content(file_type="m3u")
+    return get_result_file_content(path=resource_path(config.final_file), file_type="m3u")
+
+
+@app.route("/rtmp-m3u")
+def show_rtmp_m3u():
+    return get_result_file_content(path=resource_path(constants.rtmp_result_path), file_type="m3u")
+
+
+@app.route("/ipv4/m3u")
+def show_ipv4_m3u():
+    return get_result_file_content(path=resource_path(constants.ipv4_result_path), file_type="m3u")
+
+
+@app.route("/ipv4")
+def show_ipv4_result():
+    path = constants.ipv4_rtmp_result_path if config.open_rtmp else constants.ipv4_result_path
+    file_type = "m3u" if config.open_m3u_result else "txt"
+    return get_result_file_content(path=resource_path(path), file_type=file_type)
+
+
+@app.route("/ipv6/m3u")
+def show_ipv6_m3u():
+    return get_result_file_content(path=resource_path(constants.ipv6_result_path), file_type="m3u")
+
+
+@app.route("/ipv6")
+def show_ipv6_result():
+    path = constants.ipv6_rtmp_result_path if config.open_rtmp else constants.ipv6_result_path
+    file_type = "m3u" if config.open_m3u_result else "txt"
+    return get_result_file_content(path=resource_path(path), file_type=file_type)
+
+
+@app.route("/ipv4/rtmp-m3u")
+def show_ipv4_rtmp_m3u():
+    return get_result_file_content(path=resource_path(constants.ipv4_rtmp_result_path), file_type="m3u")
+
+
+@app.route("/ipv6/rtmp-m3u")
+def show_ipv6_rtmp_m3u():
+    return get_result_file_content(path=resource_path(constants.ipv6_rtmp_result_path), file_type="m3u")
 
 
 @app.route("/content")
 def show_content():
-    return get_result_file_content(show_content=True)
+    return get_result_file_content(path=resource_path(config.final_file), show_content=True)
 
 
 @app.route("/log")
@@ -108,7 +167,7 @@ def stop_rtmp_service():
 def run_service():
     try:
         if not os.environ.get("GITHUB_ACTIONS"):
-            if sys.platform == "win32":
+            if config.open_rtmp and sys.platform == "win32":
                 original_dir = os.getcwd()
                 try:
                     os.chdir(nginx_dir)
@@ -120,16 +179,21 @@ def run_service():
             ip_address = get_ip_address()
             print(f"📄 Result content: {ip_address}/content")
             print(f"📄 Log content: {ip_address}/log")
-            print(f"🚀 M3u api: {ip_address}/m3u")
+            if config.open_m3u_result:
+                print(f"🚀 M3u api: {ip_address}/m3u")
             print(f"🚀 Txt api: {ip_address}/txt")
-            print(f"🚀 Rtmp api: {ip_address}/rtmp-txt")
+            if config.open_rtmp:
+                print(f"🚀 Rtmp M3u api: {ip_address}/rtmp-m3u")
+                print(f"🚀 Rtmp Txt api: {ip_address}/rtmp-txt")
+            print(f"🚀 IPv4 Txt api: {ip_address}/ipv4")
+            print(f"🚀 IPv6 Txt api: {ip_address}/ipv6")
             print(f"✅ You can use this url to watch IPTV 📺: {ip_address}")
             app.run(host="0.0.0.0", port=config.app_port)
     except Exception as e:
         print(f"❌ Service start failed: {e}")
 
 
-atexit.register(stop_rtmp_service)
-
 if __name__ == "__main__":
+    if config.open_rtmp:
+        atexit.register(stop_rtmp_service)
     run_service()

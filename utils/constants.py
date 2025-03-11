@@ -11,17 +11,23 @@ blacklist_path = os.path.join(config_path, "blacklist.txt")
 
 subscribe_path = os.path.join(config_path, "subscribe.txt")
 
-result_path = os.path.join(output_path, "result_new.txt")
+ipv4_result_path = os.path.join(output_path, "ipv4/result.txt")
 
-rtmp_result_path = os.path.join(output_path, "rtmp_result_new.txt")
+ipv6_result_path = os.path.join(output_path, "ipv6/result.txt")
 
-result_data_path = os.path.join(output_path, "result_data.pkl")
+rtmp_result_path = os.path.join(output_path, "rtmp.txt")
 
-cache_path = os.path.join(output_path, "cache.pkl")
+ipv4_rtmp_result_path = os.path.join(output_path, "ipv4/rtmp.txt")
 
-sort_log_path = os.path.join(output_path, "sort.log")
+ipv6_rtmp_result_path = os.path.join(output_path, "ipv6/rtmp.txt")
 
-log_path = os.path.join(output_path, "log.log")
+result_data_path = os.path.join(output_path, "cache/result_data.pkl")
+
+cache_path = os.path.join(output_path, "cache/cache.pkl")
+
+sort_log_path = os.path.join(output_path, "log/sort.log")
+
+log_path = os.path.join(output_path, "log/log.log")
 
 url_host_pattern = re.compile(r"((https?|rtmp|rtsp)://)?([^:@/]+(:[^:@/]*)?@)?(\[[0-9a-fA-F:]+]|([\w-]+\.)+[\w-]+)")
 
