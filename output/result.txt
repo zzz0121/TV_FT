@@ -1,152 +1,285 @@
-CCTV-1,https://p2.bdstatic.com/rtmp.liveshow.lss-user.baidubce.com/live/stream_bduid_6488563992_8982723413/merged_1707497046297_88536_25144_41936.m3u8,速度:981.0KB/s 稳定性:100%
-CCTV-1,http://202.168.187.208:9089/tsfile/live/1003_1.m3u8,速度:1.9KB/s 稳定性:100%
+CCTV-1,http://3501776.xyz:35455/gaoma/cctv1.m3u8
+CCTV-1,http://xiaoya.crccxw.top:35455/gaoma/cctv1.m3u8
+CCTV-1,http://58.210.168.86:10800/newlive/live/hls/1/live.m3u8
+CCTV-1,http://60.223.224.176:8888/newlive/live/hls/2/live.m3u8?
+CCTV-1,http://221.226.51.220:50081/newlive/live/hls/1/live.m3u8
+CCTV-1,https://api.olelive.com/dis/live/CCTV1HD/hls.m3u8
 
-CCTV-2,http://110.81.206.138:49231/tsfile/live/23002_1.m3u8?key=txiptv&playlive=1&authid=0#tvbus://3SSsvsUAZdmUdNiR2sowkWarntoWqK1kN4JUv8i2jqFUsjEQM1mvygA2iiKtf,速度:6.9KB/s 稳定性:100%
+CCTV-2,http://3501776.xyz:35455/gaoma/cctv2.m3u8
+CCTV-2,http://xiaoya.crccxw.top:35455/gaoma/cctv2.m3u8
+CCTV-2,http://58.210.168.86:10800/newlive/live/hls/2/live.m3u8#rtsp://118.212.169.134/PLTV/88888888/224/3221227231/10000100000000060000000000680051_0.smil
+CCTV-2,http://60.223.224.176:8888/newlive/live/hls/3/live.m3u8
+CCTV-2,http://116.128.243.121:85/tsfile/live/0002_1.m3u8?key=txiptv&playlive=0&authid=0
+CCTV-2,http://221.226.51.220:50081/newlive/live/hls/2/live.m3u8
+CCTV-2,https://api.olelive.com/dis/live/CCTV2HD/hls.m3u8
+CCTV-2,http://113.140.86.162:8009/hls/502/index.m3u8
 
-CCTV-3,http://221.226.215.162:352/tsfile/live/0003_1.m3u8?key=txiptv&playlive=1&authid=0,速度:8.5KB/s 稳定性:100%
-CCTV-3,http://110.81.206.138:49231/tsfile/live/23003_1.m3u8?key=txiptv&playlive=1&authid=0#tvbus://3Hh9gR8LX3nqmTdzxHC6DGjLcVBdZ7CmEv7T174TtPXeSWfTKpaZyCxGVdKHE,速度:6.0KB/s 稳定性:100%
+CCTV-3,http://58.210.168.86:10800/newlive/live/hls/3/live.m3u8
+CCTV-3,http://60.223.224.176:8888/newlive/live/hls/4/live.m3u8
+CCTV-3,http://110.53.52.63:8888/newlive/live/hls/4/live.m3u8
+CCTV-3,https://ldocctvwbcdtxy.liveplay.myqcloud.com/ldocctvwbcd/cdrmldcctv3_1/index.m3u8?b=200-1200
+CCTV-3,http://116.77.32.59:8277/streams/d/cctv3/playlist.m3u8
 
-CCTV-4,http://58.243.224.242:9901/tsfile/live/1002_1.m3u8?key=txiptv&playlive=0&authid=0,速度:8.7KB/s 稳定性:100%
-CCTV-4,http://218.29.168.146:352/tsfile/live/0004_1.m3u8?key=txiptv&playlive=1&authid=0,速度:3.0KB/s 稳定性:100%
+CCTV-4,http://xiaoya.crccxw.top:35455/gaoma/cctv4.m3u8
+CCTV-4,http://58.210.168.86:10800/newlive/live/hls/4/live.m3u8
+CCTV-4,http://60.223.224.176:8888/newlive/live/hls/5/live.m3u8?#rtsp://180.95.143.19/PLTV/88888910/224/3221225497/10000100000000060000000000107277_0.smil
+CCTV-4,http://221.226.51.220:50081/newlive/live/hls/4/live.m3u8
 
-CCTV-5,http://219.159.91.10:9901/tsfile/live/0005_1.m3u8,速度:5.3KB/s 稳定性:100%
-CCTV-5,http://1.180.2.93:9901/tsfile/live/1027_1.m3u8,速度:2.5KB/s 稳定性:100%
+CCTV-5,http://3501776.xyz:35455/gaoma/cctv5.m3u8
+CCTV-5,http://xiaoya.crccxw.top:35455/gaoma/cctv5.m3u8
+CCTV-5,http://60.223.224.176:8888/newlive/live/hls/6/live.m3u8
+CCTV-5,http://113.140.86.162:8009/hls/503/index.m3u8
+CCTV-5,http://112.46.85.60:8009/hls/503/index.m3u8
 
-CCTV-5+,http://218.58.136.82:352/tsfile/live/0016_1.m3u8?key=txiptv&playlive=1&authid=0,速度:1.7KB/s 稳定性:100%
-CCTV-5+,http://60.209.125.254:352/tsfile/live/0016_1.m3u8?key=txiptv&playlive=1&authid=0,速度:1.2KB/s 稳定性:100%
+CCTV-5+,http://xiaoya.crccxw.top:35455/gaoma/cctv5p.m3u8
+CCTV-5+,http://www.douzhicloud.site:35455/gaoma/cctv5p.m3u8
+CCTV-5+,http://60.223.224.176:8888/newlive/live/hls/7/live.m3u8
+CCTV-5+,http://116.77.32.59:8277/streams/d/cctv5a/playlist.m3u8
 
-CCTV-6,http://110.52.99.109:9901/tsfile/live/faacts/1005_1.m3u8,速度:2.1KB/s 稳定性:100%
-CCTV-6,http://218.29.168.146:352/tsfile/live/0006_1.m3u8?key=txiptv&playlive=1&authid=0,速度:1.8KB/s 稳定性:100%
-CCTV-6,http://42.48.105.224:9002/tsfile/live/0006_1.m3u8?key=txiptv&playlive=1&authid=0,速度:1.7KB/s 稳定性:100%
+CCTV-6,http://60.223.224.176:8888/newlive/live/hls/8/live.m3u8
+CCTV-6,http://110.53.52.63:8888/newlive/live/hls/8/live.m3u8
+CCTV-6,http://221.226.51.220:50081/newlive/live/hls/6/live.m3u8
+CCTV-6,http://116.77.32.59:8277/streams/d/cctv6/playlist.m3u8
+CCTV-6,http://113.140.86.162:8009/hls/6/index.m3u8
 
-CCTV-7,http://221.226.215.162:352/tsfile/live/0007_1.m3u8?key=txiptv&playlive=1&authid=0,速度:10.7KB/s 稳定性:100%
-CCTV-7,http://58.243.224.242:9901/tsfile/live/1005_1.m3u8?key=txiptv&playlive=0&authid=0,速度:8.3KB/s 稳定性:100%
-CCTV-7,http://42.48.105.224:9002/tsfile/live/0007_1.m3u8?key=txiptv&playlive=1&authid=0,速度:0.2KB/s 稳定性:100%
+CCTV-7,http://1752e145z8.vicp.fun:35455/gaoma/cctv7.m3u8
+CCTV-7,http://58.210.168.86:10800/newlive/live/hls/7/live.m3u8
+CCTV-7,http://60.223.224.176:8888/newlive/live/hls/9/live.m3u8
+CCTV-7,https://ldocctvwbcdtxy.liveplay.myqcloud.com/ldocctvwbcd/cdrmldcctv7_1_td.m3u8
+CCTV-7,http://60.29.124.66:6080/hls/18/index.m3u8
+CCTV-7,http://ttkx.cc:1380/653哈哈/mg9.php?id=cctv7
+CCTV-7,http://112.46.85.60:8009/hls/504/index.m3u8
 
-CCTV-8,http://221.226.215.162:352/tsfile/live/0008_1.m3u8?key=txiptv&playlive=1&authid=0,速度:8.9KB/s 稳定性:100%
-CCTV-8,http://58.213.65.146:352/tsfile/live/0008_1.m3u8?key=txiptv,速度:8.9KB/s 稳定性:100%
+CCTV-8,http://60.223.224.176:8888/newlive/live/hls/10/live.m3u8?
+CCTV-8,https://ldocctvwbcdtxy.liveplay.myqcloud.com/ldocctvwbcd/cdrmldcctv8_1_hd.m3u8
+CCTV-8,http://60.29.124.66:6080/hls/19/index.m3u8
+CCTV-8,http://112.46.85.60:8009/hls/8/index.m3u8
 
-CCTV-9,http://221.226.215.162:352/tsfile/live/0009_1.m3u8?key=txiptv&playlive=1&authid=0,速度:8.7KB/s 稳定性:100%
-CCTV-9,http://110.81.206.138:49231/tsfile/live/23009_1.m3u8?key=txiptv&playlive=1&authid=0,速度:5.6KB/s 稳定性:100%
+CCTV-9,http://3501776.xyz:35455/gaoma/cctv9.m3u8
+CCTV-9,http://1752e145z8.vicp.fun:35455/gaoma/cctv9.m3u8
+CCTV-9,http://60.223.224.176:8888/newlive/live/hls/11/live.m3u8?
+CCTV-9,http://113.140.86.162:8009/hls/509/index.m3u8
+CCTV-9,http://60.29.124.66:6080/hls/20/index.m3u8
+CCTV-9,http://vpn.csdaxing.com:9907/tsfile/live/0001_5.m3u8?key=txiptv&playlive=1&authid=0
 
-CCTV-10,http://58.213.65.146:352/tsfile/live/0010_1.m3u8?key=txiptv,速度:4.4KB/s 稳定性:100%
-CCTV-10,http://183.223.157.123:85/tsfile/live/0010_1.m3u8?key=txiptv,速度:3.9KB/s 稳定性:100%
+CCTV-10,http://3501776.xyz:35455/gaoma/cctv10.m3u8
+CCTV-10,http://xiaoya.crccxw.top:35455/gaoma/cctv10.m3u8
+CCTV-10,http://58.210.168.86:10800/newlive/live/hls/9/live.m3u8
+CCTV-10,http://60.223.224.176:8888/newlive/live/hls/12/live.m3u8
+CCTV-10,http://vpn.csdaxing.com:9907/tsfile/live/0001_6.m3u8?key=txiptv&playlive=1&authid=0
 
-CCTV-11,http://58.243.224.242:9901/tsfile/live/1009_1.m3u8?key=txiptv&playlive=0&authid=0,速度:7.7KB/s 稳定性:100%
-CCTV-11,http://58.213.65.146:352/tsfile/live/0011_1.m3u8?key=txiptv,速度:4.4KB/s 稳定性:100%
+CCTV-11,http://58.210.168.86:10800/newlive/live/hls/10/live.m3u8
+CCTV-11,http://36.32.174.67:60080/newlive/live/hls/14/live.m3u8
+CCTV-11,http://vpn.csdaxing.com:9907/tsfile/live/0001_7.m3u8?key=txiptv&playlive=1&authid=0
+CCTV-11,http://60.29.124.66:6080/hls/22/index.m3u8
 
-CCTV-12,http://110.81.206.138:49231/tsfile/live/23012_1.m3u8?key=txiptv&playlive=1&authid=0,速度:5.8KB/s 稳定性:100%
-CCTV-12,http://183.223.157.123:85/tsfile/live/0012_1.m3u8?key=txiptv,速度:4.4KB/s 稳定性:100%
+CCTV-12,http://xiaoya.crccxw.top:35455/gaoma/cctv12.m3u8
+CCTV-12,http://3501776.xyz:35455/gaoma/cctv12.m3u8
+CCTV-12,http://58.210.168.86:10800/newlive/live/hls/11/live.m3u8#sop://api/migu.php?id=609017191
+CCTV-12,http://vpn.csdaxing.com:9907/tsfile/live/0001_8.m3u8?key=txiptv&playlive=1&authid=0
 
-CCTV-13,http://110.81.206.138:49231/tsfile/live/23013_1.m3u8?key=txiptv&playlive=1&authid=0,速度:6.2KB/s 稳定性:100%
-CCTV-13,http://58.213.65.146:352/tsfile/live/0013_1.m3u8?key=txiptv,速度:4.5KB/s 稳定性:100%
-CCTV-13,https://event.pull.hebtv.com/jishi/cp1.m3u8,速度:4.0KB/s 稳定性:100%
+CCTV-13,http://xiaoya.crccxw.top:35455/gaoma/cctv13.m3u8
+CCTV-13,http://3501776.xyz:35455/gaoma/cctv13.m3u8
+CCTV-13,http://116.128.243.121:85/tsfile/live/0013_1.m3u8?key=txiptv&playlive=0&authid=0
+CCTV-13,http://58.210.168.86:10800/newlive/live/hls/12/live.m3u8
+CCTV-13,http://60.223.224.176:8888/newlive/live/hls/15/live.m3u8?
 
-CCTV-14,http://221.226.215.162:352/tsfile/live/0014_1.m3u8?key=txiptv&playlive=1&authid=0,速度:11.2KB/s 稳定性:100%
-CCTV-14,https://event.pull.hebtv.com/jishi/cp2.m3u8#rtsp://103.251.96.71/PLTV/88888888/224/3221225783/10000100000000060000000000726027_0.smil?icpid=SSPID&amp;accounttype=1&amp;limitflux=-1&amp;limitdur=-1&amp;accountinfo=:20240213104135,速度:3.5KB/s 稳定性:100%
-CCTV-14,http://222.173.108.238:352/tsfile/live/0014_1.m3u8?key=txiptv&playlive=1&authid=0,速度:2.0KB/s 稳定性:100%
+CCTV-14,http://227w9f5104.zicp.fun:35455/gaoma/cctv14.m3u8
+CCTV-14,http://3501776.xyz:35455/gaoma/cctv14.m3u8
+CCTV-14,http://58.210.168.86:10800/newlive/live/hls/13/live.m3u8
+CCTV-14,http://60.223.224.176:8888/newlive/live/hls/16/live.m3u8?#rtsp://221.7.61.147/PLTV/88888910/224/3221225504/10000100000000060000000000107284_0.smil
+CCTV-14,http://vpn.csdaxing.com:9907/tsfile/live/0001_10.m3u8?key=txiptv&playlive=1&authid=0
 
-CCTV-15,http://221.226.215.162:352/tsfile/live/0015_1.m3u8?key=txiptv&playlive=1&authid=0,速度:7.6KB/s 稳定性:100%
-CCTV-15,http://58.213.65.146:352/tsfile/live/0015_1.m3u8?key=txiptv,速度:4.2KB/s 稳定性:100%
+CCTV-15,http://227w9f5104.zicp.fun:35455/gaoma/cctv15.m3u8
+CCTV-15,http://xiaoya.crccxw.top:35455/gaoma/cctv15.m3u8
+CCTV-15,http://58.210.168.86:10800/newlive/live/hls/14/live.m3u8
+CCTV-15,http://60.223.224.176:8888/newlive/live/hls/17/live.m3u8?
+CCTV-15,http://vpn.csdaxing.com:9907/tsfile/live/0001_11.m3u8?key=txiptv&playlive=1&authid=0
+CCTV-15,http://60.29.124.66:6080/hls/26/index.m3u8
+CCTV-15,http://ttkx.cc:1380/653哈哈/mg9.php?id=cctv15
 
-CCTV-16,http://42.225.117.174:11199/tsfile/live/0015_2.m3u8?key=txiptv&playlive=1&authid=0,速度:3.2KB/s 稳定性:100%
-CCTV-16,http://39.170.52.236:808/hls/16/index.m3u8,速度:2.3KB/s 稳定性:100%
-CCTV-16,http://219.135.180.210:18888/hls/31/index.m3u8,速度:2.0KB/s 稳定性:100%
+CCTV-16,http://58.221.214.82:9901/tsfile/live/0002_2.m3u8?key=txiptv&playlive=1&authid=0
+CCTV-16,http://221.226.51.220:50081/newlive/live/hls/1/live.m3u8
 
-CCTV-17,http://58.243.224.242:9901/tsfile/live/1014_1.m3u8?key=txiptv&playlive=0&authid=0,速度:8.3KB/s 稳定性:100%
-CCTV-17,http://110.81.206.138:49231/tsfile/live/23017_1.m3u8?key=txiptv&playlive=1&authid=0#rtsp://115.153.245.70/PLTV/88888888/224/3221226846/61397282.smil#rtsp://115.153.212.72/PLTV/88888888/224/3221226846/61397282.smil,速度:6.6KB/s 稳定性:100%
-CCTV-17,http://218.29.168.146:352/tsfile/live/0019_1.m3u8?key=txiptv&playlive=1&authid=0,速度:1.6KB/s 稳定性:100%
+CCTV-17,http://227w9f5104.zicp.fun:35455/gaoma/cctv17.m3u8
+CCTV-17,http://xiaoya.crccxw.top:35455/gaoma/cctv17.m3u8
+CCTV-17,http://58.221.214.82:9901/tsfile/live/0003_2.m3u8?key=txiptv&playlive=1&authid=0
+CCTV-17,http://58.210.168.86:10800/newlive/live/hls/16/live.m3u8
+CCTV-17,http://ttkx.cc:1380/653哈哈/mg9.php?id=cctv17
+CCTV-17,http://211.101.234.24:866/aishang/migu.php/migu.php?id=cctv17
 
-浙江卫视,http://221.226.215.162:352/tsfile/live/0124_1.m3u8?key=txiptv&playlive=1&authid=0,速度:9.2KB/s 稳定性:100%
-浙江卫视,http://58.213.65.146:352/tsfile/live/0124_1.m3u8?key=txiptv,速度:0.5KB/s 稳定性:100%
+广东卫视,http://120.198.95.220:9901/tsfile/live/1006_1.m3u8?key=txiptv
+广东卫视,http://58.221.214.82:9901/tsfile/live/0125_1.m3u8?key=txiptv&playlive=1&authid=0
+广东卫视,http://58.210.168.86:10800/newlive/live/hls/25/live.m3u8
+广东卫视,http://60.223.224.176:8888/newlive/live/hls/48/live.m3u8?
 
-北京卫视,http://1.180.2.93:9901/tsfile/live/0122_1.m3u8,速度:3.7KB/s 稳定性:100%
-北京卫视,http://39.150.96.141:65535/tsfile/live/0122_1.m3u8?key=txiptv&playlive=1&authid=0,速度:2.5KB/s 稳定性:100%
-北京卫视,http://42.48.105.224:9002/tsfile/live/0122_1.m3u8?key=txiptv&playlive=1&authid=0,速度:1.9KB/s 稳定性:50%
+香港卫视,http://stream.qhbtv.com/adws/sd/live.m3u8
+香港卫视,https://piccpndks.v.kcdnvip.com/audio/xianggangweishi_2.m3u8
 
-湖南卫视,http://221.226.215.162:352/tsfile/live/0128_1.m3u8?key=txiptv&playlive=1&authid=0,速度:10.3KB/s 稳定性:100%
-湖南卫视,http://58.213.65.146:352/tsfile/live/0128_1.m3u8?key=txiptv#rtsp://60.13.39.18/PLTV/88888910/224/3221225539/10000100000000060000000000107319_0.smil#rtsp://60.13.39.19/PLTV/88888910/224/3221225574/10000100000000060000000000107354_0.smil,速度:0.9KB/s 稳定性:100%
-湖南卫视,http://42.48.105.224:9002/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0,速度:0.4KB/s 稳定性:100%
+浙江卫视,http://zhfivel02.cztv.com/channel01/1080p.m3u8?auth_key=2524708799-0-0-adde67b1b344fdd5e512f30a4ae31915
+浙江卫视,http://zwebl02.cztv.com/live/channel011080P.m3u8?auth_key=2524708799-0-0-9a1229d8b9d311024ebea08c3fb1d63f
+浙江卫视,http://58.221.214.82:9901/tsfile/live/0124_1.m3u8?key=txiptv&playlive=1&authid=0
+浙江卫视,http://58.210.168.86:10800/newlive/live/hls/20/live.m3u8
+浙江卫视,http://60.223.224.176:8888/newlive/live/hls/23/live.m3u8?
+浙江卫视,http://113.140.86.162:8009/hls/34/index.m3u8
 
-东方卫视,http://110.81.206.138:49231/tsfile/live/23035_1.m3u8?key=txiptv&playlive=1&authid=0,速度:5.9KB/s 稳定性:100%
-东方卫视,http://221.226.215.162:352/tsfile/live/0107_1.m3u8?key=txiptv&playlive=1&authid=0,速度:0.9KB/s 稳定性:100%
+湖南卫视,http://58.221.214.82:9901/tsfile/live/0128_1.m3u8?key=txiptv&playlive=1&authid=0
+湖南卫视,http://58.210.168.86:10800/newlive/live/hls/21/live.m3u8
+湖南卫视,http://60.223.224.176:8888/newlive/live/hls/22/live.m3u8?
+湖南卫视,http://110.53.52.63:8888/newlive/live/hls/22/live.m3u8
+湖南卫视,http://113.140.86.162:8009/hls/32/index.m3u8
 
-四川卫视,http://221.226.215.162:352/tsfile/live/0123_1.m3u8?key=txiptv&playlive=1&authid=0,速度:5.9KB/s 稳定性:100%
-四川卫视,http://39.150.96.141:65535/tsfile/live/0123_1.m3u8?key=txiptv&playlive=1&authid=0,速度:0.9KB/s 稳定性:100%
+北京卫视,http://58.221.214.82:9901/tsfile/live/0122_1.m3u8?key=txiptv&playlive=1&authid=0
+北京卫视,http://58.210.168.86:10800/newlive/live/hls/19/live.m3u8
+北京卫视,http://60.223.224.176:8888/newlive/live/hls/18/live.m3u8
 
-天津卫视,http://221.226.215.162:352/tsfile/live/0135_1.m3u8?key=txiptv&playlive=1&authid=0#rtsp://60.13.23.179/PLTV/88888910/224/3221225546/10000100000000060000000000107326_0.smil,速度:8.8KB/s 稳定性:100%
-天津卫视,http://222.173.108.238:352/tsfile/live/0135_1.m3u8?key=txiptv&playlive=1&authid=0,速度:2.1KB/s 稳定性:100%
+湖北卫视,http://183.131.246.250:9901/tsfile/live/0132_1.m3u8?key=txiptv&playlive=1&authid=0
+湖北卫视,http://58.210.168.86:10800/newlive/live/hls/35/live.m3u8
+湖北卫视,http://60.223.224.176:8888/newlive/live/hls/33/live.m3u8?
+湖北卫视,http://110.53.52.63:8888/newlive/live/hls/33/live.m3u8
 
-安徽卫视,http://221.226.215.162:352/tsfile/live/0130_1.m3u8?key=txiptv&playlive=1&authid=0,速度:10.6KB/s 稳定性:100%
-安徽卫视,http://58.243.224.242:9901/tsfile/live/1015_1.m3u8?key=txiptv&playlive=0&authid=0,速度:9.4KB/s 稳定性:100%
+黑龙江卫视,http://183.131.246.250:9901/tsfile/live/0143_1.m3u8
+黑龙江卫视,http://60.223.224.176:8888/newlive/live/hls/44/live.m3u8?
+黑龙江卫视,http://110.53.52.63:8888/newlive/live/hls/44/live.m3u8
+黑龙江卫视,http://221.226.51.220:50081/newlive/live/hls/31/live.m3u8
 
-山东卫视,http://222.173.108.238:352/tsfile/live/0131_1.m3u8?key=txiptv&playlive=1&authid=0,速度:2.5KB/s 稳定性:100%
-山东卫视,http://1.180.2.93:9901/tsfile/live/0131_1.m3u8,速度:1.5KB/s 稳定性:100%
+安徽卫视,http://183.131.246.250:9901/tsfile/live/0130_1.m3u8?key=txiptv&playlive=1&authid=0
+安徽卫视,http://60.223.224.176:8888/newlive/live/hls/24/live.m3u8?#rtsp://115.85.205.19/PLTV/88888910/224/3221225536/10000100000000060000000000107316_0.smil
+安徽卫视,http://221.226.51.220:50081/newlive/live/hls/36/live.m3u8
+安徽卫视,http://49.87.154.246:85/tsfile/live/0130_1.m3u8?key=txiptv#rtsp://180.95.143.19/PLTV/88888910/224/3221225536/10000100000000060000000000107316_0.smil
 
-卡酷少儿,http://218.13.170.98:9901/tsfile/live/1021_1.m3u8,速度:2.7KB/s 稳定性:100%
+重庆卫视,http://183.131.246.250:9901/tsfile/live/0142_1.m3u8?key=txiptv&playlive=1&authid=0
+重庆卫视,http://58.210.168.86:10800/newlive/live/hls/29/live.m3u8
+重庆卫视,http://60.223.224.176:8888/newlive/live/hls/30/live.m3u8?#rtsp://116.176.26.18/PLTV/88888910/224/3221225542/10000100000000060000000000107322_0.smil#rtsp://116.176.26.19/PLTV/88888910/224/3221225856/376468527.smil
+重庆卫视,http://221.226.51.220:50081/newlive/live/hls/28/live.m3u8
+重庆卫视,http://36.32.174.67:60080/newlive/live/hls/34/live.m3u8
 
-金鹰卡通,http://58.243.224.244:9901/tsfile/live/1037_1.m3u8?key=txiptv&playlive=0&authid=0,速度:8.6KB/s 稳定性:100%
-金鹰卡通,http://58.243.224.242:9901/tsfile/live/1037_1.m3u8?key=txiptv&playlive=0&authid=0,速度:8.0KB/s 稳定性:100%
-金鹰卡通,http://121.33.239.242:9901/tsfile/live/38727_1.m3u8?key=txiptv&playlive=1&authid=0,速度:4.5KB/s 稳定性:100%
+东方卫视,http://58.221.214.82:9901/tsfile/live/0107_1.m3u8?key=txiptv&playlive=1&authid=0
+东方卫视,http://58.210.168.86:10800/newlive/live/hls/18/live.m3u8
+东方卫视,http://60.223.224.176:8888/newlive/live/hls/19/live.m3u8?
 
-优漫卡通,http://home.wwang.pw:35455/itv/1000000002000010063.m3u8?cdn=ystenlive,速度:11.2KB/s 稳定性:100%
-优漫卡通,http://36.105.100.208:35455/itv/1000000002000010063.m3u8?cdn=ystenlive,速度:4.3KB/s 稳定性:100%
-优漫卡通,http://1.197.127.114:10443/tsfile/live/0139_14.m3u8?key=txiptv&playlive=1&authid=0,速度:0.7KB/s 稳定性:100%
+东南卫视,http://183.131.246.250:9901/tsfile/live/0137_1.m3u8?key=txiptv&playlive=1&authid=0
+东南卫视,http://58.221.214.82:9901/tsfile/live/0137_1.m3u8?key=txiptv&playlive=1&authid=0
+东南卫视,http://60.223.224.176:8888/newlive/live/hls/49/live.m3u8#rtsp://115.85.232.19/PLTV/88888910/224/3221225853/376430608.smil
 
-哈哈炫动,http://120.238.94.10:9901/tsfile/live/1037_1.m3u8,速度:1.2KB/s 稳定性:100%
-哈哈炫动,http://1.197.127.114:10443/tsfile/live/1073_1.m3u8,速度:0.8KB/s 稳定性:100%
+甘肃卫视,http://live.zohi.tv/video/s10001-fztv-3/index.m3u8
+甘肃卫视,http://36.32.174.67:60080/newlive/live/hls/30/live.m3u8#rtsp://221.7.61.147/PLTV/88888910/224/3221225489/10000100000000060000000000102570_0.smil
 
+广西卫视,http://58.221.214.82:9901/tsfile/live/0113_1.m3u8?key=txiptv&playlive=1&authid=0
+广西卫视,http://58.210.168.86:10800/newlive/live/hls/27/live.m3u8
+广西卫视,http://60.223.224.176:8888/newlive/live/hls/25/live.m3u8?
+广西卫视,http://110.53.52.63:8888/newlive/live/hls/25/live.m3u8
+广西卫视,http://36.32.174.67:60080/newlive/live/hls/38/live.m3u8
 
-深圳卫视,http://yncbn.ks-cdn.gitv.tv/gitv_live/G_SHENZHEN-HQ/G_SHENZHEN-HQ.m3u8,速度:10.3KB/s 稳定性:100%
-深圳卫视,http://39.150.96.141:65535/tsfile/live/0126_1.m3u8?key=txiptv&playlive=1&authid=0,速度:3.7KB/s 稳定性:100%
+贵州卫视,http://58.221.214.82:9901/tsfile/live/0120_1.m3u8?key=txiptv&playlive=1&authid=0
+贵州卫视,http://60.223.224.176:8888/newlive/live/hls/28/live.m3u8#rtsp://115.85.232.19/PLTV/88888910/224/3221225555/10000100000000060000000000107335_0.smil
 
-广东卫视,http://221.226.215.162:352/tsfile/live/0125_1.m3u8?key=txiptv&playlive=1&authid=0#rtsp://221.7.61.147/PLTV/88888910/224/3221225527/10000100000000060000000000107307_0.smil,速度:10.2KB/s 稳定性:100%
-广东卫视,http://222.173.108.238:352/tsfile/live/0125_1.m3u8?key=txiptv&playlive=1&authid=0,速度:5.8KB/s 稳定性:100%
+海南卫视,http://nn.7x9d.cn/地方台8563/海南.php?id=hnws
+海南卫视,http://58.210.168.86:10800/newlive/live/hls/28/live.m3u8#rtsp://116.176.26.19/PLTV/88888910/224/3221225556/10000100000000060000000000107336_0.smil
+海南卫视,http://60.223.224.176:8888/newlive/live/hls/50/live.m3u8?
+海南卫视,http://36.32.174.67:60080/newlive/live/hls/46/live.m3u8
 
-广西卫视,http://221.226.215.162:352/tsfile/live/0113_1.m3u8?key=txiptv&playlive=1&authid=0,速度:8.6KB/s 稳定性:100%
-广西卫视,http://110.81.206.138:49231/tsfile/live/23055_1.m3u8?key=txiptv&playlive=1&authid=0,速度:5.9KB/s 稳定性:100%
-广西卫视,http://1.180.2.93:9901/tsfile/live/0113_1.m3u8,速度:4.6KB/s 稳定性:100%
+河北卫视,http://60.223.224.176:8888/newlive/live/hls/47/live.m3u8?
+河北卫视,https://jwplay.hebyun.com.cn/live/hbwstv/1500k/tzwj_video.m3u8
+河北卫视,http://36.32.174.67:60080/newlive/live/hls/36/live.m3u8
 
-江苏卫视,http://221.226.215.162:352/tsfile/live/0127_1.m3u8?key=txiptv&playlive=1&authid=0,速度:10.9KB/s 稳定性:100%
-江苏卫视,http://58.213.65.146:352/tsfile/live/0127_1.m3u8?key=txiptv,速度:8.5KB/s 稳定性:100%
+河南卫视,http://183.131.246.250:9901/tsfile/live/0139_1.m3u8?key=txiptv&playlive=1&authid=0
+河南卫视,http://58.221.214.82:9901/tsfile/live/0139_1.m3u8?key=txiptv&playlive=1&authid=0
+河南卫视,http://60.223.224.176:8888/newlive/live/hls/32/live.m3u8
+河南卫视,http://110.53.52.63:8888/newlive/live/hls/32/live.m3u8
 
-江西卫视,http://222.173.108.238:352/tsfile/live/1010_1.m3u8?key=txiptv&playlive=1&authid=0,速度:4.1KB/s 稳定性:100%
-江西卫视,http://1.180.2.93:9901/tsfile/live/0138_1.m3u8,速度:2.7KB/s 稳定性:100%
-江西卫视,http://42.48.105.224:9002/tsfile/live/0138_2.m3u8?key=txiptv&playlive=1&authid=0,速度:0.2KB/s 稳定性:50%
+吉林卫视,http://58.221.214.82:9901/tsfile/live/0116_1.m3u8?key=txiptv&playlive=1&authid=0
+吉林卫视,http://58.210.168.86:10800/newlive/live/hls/36/live.m3u8
+吉林卫视,http://60.223.224.176:8888/newlive/live/hls/34/live.m3u8?
+吉林卫视,http://110.53.52.63:8888/newlive/live/hls/34/live.m3u8
 
-河北卫视,http://222.173.108.238:352/tsfile/live/1013_1.m3u8?key=txiptv&playlive=1&authid=0,速度:2.4KB/s 稳定性:100%
-河北卫视,http://1.180.2.93:9901/tsfile/live/0117_1.m3u8,速度:1.4KB/s 稳定性:100%
-河北卫视,http://42.48.105.224:9002/tsfile/live/0117_1.m3u8?key=txiptv&playlive=1&authid=0,速度:0.1KB/s 稳定性:50%
+江苏卫视,http://58.221.214.82:9901/tsfile/live/0127_1.m3u8?key=txiptv&playlive=1&authid=0
+江苏卫视,http://58.210.168.86:10800/newlive/live/hls/17/live.m3u8
+江苏卫视,http://60.223.224.176:8888/newlive/live/hls/21/live.m3u8
+江苏卫视,http://110.53.52.63:8888/newlive/live/hls/21/live.m3u8
+江苏卫视,http://112.46.85.60:8009/hls/33/index.m3u8
 
-河南卫视,http://221.226.215.162:352/tsfile/live/0139_1.m3u8?key=txiptv&playlive=1&authid=0,速度:8.7KB/s 稳定性:100%
-河南卫视,http://58.213.65.146:352/tsfile/live/0139_1.m3u8?key=txiptv,速度:8.5KB/s 稳定性:100%
-河南卫视,http://1.180.2.93:9901/tsfile/live/0139_1.m3u8,速度:3.8KB/s 稳定性:100%
+江西卫视,http://183.131.246.250:9901/tsfile/live/0138_1.m3u8?key=txiptv&playlive=1&authid=0
+江西卫视,http://58.221.214.82:9901/tsfile/live/0138_1.m3u8?key=txiptv&playlive=1&authid=0
+江西卫视,http://58.210.168.86:10800/newlive/live/hls/34/live.m3u8
+江西卫视,http://60.223.224.176:8888/newlive/live/hls/41/live.m3u8?
+江西卫视,http://36.32.174.67:60080/newlive/live/hls/31/live.m3u8
 
-海南卫视,http://nn.7x9d.cn/地方台8563/海南.php?id=hnws,速度:4.3KB/s 稳定性:100%
-海南卫视,http://1.180.2.93:9901/tsfile/live/1033_1.m3u8,速度:2.4KB/s 稳定性:100%
+辽宁卫视,http://58.221.214.82:9901/tsfile/live/0121_1.m3u8?key=txiptv&playlive=1&authid=0
+辽宁卫视,http://58.210.168.86:10800/newlive/live/hls/22/live.m3u8
+辽宁卫视,http://60.223.224.176:8888/newlive/live/hls/46/live.m3u8?
 
-湖北卫视,http://1.180.2.93:9901/tsfile/live/0132_1.m3u8,速度:4.5KB/s 稳定性:100%
-湖北卫视,http://39.150.96.141:65535/tsfile/live/0132_1.m3u8?key=txiptv&playlive=1&authid=0,速度:0.8KB/s 稳定性:100%
+内蒙古卫视,http://60.223.224.176:8888/newlive/live/hls/45/live.m3u8?#rtsp://116.176.26.19/PLTV/88888910/224/3221225561/10000100000000060000000000107341_0.smil
+内蒙古卫视,http://110.53.52.63:8888/newlive/live/hls/45/live.m3u8
+内蒙古卫视,http://183.237.95.108:9901/tsfile/live/1039_1.m3u8?key=txiptv&playlive=0&authid=0
+内蒙古卫视,http://z.b.bkpcp.top/m.php?id=nmws
 
-东南卫视,http://221.226.215.162:352/tsfile/live/0137_1.m3u8?key=txiptv&playlive=1&authid=0#rtsp://116.176.26.18/PLTV/88888910/224/3221225853/376430608.smil,速度:8.8KB/s 稳定性:100%
-东南卫视,http://110.81.206.138:49231/tsfile/live/23021_1.m3u8?key=txiptv&playlive=1&authid=0,速度:5.9KB/s 稳定性:100%
+宁夏卫视,http://60.223.224.176:8888/newlive/live/hls/39/live.m3u8?
+宁夏卫视,http://110.53.52.63:8888/newlive/live/hls/39/live.m3u8
+宁夏卫视,http://36.32.174.67:60080/newlive/live/hls/49/live.m3u8
+宁夏卫视,http://z.b.bkpcp.top/m.php?id=nxws
+宁夏卫视,http://182.37.169.94:352/tsfile/live/0112_1.m3u8
 
-贵州卫视,http://221.226.215.162:352/tsfile/live/0120_1.m3u8?key=txiptv&playlive=1&authid=0,速度:10.5KB/s 稳定性:100%
-贵州卫视,http://58.213.65.146:352/tsfile/live/0120_1.m3u8?key=txiptv#rtsp://180.95.143.19/PLTV/88888910/224/3221225854/376430616.smil#rtsp://116.176.26.18/PLTV/88888910/224/3221225854/376430616.smil#rtsp://60.13.39.19/PLTV/88888910/224/3221225854/376430616.smil,速度:10.3KB/s 稳定性:100%
+青海卫视,http://58.221.214.82:9901/tsfile/live/0018_1.m3u8?key=txiptv&playlive=1&authid=0
+青海卫视,http://58.210.168.86:10800/newlive/live/hls/40/live.m3u8
+青海卫视,http://60.223.224.176:8888/newlive/live/hls/38/live.m3u8?
+青海卫视,http://110.53.52.63:8888/newlive/live/hls/38/live.m3u8
+青海卫视,http://z.b.bkpcp.top/m.php?id=qhws
 
-辽宁卫视,http://222.173.108.238:352/tsfile/live/1008_1.m3u8?key=txiptv&playlive=1&authid=0,速度:5.5KB/s 稳定性:100%
-辽宁卫视,http://1.180.2.93:9901/tsfile/live/0121_1.m3u8,速度:1.4KB/s 稳定性:100%
+山东卫视,http://live.dxhmt.cn:9081/tv/11521-1.m3u8
+山东卫视,http://58.210.168.86:10800/newlive/live/hls/24/live.m3u8
+山东卫视,http://221.226.51.220:50081/newlive/live/hls/34/live.m3u8
+山东卫视,http://36.32.174.67:60080/newlive/live/hls/42/live.m3u8
 
-重庆卫视,http://58.213.65.146:352/tsfile/live/0142_1.m3u8?key=txiptv,速度:7.3KB/s 稳定性:100%
-重庆卫视,http://221.226.215.162:352/tsfile/live/0142_1.m3u8?key=txiptv&playlive=1&authid=0,速度:6.7KB/s 稳定性:100%
-重庆卫视,http://222.173.108.238:352/tsfile/live/1016_1.m3u8?key=txiptv&playlive=1&authid=0,速度:6.6KB/s 稳定性:100%
+山西卫视,http://58.221.214.82:9901/tsfile/live/0017_1.m3u8?key=txiptv&playlive=1&authid=0
+山西卫视,http://58.210.168.86:10800/newlive/live/hls/38/live.m3u8
+山西卫视,http://60.223.224.176:8888/newlive/live/hls/43/live.m3u8?
+山西卫视,http://110.53.52.63:8888/newlive/live/hls/43/live.m3u8
+山西卫视,http://36.32.174.67:60080/newlive/live/hls/43/live.m3u8
 
-黑龙江卫视,http://39.150.96.141:65535/tsfile/live/0143_1.m3u8?key=txiptv&playlive=1&authid=0,速度:1.6KB/s 稳定性:100%
-黑龙江卫视,http://1.180.2.93:9901/tsfile/live/0143_1.m3u8,速度:1.4KB/s 稳定性:100%
+陕西卫视,http://60.223.224.176:8888/newlive/live/hls/40/live.m3u8?
+陕西卫视,http://z.b.bkpcp.top/m.php?id=sxws
+陕西卫视,http://110.53.52.63:8888/newlive/live/hls/40/live.m3u8
+陕西卫视,http://36.32.174.67:60080/newlive/live/hls/44/live.m3u8
+陕西卫视,http://112.46.85.60:8009/hls/17/index.m3u8
 
-黑莓电影,http://home.wwang.pw:35455/itv/1000000004000019624.m3u8?cdn=ystenlive,速度:5.5KB/s 稳定性:100%
-黑莓电影,http://36.105.100.208:35455/itv/1000000004000019624.m3u8?cdn=ystenlive,速度:4.1KB/s 稳定性:100%
+四川卫视,http://60.223.224.176:8888/newlive/live/hls/31/live.m3u8?
+四川卫视,http://z.b.bkpcp.top/m.php?id=scws
+四川卫视,http://110.53.52.63:8888/newlive/live/hls/31/live.m3u8
+四川卫视,http://36.32.174.67:60080/newlive/live/hls/29/live.m3u8
 
-纪实科教,http://36.105.100.208:35455/itv/1000000001000001910.m3u8?cdn=ystenlive,速度:3.2KB/s 稳定性:100%
-纪实科教,http://home.wwang.pw:35455/itv/1000000001000001910.m3u8?cdn=ystenlive,速度:1.8KB/s 稳定性:50%
+深圳卫视,http://yncbn.ks-cdn.gitv.tv/gitv_live/G_SHENZHEN-HQ/G_SHENZHEN-HQ.m3u8
+深圳卫视,http://183.131.246.250:9901/tsfile/live/0126_1.m3u8?key=txiptv&playlive=1&authid=0
+深圳卫视,http://38.64.72.148:80/hls/modn/list/4007/playlist.m3u8
+深圳卫视,http://58.221.214.82:9901/tsfile/live/0126_1.m3u8?key=txiptv&playlive=1&authid=0
+深圳卫视,http://120.198.95.220:9901/tsfile/live/1048_1.m3u8?key=txiptv
+深圳卫视,http://58.210.168.86:10800/newlive/live/hls/26/live.m3u8
+
+三沙卫视,http://nn.7x9d.cn/地方台8563/海南.php?id=ssws
+三沙卫视,http://61.138.128.226:19901/tsfile/live/1020_1.m3u8?key=txiptv&playlive=1&authid=0
+三沙卫视,http://113.140.86.162:8009/hls/44/index.m3u8
+
+天津卫视,http://183.131.246.250:9901/tsfile/live/0135_1.m3u8?key=txiptv&playlive=1&authid=0
+天津卫视,http://58.210.168.86:10800/newlive/live/hls/33/live.m3u8
+天津卫视,http://60.223.224.176:8888/newlive/live/hls/42/live.m3u8?
+天津卫视,http://36.32.174.67:60080/newlive/live/hls/26/live.m3u8
+天津卫视,http://112.46.85.60:8009/hls/44/index.m3u8
+
+西藏卫视,http://60.223.224.176:8888/newlive/live/hls/36/live.m3u8?
+西藏卫视,http://z.b.bkpcp.top/m.php?id=xzws
+西藏卫视,http://110.53.52.63:8888/newlive/live/hls/36/live.m3u8
+西藏卫视,http://36.32.174.67:60080/newlive/live/hls/48/live.m3u8
+
+新疆卫视,http://218.84.12.186:8001/hls/main/playlist.m3u8?zxinjd;http://218.84.12.186:8001/hls/main/playlist.m3u8zxinjd
+新疆卫视,http://60.223.224.176:8888/newlive/live/hls/37/live.m3u8?
+新疆卫视,http://110.53.52.63:8888/newlive/live/hls/37/live.m3u8
+新疆卫视,http://z.b.bkpcp.top/m.php?id=xjws
+新疆卫视,http://36.32.174.67:60080/newlive/live/hls/47/live.m3u8
+新疆卫视,http://113.218.229.47:8081/tsfile/live/0110_1.m3u8?key=txiptv&playlive=1&authid=0
+
+云南卫视,http://183.131.246.250:9901/tsfile/live/0119_1.m3u8?key=txiptv&playlive=1&authid=0
+云南卫视,http://60.223.224.176:8888/newlive/live/hls/26/live.m3u8?
+云南卫视,http://110.53.52.63:8888/newlive/live/hls/26/live.m3u8
+云南卫视,http://36.32.174.67:60080/newlive/live/hls/45/live.m3u8
+云南卫视,http://z.b.bkpcp.top/m.php?id=ynws
 
