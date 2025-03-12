@@ -348,7 +348,7 @@ class ConfigManager:
 
     @property
     def open_rtmp(self):
-        return self.config.getboolean("Settings", "open_rtmp", fallback=True)
+        return self.config.getboolean("Settings", "open_rtmp", fallback=False)
 
     def load(self):
         """
