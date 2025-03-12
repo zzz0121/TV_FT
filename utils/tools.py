@@ -27,7 +27,7 @@ def get_logger(path, level=logging.ERROR, init=False):
     get the logger
     """
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    os.makedirs(os.path.dirname(constants.output_path), exist_ok=True)
+    os.makedirs(constants.output_dir, exist_ok=True)
     if init and os.path.exists(path):
         os.remove(path)
     handler = RotatingFileHandler(path, encoding="utf-8")
