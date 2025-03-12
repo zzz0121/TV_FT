@@ -291,7 +291,7 @@ async def get_speed(url, cache_key=None, is_ipv6=False, ipv6_proxy=None, resolut
         else:
             if is_ipv6 and ipv6_proxy:
                 data['speed'] = float("inf")
-                data['delay'] = 0
+                data['delay'] = 0.1
                 data['resolution'] = "1920x1080"
             elif constants.rt_url_pattern.match(url) is not None:
                 start_time = time()
@@ -357,9 +357,8 @@ def sort_urls(name, data, supply=config.open_supply, filter_speed=config.open_fi
                         )
                 except Exception as e:
                     print(e)
-                if (not supply and filter_speed and avg_speed < min_speed) or (
-                        not supply and filter_resolution and get_resolution_value(resolution) < min_resolution) or (
-                        supply and avg_delay < 0):
+                if avg_delay < 0 or (not supply and ((filter_speed and avg_speed < min_speed) or (
+                        filter_resolution and get_resolution_value(resolution) < min_resolution))):
                     continue
                 result["delay"] = avg_delay
                 result["speed"] = avg_speed
