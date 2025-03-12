@@ -161,16 +161,24 @@ def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_pr
         origin_type_prefer = ["all"]
     categorized_urls = {origin: {ipv_type: [] for ipv_type in ipv_type_prefer} for origin in origin_type_prefer}
     total_urls = []
+    open_url_info = config.open_url_info
     for info in info_list:
-        channel_id, url, origin, resolution, url_ipv_type = info["id"], info["url"], info["origin"], info["resolution"], \
+        channel_id, url, origin, resolution, url_ipv_type = (
+            info["id"],
+            info["url"],
+            info["origin"],
+            info["resolution"],
             info["ipv_type"]
+        )
         if not origin:
             continue
 
         if origin == "whitelist":
             w_url, _, w_info = url.partition("$")
-            w_info_value = w_info.partition("!")[2] or "白名单"
-            total_urls.append({"id": channel_id, "url": add_url_info(w_url, w_info_value), "ipv_type": url_ipv_type})
+            if open_url_info:
+                w_info_value = w_info.partition("!")[2] or "白名单"
+                w_url = add_url_info(w_url, w_info_value)
+            total_urls.append({"id": channel_id, "url": w_url, "ipv_type": url_ipv_type})
             continue
 
         if origin == "subscribe" and "/rtp/" in url:
@@ -179,17 +187,18 @@ def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_pr
         if origin_prefer_bool and (origin not in origin_type_prefer):
             continue
 
-        pure_url, _, info = url.partition("$")
-        if not info:
-            origin_name = constants.origin_map[origin]
-            if origin_name:
-                url = add_url_info(pure_url, origin_name)
+        if open_url_info:
+            pure_url, _, info = url.partition("$")
+            if not info:
+                origin_name = constants.origin_map[origin]
+                if origin_name:
+                    url = add_url_info(pure_url, origin_name)
 
-        if url_ipv_type == 'ipv6':
-            url = add_url_info(url, "IPv6")
+            if url_ipv_type == 'ipv6':
+                url = add_url_info(url, "IPv6")
 
-        if resolution:
-            url = add_url_info(url, resolution)
+            if resolution:
+                url = add_url_info(url, resolution)
 
         if not origin_prefer_bool:
             origin = "all"
@@ -226,7 +235,7 @@ def get_total_urls(info_list: list[ChannelData], ipv_type_prefer, origin_type_pr
 
     total_urls = total_urls[:urls_limit]
 
-    if not config.open_url_info:
+    if not open_url_info:
         for item in total_urls:
             item["url"] = item["url"].partition("$")[0]
     return total_urls
