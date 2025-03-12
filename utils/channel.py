@@ -814,11 +814,16 @@ def write_channel_to_file(data, ipv6=False, first_channel_name=None, callback=No
         file_list = [
             {"path": resource_path(config.final_file), "enable_log": True},
             {"path": resource_path(constants.ipv4_result_path), "ipv_type_prefer": ["ipv4"]},
-            {"path": resource_path(constants.ipv6_result_path), "ipv_type_prefer": ["ipv6"]},
-            {"path": resource_path(constants.rtmp_result_path), "rtmp_url": rtmp_url},
-            {"path": resource_path(constants.ipv4_rtmp_result_path), "rtmp_url": rtmp_url, "ipv_type_prefer": ["ipv4"]},
-            {"path": resource_path(constants.ipv6_rtmp_result_path), "rtmp_url": rtmp_url, "ipv_type_prefer": ["ipv6"]},
+            {"path": resource_path(constants.ipv6_result_path), "ipv_type_prefer": ["ipv6"]}
         ]
+        if config.open_rtmp and not os.environ.get("GITHUB_ACTIONS"):
+            file_list += [
+                {"path": resource_path(constants.rtmp_result_path), "rtmp_url": rtmp_url},
+                {"path": resource_path(constants.ipv4_rtmp_result_path), "rtmp_url": rtmp_url,
+                 "ipv_type_prefer": ["ipv4"]},
+                {"path": resource_path(constants.ipv6_rtmp_result_path), "rtmp_url": rtmp_url,
+                 "ipv_type_prefer": ["ipv6"]},
+            ]
         for file in file_list:
             process_write_content(
                 path=file["path"],
