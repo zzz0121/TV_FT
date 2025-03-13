@@ -400,7 +400,7 @@ class DefaultUI:
             frame_time_zone_column1, text="时区:", width=12
         )
         self.time_zone_label.pack(side=tk.LEFT, padx=4, pady=8)
-        self.time_zone_entry = tk.Entry(frame_time_zone_column1, width=18)
+        self.time_zone_entry = tk.Entry(frame_time_zone_column1, width=16)
         self.time_zone_entry.pack(side=tk.LEFT, padx=4, pady=8)
         self.time_zone_entry.insert(0, config.time_zone)
         self.time_zone_entry.bind("<KeyRelease>", self.update_time_zone)
@@ -409,7 +409,7 @@ class DefaultUI:
             frame_time_zone_column2, text="CDN加速地址:", width=12
         )
         self.cdn_url_label.pack(side=tk.LEFT, padx=4, pady=8)
-        self.cdn_url_entry = tk.Entry(frame_time_zone_column2, width=18)
+        self.cdn_url_entry = tk.Entry(frame_time_zone_column2, width=20)
         self.cdn_url_entry.pack(side=tk.LEFT, padx=4, pady=8)
         self.cdn_url_entry.insert(0, config.cdn_url)
         self.cdn_url_entry.bind("<KeyRelease>", self.update_cdn_url)

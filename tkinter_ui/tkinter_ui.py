@@ -72,7 +72,7 @@ class TkinterUI:
         else:
             self.stop()
             self.update_source.stop()
-            self.run_button.config(text="开始更新", state="normal")
+            self.run_button.config(text="启动", state="normal")
             self.change_state("normal")
             self.progress_bar.pack_forget()
             self.view_result_link.pack_forget()
@@ -103,7 +103,7 @@ class TkinterUI:
         self.progress_label["text"] = progress_text
         self.root.update()
         if finished:
-            self.run_button.config(text="开始更新", state="normal")
+            self.run_button.config(text="启动", state="normal")
             self.update_running = False
             self.change_state("normal")
             if url:
@@ -219,7 +219,7 @@ class TkinterUI:
         self.save_button.pack(side=tk.LEFT, padx=4, pady=8)
 
         self.run_button = tk.ttk.Button(
-            root_operate_column2, text="开始更新", command=self.on_run_update
+            root_operate_column2, text="启动", command=self.on_run_update
         )
         self.run_button.pack(side=tk.LEFT, padx=4, pady=8)
 
@@ -261,4 +261,5 @@ if __name__ == "__main__":
     root.geometry("%dx%d+%d+%d" % get_root_location(root))
     root.iconbitmap(resource_path("static/images/favicon.ico"))
     root.after(0, config.copy)
+    root.after(0, config.copy("utils/nginx-rtmp-win32"))
     root.mainloop()

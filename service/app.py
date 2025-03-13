@@ -14,9 +14,8 @@ app = Flask(__name__)
 nginx_dir = resource_path(os.path.join('utils', 'nginx-rtmp-win32'))
 nginx_path = resource_path(os.path.join(nginx_dir, 'nginx.exe'))
 stop_path = resource_path(os.path.join(nginx_dir, 'stop.bat'))
-result_data_path = resource_path(constants.result_data_path)
-if os.path.exists(result_data_path):
-    with open(result_data_path, "rb") as f:
+if os.path.exists(constants.result_data_path):
+    with open(constants.result_data_path, "rb") as f:
         result_data = pickle.load(f)
 else:
     result_data = []
@@ -25,7 +24,7 @@ else:
 @app.route("/")
 def show_index():
     return get_result_file_content(
-        path=resource_path(constants.rtmp_result_path if config.open_rtmp else config.final_file),
+        path=constants.rtmp_result_path if config.open_rtmp else config.final_file,
         file_type="m3u" if config.open_m3u_result else "txt"
     )
 
@@ -38,88 +37,90 @@ def favicon():
 
 @app.route("/txt")
 def show_txt():
-    return get_result_file_content(path=resource_path(config.final_file), file_type="txt")
+    return get_result_file_content(path=config.final_file, file_type="txt")
 
 
 @app.route("/ipv4/txt")
 def show_ipv4_txt():
-    return get_result_file_content(path=resource_path(constants.ipv4_result_path), file_type="txt")
+    return get_result_file_content(path=constants.ipv4_result_path, file_type="txt")
 
 
 @app.route("/ipv6/txt")
 def show_ipv6_txt():
-    return get_result_file_content(path=resource_path(constants.ipv6_result_path), file_type="txt")
+    return get_result_file_content(path=constants.ipv6_result_path, file_type="txt")
 
 
 @app.route("/rtmp")
 def show_rtmp():
-    return get_result_file_content(path=resource_path(constants.rtmp_result_path),
+    return get_result_file_content(path=constants.rtmp_result_path,
                                    file_type="m3u" if config.open_m3u_result else "txt")
 
 
 @app.route("/rtmp-txt")
 def show_rtmp_txt():
-    return get_result_file_content(path=resource_path(constants.rtmp_result_path), file_type="txt")
+    return get_result_file_content(path=constants.rtmp_result_path, file_type="txt")
 
 
 @app.route("/ipv4/rtmp-txt")
 def show_ipv4_rtmp_txt():
-    return get_result_file_content(path=resource_path(constants.ipv4_rtmp_result_path), file_type="txt")
+    return get_result_file_content(path=constants.ipv4_rtmp_result_path, file_type="txt")
 
 
 @app.route("/ipv6/rtmp-txt")
 def show_ipv6_rtmp_txt():
-    return get_result_file_content(path=resource_path(constants.ipv6_rtmp_result_path), file_type="txt")
+    return get_result_file_content(path=constants.ipv6_rtmp_result_path, file_type="txt")
 
 
 @app.route("/m3u")
 def show_m3u():
-    return get_result_file_content(path=resource_path(config.final_file), file_type="m3u")
+    return get_result_file_content(path=config.final_file, file_type="m3u")
 
 
 @app.route("/rtmp-m3u")
 def show_rtmp_m3u():
-    return get_result_file_content(path=resource_path(constants.rtmp_result_path), file_type="m3u")
+    return get_result_file_content(path=constants.rtmp_result_path, file_type="m3u")
 
 
 @app.route("/ipv4/m3u")
 def show_ipv4_m3u():
-    return get_result_file_content(path=resource_path(constants.ipv4_result_path), file_type="m3u")
+    return get_result_file_content(path=constants.ipv4_result_path, file_type="m3u")
 
 
 @app.route("/ipv4")
 def show_ipv4_result():
-    path = constants.ipv4_rtmp_result_path if config.open_rtmp else constants.ipv4_result_path
-    file_type = "m3u" if config.open_m3u_result else "txt"
-    return get_result_file_content(path=resource_path(path), file_type=file_type)
+    return get_result_file_content(
+        path=constants.ipv4_rtmp_result_path if config.open_rtmp else constants.ipv4_result_path,
+        file_type="m3u" if config.open_m3u_result else "txt"
+    )
 
 
 @app.route("/ipv6/m3u")
 def show_ipv6_m3u():
-    return get_result_file_content(path=resource_path(constants.ipv6_result_path), file_type="m3u")
+    return get_result_file_content(path=constants.ipv6_result_path, file_type="m3u")
 
 
 @app.route("/ipv6")
 def show_ipv6_result():
-    path = constants.ipv6_rtmp_result_path if config.open_rtmp else constants.ipv6_result_path
-    file_type = "m3u" if config.open_m3u_result else "txt"
-    return get_result_file_content(path=resource_path(path), file_type=file_type)
+    return get_result_file_content(
+        path=constants.ipv6_rtmp_result_path if config.open_rtmp else constants.ipv6_result_path,
+        file_type="m3u" if config.open_m3u_result else "txt"
+    )
 
 
 @app.route("/ipv4/rtmp-m3u")
 def show_ipv4_rtmp_m3u():
-    return get_result_file_content(path=resource_path(constants.ipv4_rtmp_result_path), file_type="m3u")
+    return get_result_file_content(path=constants.ipv4_rtmp_result_path, file_type="m3u")
 
 
 @app.route("/ipv6/rtmp-m3u")
 def show_ipv6_rtmp_m3u():
-    return get_result_file_content(path=resource_path(constants.ipv6_rtmp_result_path), file_type="m3u")
+    return get_result_file_content(path=constants.ipv6_rtmp_result_path, file_type="m3u")
 
 
 @app.route("/content")
 def show_content():
     return get_result_file_content(
-        path=resource_path(constants.rtmp_result_path if config.open_rtmp else config.final_file),
+        path=constants.rtmp_result_path if config.open_rtmp else config.final_file,
         file_type="m3u" if config.open_m3u_result else "txt",
         show_content=True
     )
@@ -127,9 +128,8 @@ def show_content():
 
 @app.route("/log")
 def show_log():
-    log_path = resource_path(constants.sort_log_path)
-    if os.path.exists(log_path):
-        with open(log_path, "r", encoding="utf-8") as file:
+    if os.path.exists(constants.sort_log_path):
+        with open(constants.sort_log_path, "r", encoding="utf-8") as file:
             content = file.read()
     else:
         content = constants.waiting_tip
@@ -145,6 +145,7 @@ def run_rtmp(channel_id):
         if item['id'] == int(channel_id):
             url = item.get('url', '')
             break
+    print(f"🚀 Rtmp url: {url}")
     if not url:
         return jsonify({'Error': 'Url not found'}), 400
     cmd = [

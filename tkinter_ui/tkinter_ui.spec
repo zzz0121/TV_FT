@@ -7,6 +7,7 @@ a = Analysis(
     datas=[
         ('../config/config.ini', 'config'),
         ('../config/demo.txt', 'config'),
+        ('../config/local.txt', 'config'),
         ('../config/whitelist.txt', 'config'),
         ('../config/blacklist.txt', 'config'),
         ('../config/subscribe.txt', 'config'),
@@ -14,6 +15,7 @@ a = Analysis(
         ('../updates/hotel/cache.pkl', 'updates/hotel'),
         ('../updates/multicast/multicast_map.json', 'updates/multicast'),
         ('../updates/multicast/cache.pkl', 'updates/multicast'),
+        ('../utils/nginx-rtmp-win32', 'utils/nginx-rtmp-win32'),
         ('../static/images/favicon.ico', 'static/images'),
         ('../static/images/alipay.jpg', 'static/images'),
         ('../static/images/settings_icon.png', 'static/images'),

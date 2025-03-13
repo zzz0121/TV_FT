@@ -105,7 +105,7 @@ def get_channel_items() -> CategoryChannelData:
     """
     user_source_file = resource_path(config.source_file)
     channels = defaultdict(lambda: defaultdict(list))
-    local_data = get_name_urls_from_file(resource_path(config.local_file), format_name_flag=True)
+    local_data = get_name_urls_from_file(config.local_file, format_name_flag=True)
     whitelist = get_name_urls_from_file(constants.whitelist_path)
     whitelist_urls = get_urls_from_file(constants.whitelist_path)
     whitelist_len = len(list(whitelist.keys()))
@@ -119,9 +119,8 @@ def get_channel_items() -> CategoryChannelData:
             )
 
     if config.open_history:
-        result_cache_path = resource_path(constants.cache_path)
-        if os.path.exists(result_cache_path):
-            with open(result_cache_path, "rb") as file:
+        if os.path.exists(constants.cache_path):
+            with open(constants.cache_path, "rb") as file:
                 old_result = pickle.load(file)
                 for cate, data in channels.items():
                     if cate in old_result:
@@ -812,16 +811,16 @@ def write_channel_to_file(data, ipv6=False, first_channel_name=None, callback=No
         origin_type_prefer = config.origin_type_prefer
         rtmp_url = f"{get_ip_address()}/rtmp/"
         file_list = [
-            {"path": resource_path(config.final_file), "enable_log": True},
-            {"path": resource_path(constants.ipv4_result_path), "ipv_type_prefer": ["ipv4"]},
-            {"path": resource_path(constants.ipv6_result_path), "ipv_type_prefer": ["ipv6"]}
+            {"path": config.final_file, "enable_log": True},
+            {"path": constants.ipv4_result_path, "ipv_type_prefer": ["ipv4"]},
+            {"path": constants.ipv6_result_path, "ipv_type_prefer": ["ipv6"]}
         ]
         if config.open_rtmp and not os.environ.get("GITHUB_ACTIONS"):
             file_list += [
-                {"path": resource_path(constants.rtmp_result_path), "rtmp_url": rtmp_url},
-                {"path": resource_path(constants.ipv4_rtmp_result_path), "rtmp_url": rtmp_url,
+                {"path": constants.rtmp_result_path, "rtmp_url": rtmp_url},
+                {"path": constants.ipv4_rtmp_result_path, "rtmp_url": rtmp_url,
                  "ipv_type_prefer": ["ipv4"]},
-                {"path": resource_path(constants.ipv6_rtmp_result_path), "rtmp_url": rtmp_url,
+                {"path": constants.ipv6_rtmp_result_path, "rtmp_url": rtmp_url,
                  "ipv_type_prefer": ["ipv6"]},
             ]
         for file in file_list:

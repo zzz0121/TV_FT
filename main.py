@@ -27,7 +27,6 @@ from utils.tools import (
     process_nested_dict,
     format_interval,
     check_ipv6_support,
-    resource_path,
     get_urls_from_file,
     get_version_info,
     join_url
@@ -170,7 +169,7 @@ class UpdateSource:
                             channel_data_cache, self.channel_data
                         )
                     with open(
-                            resource_path(constants.cache_path, persistent=True),
+                            constants.cache_path,
                             "wb",
                     ) as file:
                         pickle.dump(channel_data_cache, file)
