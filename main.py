@@ -179,7 +179,7 @@ class UpdateSource:
                 )
             if self.run_ui:
                 open_service = config.open_service
-                service_tip = ", 可使用以下链接观看直播:" if open_service else ""
+                service_tip = ", 可使用以下地址观看直播:" if open_service else ""
                 tip = (
                     f"✅ 服务启动成功{service_tip}"
                     if open_service and config.open_update == False

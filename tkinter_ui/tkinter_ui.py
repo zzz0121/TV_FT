@@ -15,6 +15,7 @@ from about import AboutUI
 from default import DefaultUI
 from speed import SpeedUI
 from prefer import PreferUI
+from local import LocalUI
 from multicast import MulticastUI
 from hotel import HotelUI
 from subscribe import SubscribeUI
@@ -32,6 +33,7 @@ class TkinterUI:
         self.default_ui = DefaultUI()
         self.speed_ui = SpeedUI()
         self.prefer_ui = PreferUI()
+        self.local_ui = LocalUI()
         self.multicast_ui = MulticastUI()
         self.hotel_ui = HotelUI()
         self.subscribe_ui = SubscribeUI()
@@ -51,6 +53,7 @@ class TkinterUI:
         self.default_ui.change_entry_state(state=state)
         self.speed_ui.change_entry_state(state=state)
         self.prefer_ui.change_entry_state(state=state)
+        self.local_ui.change_entry_state(state=state)
         self.multicast_ui.change_entry_state(state=state)
         self.hotel_ui.change_entry_state(state=state)
         self.subscribe_ui.change_entry_state(state=state)
@@ -76,9 +79,10 @@ class TkinterUI:
             self.progress_label.pack_forget()
 
     def on_run_update(self):
-        if not self.update_running and config.open_filter_resolution and not check_ffmpeg_installed_status():
+        if not self.update_running and (
+                config.open_filter_resolution or config.open_rtmp) and not check_ffmpeg_installed_status():
             if messagebox.askyesno("提示",
-                                   "使用分辨率相关功能需要安装FFmpeg，为了实现更佳的观看体验，\n是否前往官网下载？"):
+                                   "使用分辨率、推流相关功能需要安装FFmpeg，为了实现更佳的观看体验，\n是否前往官网下载？"):
                 return webbrowser.open("https://ffmpeg.org")
 
         loop = asyncio.new_event_loop()
@@ -123,6 +127,7 @@ class TkinterUI:
         frame_default = tk.ttk.Frame(notebook)
         frame_speed = tk.ttk.Frame(notebook)
         frame_prefer = tk.ttk.Frame(notebook)
+        frame_local = tk.ttk.Frame(notebook)
         frame_hotel = tk.ttk.Frame(notebook)
         frame_multicast = tk.ttk.Frame(notebook)
         frame_subscribe = tk.ttk.Frame(notebook)
@@ -140,6 +145,10 @@ class TkinterUI:
             resource_path("static/images/prefer_icon.png")
         ).resize((16, 16))
         prefer_icon = ImageTk.PhotoImage(prefer_icon_source)
+        local_icon_source = Image.open(
+            resource_path("static/images/local_icon.png")
+        ).resize((16, 16))
+        local_icon = ImageTk.PhotoImage(local_icon_source)
         hotel_icon_source = Image.open(
             resource_path("static/images/hotel_icon.png")
         ).resize((16, 16))
@@ -162,12 +171,15 @@ class TkinterUI:
         )
         notebook.add(frame_speed, text="测速设置", image=speed_icon, compound=tk.LEFT)
         notebook.add(frame_prefer, text="偏好设置", image=prefer_icon, compound=tk.LEFT)
-        notebook.add(frame_hotel, text="酒店源", image=hotel_icon, compound=tk.LEFT)
         notebook.add(
-            frame_multicast, text="组播源", image=multicast_icon, compound=tk.LEFT
+            frame_local, text="本地源", image=local_icon, compound=tk.LEFT
         )
         notebook.add(
             frame_subscribe, text="订阅源", image=subscribe_icon, compound=tk.LEFT
+        )
+        notebook.add(frame_hotel, text="酒店源", image=hotel_icon, compound=tk.LEFT)
+        notebook.add(
+            frame_multicast, text="组播源", image=multicast_icon, compound=tk.LEFT
         )
         notebook.add(
             frame_online_search,
@@ -179,6 +191,7 @@ class TkinterUI:
         notebook.settings_icon = settings_icon
         notebook.speed_icon = speed_icon
         notebook.prefer_icon = prefer_icon
+        notebook.local_icon = local_icon
         notebook.hotel_icon = hotel_icon
         notebook.multicast_icon = multicast_icon
         notebook.subscribe_icon = subscribe_icon
@@ -187,6 +200,7 @@ class TkinterUI:
         self.default_ui.init_ui(frame_default)
         self.speed_ui.init_ui(frame_speed)
         self.prefer_ui.init_ui(frame_prefer)
+        self.local_ui.init_ui(frame_local)
         self.multicast_ui.init_ui(frame_multicast)
         self.hotel_ui.init_ui(frame_hotel)
         self.subscribe_ui.init_ui(frame_subscribe)
@@ -231,8 +245,8 @@ class TkinterUI:
 def get_root_location(root):
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
-    width = 500
-    height = 700
+    width = 580
+    height = 650
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
     return (width, height, x, y)

@@ -24,7 +24,10 @@ else:
 
 @app.route("/")
 def show_index():
-    return get_result_file_content(resource_path(config.final_file))
+    return get_result_file_content(
+        path=resource_path(constants.rtmp_result_path if config.open_rtmp else config.final_file),
+        file_type="m3u" if config.open_m3u_result else "txt"
+    )
 
 
 @app.route("/favicon.ico")
@@ -46,6 +49,12 @@ def show_ipv4_txt():
 @app.route("/ipv6/txt")
 def show_ipv6_txt():
     return get_result_file_content(path=resource_path(constants.ipv6_result_path), file_type="txt")
+
+
+@app.route("/rtmp")
+def show_rtmp():
+    return get_result_file_content(path=resource_path(constants.rtmp_result_path),
+                                   file_type="m3u" if config.open_m3u_result else "txt")
 
 
 @app.route("/rtmp-txt")
@@ -109,7 +118,11 @@ def show_ipv6_rtmp_m3u():
 
 @app.route("/content")
 def show_content():
-    return get_result_file_content(path=resource_path(config.final_file), show_content=True)
+    return get_result_file_content(
+        path=resource_path(constants.rtmp_result_path if config.open_rtmp else config.final_file),
+        file_type="m3u" if config.open_m3u_result else "txt",
+        show_content=True
+    )
 
 
 @app.route("/log")
@@ -183,7 +196,8 @@ def run_service():
                 print(f"🚀 M3u api: {ip_address}/m3u")
             print(f"🚀 Txt api: {ip_address}/txt")
             if config.open_rtmp:
-                print(f"🚀 Rtmp M3u api: {ip_address}/rtmp-m3u")
+                if config.open_m3u_result:
+                    print(f"🚀 Rtmp M3u api: {ip_address}/rtmp-m3u")
                 print(f"🚀 Rtmp Txt api: {ip_address}/rtmp-txt")
             print(f"🚀 IPv4 Txt api: {ip_address}/ipv4")
             print(f"🚀 IPv6 Txt api: {ip_address}/ipv6")
