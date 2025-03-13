@@ -21,13 +21,18 @@ from hotel import HotelUI
 from subscribe import SubscribeUI
 from online_search import OnlineSearchUI
 from utils.speed import check_ffmpeg_installed_status
+import pystray
 
 
 class TkinterUI:
     def __init__(self, root):
         info = get_version_info()
         self.root = root
-        self.root.title(info.get("name", ""))
+        self.name = info.get("name", "")
+        self.tray_icon = None
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+        self.create_tray_icon()
+        self.root.title(self.name)
         self.version = info.get("version", "")
         self.about_ui = AboutUI()
         self.default_ui = DefaultUI()
@@ -41,6 +46,32 @@ class TkinterUI:
         self.update_source = UpdateSource()
         self.update_running = False
         self.result_url = None
+
+    def on_closing(self):
+        if messagebox.askyesno("提示",
+                               "最小化至后台运行?",
+                               icon="question",
+                               default="yes",
+                               detail="选择“是”将最小化至后台运行，选择“否”将退出程序"
+                               ):
+            self.root.withdraw()
+            if not self.tray_icon:
+                self.create_tray_icon()
+        else:
+            self.root.destroy()
+
+    def create_tray_icon(self):
+        image = Image.open(resource_path("static/images/favicon.ico"))
+        menu = (pystray.MenuItem("显示", self.restore_window, default=True), pystray.MenuItem("退出", self.exit_app))
+        self.tray_icon = pystray.Icon("name", image, self.name, menu)
+        threading.Thread(target=self.tray_icon.run, daemon=True).start()
+
+    def restore_window(self):
+        self.root.deiconify()
+
+    def exit_app(self):
+        self.tray_icon.stop()
+        self.root.destroy()
 
     def view_result_link_callback(self, event):
         webbrowser.open_new_tab(self.result_url)
