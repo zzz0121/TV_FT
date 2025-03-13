@@ -28,7 +28,7 @@ COPY . $APP_WORKDIR
 
 COPY --from=builder /app/.venv /.venv
 
-RUN apk update && apk add --no-cache dcron ffmpeg \
+RUN apk update && apk add --no-cache dcron ffmpeg nginx nginx-rtmp-module \
   && if [ "$LITE" = False ]; then apk add --no-cache chromium chromium-chromedriver; fi
 
 EXPOSE $APP_PORT
@@ -36,6 +36,8 @@ EXPOSE $APP_PORT
 COPY entrypoint.sh /iptv-api-entrypoint.sh
 
 COPY config /iptv-api-config
+
+COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN chmod +x /iptv-api-entrypoint.sh
 
