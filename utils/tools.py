@@ -551,7 +551,7 @@ def get_real_path(path) -> str:
     return real_path
 
 
-def get_urls_from_file(path: str) -> list:
+def get_urls_from_file(path: str, pattern_search: bool = True) -> list:
     """
     Get the urls from file
     """
@@ -561,11 +561,14 @@ def get_urls_from_file(path: str) -> list:
         with open(real_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
-                if line.startswith("#"):
+                if not line or line.startswith("#"):
                     continue
-                match = constants.url_pattern.search(line)
-                if match:
-                    urls.append(match.group().strip())
+                if pattern_search:
+                    match = constants.url_pattern.search(line)
+                    if match:
+                        urls.append(match.group().strip())
+                else:
+                    urls.append(line)
     return urls
 
 

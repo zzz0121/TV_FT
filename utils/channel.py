@@ -602,7 +602,7 @@ def append_total_data(
         ("online_search", online_search_result),
     ]
     whitelist = get_urls_from_file(constants.whitelist_path)
-    blacklist = get_urls_from_file(constants.blacklist_path)
+    blacklist = get_urls_from_file(constants.blacklist_path, pattern_search=False)
     url_hosts_ipv_type = {}
     for obj in data.values():
         for value_list in obj.values():
