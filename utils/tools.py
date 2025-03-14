@@ -18,7 +18,7 @@ from flask import send_file, make_response
 from opencc import OpenCC
 
 import utils.constants as constants
-from utils.config import config
+from utils.config import config, resource_path
 from utils.types import ChannelData
 
 
@@ -403,7 +403,7 @@ def get_result_file_content(path=None, show_content=False, file_type=None):
             if file_type == "m3u" or not file_type:
                 result_file = os.path.splitext(path)[0] + ".m3u"
             if file_type != "txt" and show_content == False:
-                return send_file(result_file, as_attachment=True)
+                return send_file(resource_path(result_file), as_attachment=True)
         with open(result_file, "r", encoding="utf-8") as file:
             content = file.read()
     else:
