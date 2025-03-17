@@ -47,8 +47,9 @@ COPY . $APP_WORKDIR
 COPY --from=builder /app/.venv /.venv
 COPY --from=builder /usr/local/nginx /usr/local/nginx
 
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log
+RUN mkdir -p /var/log/nginx && \
+  ln -sf /dev/stdout /var/log/nginx/access.log && \
+  ln -sf /dev/stderr /var/log/nginx/error.log
 
 RUN apk update && apk add --no-cache dcron ffmpeg \
   && if [ "$LITE" = False ]; then apk add --no-cache chromium chromium-chromedriver; fi
