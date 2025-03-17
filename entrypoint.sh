@@ -13,7 +13,7 @@ done
 crontab -d
 
 if [ -n "$UPDATE_CRON" ]; then
-  (crontab -l ; echo "$UPDATE_CRON cd $APP_WORKDIR && /.venv/bin/python main.py") | crontab -
+  echo "$UPDATE_CRON cd $APP_WORKDIR && /.venv/bin/python main.py" | crontab -
 fi
 
 # dcron log level
