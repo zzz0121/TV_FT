@@ -48,7 +48,6 @@ jobs:
           push: true
           tags: |
             guovern/iptv-api:lite-test
-            # guovern/iptv-api:${{ env.version }}-lite
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           build-args: |
             APP_WORKDIR=/iptv-api-lite
