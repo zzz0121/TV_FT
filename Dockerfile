@@ -51,7 +51,7 @@ RUN mkdir -p /var/log/nginx && \
   ln -sf /dev/stdout /var/log/nginx/access.log && \
   ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN apk update && apk add --no-cache dcron ffmpeg \
+RUN apk update && apk add --no-cache dcron ffmpeg pcre \
   && if [ "$LITE" = False ]; then apk add --no-cache chromium chromium-chromedriver; fi
 
 EXPOSE $APP_PORT
