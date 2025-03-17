@@ -22,12 +22,10 @@ RUN wget https://github.com/arut/nginx-rtmp-module/archive/v${RTMP_VER}.tar.gz &
 WORKDIR /app/nginx-${NGINX_VER}
 RUN ./configure \
     --add-module=/app/nginx-rtmp-module-${RTMP_VER} \
-    --with-http_ssl_module \
-    --with-http_v2_module \
     --conf-path=/etc/nginx/nginx.conf \
     --error-log-path=/var/log/nginx/error.log \
     --http-log-path=/var/log/nginx/access.log \
-    --with-pcre \
+    --with-http_ssl_module \
     --with-debug && \
     make && \
     make install
@@ -54,7 +52,7 @@ RUN mkdir -p /var/log/nginx && \
   ln -sf /dev/stdout /var/log/nginx/access.log && \
   ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN apk update && apk add --no-cache dcron ffmpeg \
+RUN apk update && apk add --no-cache dcron ffmpeg pcre \
   && if [ "$LITE" = False ]; then apk add --no-cache chromium chromium-chromedriver; fi
 
 EXPOSE $APP_PORT
