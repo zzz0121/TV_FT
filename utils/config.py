@@ -311,6 +311,10 @@ class ConfigManager:
         return self.config.getboolean("Settings", "open_empty_category", fallback=True)
 
     @property
+    def app_host(self):
+        return os.environ.get("APP_HOST") or self.config.get("Settings", "app_host", fallback="localhost")
+
+    @property
     def app_port(self):
         return os.environ.get("APP_PORT") or self.config.getint("Settings", "app_port", fallback=8000)
 

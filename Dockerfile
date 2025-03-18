@@ -37,6 +37,7 @@ ARG LITE=False
 
 ENV APP_WORKDIR=$APP_WORKDIR
 ENV LITE=$LITE
+ENV APP_HOST="localhost"
 ENV APP_PORT=8000
 ENV PATH="/.venv/bin:/usr/local/nginx/sbin:$PATH"
 ENV UPDATE_CRON="0 22,10 * * *"
@@ -55,7 +56,7 @@ RUN mkdir -p /var/log/nginx && \
 RUN apk update && apk add --no-cache dcron ffmpeg pcre \
   && if [ "$LITE" = False ]; then apk add --no-cache chromium chromium-chromedriver; fi
 
-EXPOSE $APP_PORT
+EXPOSE $APP_PORT 8080
 
 COPY entrypoint.sh /iptv-api-entrypoint.sh
 
