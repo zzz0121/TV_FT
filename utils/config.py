@@ -290,8 +290,8 @@ class ConfigManager:
 
     @property
     def open_driver(self):
-        return not os.environ.get("LITE") and self.config.getboolean(
-            "Settings", "open_driver", fallback=True
+        return self.config.getboolean(
+            "Settings", "open_driver", fallback=False
         )
 
     @property
