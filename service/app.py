@@ -1,6 +1,7 @@
 import os
-import pickle
 import sys
+
+from utils.data_manager import DataManager
 
 sys.path.append(os.path.dirname(sys.path[0]))
 from flask import Flask, send_from_directory, make_response, jsonify, redirect
@@ -14,11 +15,7 @@ app = Flask(__name__)
 nginx_dir = resource_path(os.path.join('utils', 'nginx-rtmp-win32'))
 nginx_path = resource_path(os.path.join(nginx_dir, 'nginx.exe'))
 stop_path = resource_path(os.path.join(nginx_dir, 'stop.bat'))
-if os.path.exists(constants.result_data_path):
-    with open(constants.result_data_path, "rb") as f:
-        result_data = pickle.load(f)
-else:
-    result_data = []
+data_manager = DataManager()
 
 
 @app.route("/")
@@ -141,7 +138,7 @@ def show_log():
 @app.route('/rtmp/<channel_id>', methods=['GET'])
 def run_rtmp(channel_id):
     url = ''
-    for item in result_data:
+    for item in data_manager.data:
         if item['id'] == int(channel_id):
             url = item.get('url', '')
             break

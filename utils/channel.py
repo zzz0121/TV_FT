@@ -11,6 +11,7 @@ from bs4 import NavigableString
 
 import utils.constants as constants
 from utils.config import config
+from utils.data_manager import DataManager
 from utils.speed import (
     get_speed,
     sort_urls,
@@ -787,6 +788,8 @@ def process_write_content(path: str,
                 result_data = list({item["id"]: item for item in result_data}.values())
         with open(constants.result_data_path, "wb") as f:
             pickle.dump(result_data, f)
+        data_manager = DataManager()
+        data_manager.save_data(result_data)
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
         if callback:
