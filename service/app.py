@@ -1,9 +1,9 @@
 import os
+import sqlite3
 import sys
 
 sys.path.append(os.path.dirname(sys.path[0]))
 from flask import Flask, send_from_directory, make_response, jsonify, redirect
-from utils.data_manager import DataManager
 from utils.tools import get_result_file_content, get_ip_address, resource_path
 from utils.config import config
 import utils.constants as constants
@@ -14,7 +14,7 @@ app = Flask(__name__)
 nginx_dir = resource_path(os.path.join('utils', 'nginx-rtmp-win32'))
 nginx_path = resource_path(os.path.join(nginx_dir, 'nginx.exe'))
 stop_path = resource_path(os.path.join(nginx_dir, 'stop.bat'))
-data_manager = DataManager()
+os.makedirs(f"{constants.output_dir}/data", exist_ok=True)
 
 
 @app.route("/")
@@ -136,12 +136,13 @@ def show_log():
 
 @app.route('/rtmp/<channel_id>', methods=['GET'])
 def run_rtmp(channel_id):
-    url = ''
-    for item in data_manager.data:
-        if item['id'] == int(channel_id):
-            url = item.get('url', '')
-            break
-    print(f"🚀 Rtmp url: {url}")
+    if not channel_id:
+        return jsonify({'Error': 'Channel ID is required'}), 400
+    with sqlite3.connect(constants.rtmp_data_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM result_data WHERE id=?", (channel_id,))
+        data = cursor.fetchone()
+        url = data[1] if data else ''
     if not url:
         return jsonify({'Error': 'Url not found'}), 400
     cmd = [
