@@ -134,10 +134,7 @@ def show_log():
     return response
 
 
-@app.route('/rtmp/<channel_id>', methods=['GET'])
-def run_rtmp(channel_id):
-    if not channel_id:
-        return jsonify({'Error': 'Channel ID is required'}), 400
+def get_channel_url(channel_id):
     conn = get_db_connection(constants.rtmp_data_path)
     try:
         cursor = conn.cursor()
@@ -146,6 +143,14 @@ def run_rtmp(channel_id):
         url = data[1] if data else ''
     finally:
         return_db_connection(constants.rtmp_data_path, conn)
+    return url
+
+
+@app.route('/live/<channel_id>', methods=['GET'])
+def run_live(channel_id):
+    if not channel_id:
+        return jsonify({'Error': 'Channel ID is required'}), 400
+    url = get_channel_url(channel_id)
     if not url:
         return jsonify({'Error': 'Url not found'}), 400
     cmd = [
@@ -165,6 +170,30 @@ def run_rtmp(channel_id):
     try:
         subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         return redirect(f'rtmp://localhost:1935/live/{channel_id}')
+    except Exception as e:
+        return jsonify({'Error': str(e)}), 500
+
+
+@app.route('/hls/<channel_file>', methods=['GET'])
+def run_hls(channel_file):
+    channel_id = channel_file.replace('.m3u8', '')
+    if not channel_id:
+        return jsonify({'Error': 'Channel ID is required'}), 400
+    url = get_channel_url(channel_id)
+    if not url:
+        return jsonify({'Error': 'Url not found'}), 400
+    cmd = [
+        'ffmpeg',
+        '-i', url.partition('$')[0],
+        '-c:v', 'libx264',
+        '-preset', 'ultrafast',
+        '-b:v', '2500k',
+        '-c:a', 'aac',
+        '-f', 'flv',
+        f'rtmp://localhost:1935/hls/{channel_id}'
+    ]
+    try:
+        subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     except Exception as e:
         return jsonify({'Error': str(e)}), 500
 
