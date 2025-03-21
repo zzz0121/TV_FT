@@ -16,6 +16,9 @@ nginx_path = resource_path(os.path.join(nginx_dir, 'nginx.exe'))
 stop_path = resource_path(os.path.join(nginx_dir, 'stop.bat'))
 os.makedirs(f"{constants.output_dir}/data", exist_ok=True)
 
+live_running_streams = {}
+hls_running_streams = {}
+
 
 @app.route("/")
 def show_index():
@@ -153,6 +156,8 @@ def run_live(channel_id):
     url = get_channel_url(channel_id)
     if not url:
         return jsonify({'Error': 'Url not found'}), 400
+    if channel_id in live_running_streams and live_running_streams[channel_id].poll() is None:
+        return redirect(f'rtmp://localhost:1935/live/{channel_id}')
     cmd = [
         'ffmpeg',
         '-i', url.partition('$')[0],
@@ -168,7 +173,8 @@ def run_live(channel_id):
         f'rtmp://localhost:1935/live/{channel_id}'
     ]
     try:
-        subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        live_running_streams[channel_id] = process
         return redirect(f'rtmp://localhost:1935/live/{channel_id}')
     except Exception as e:
         return jsonify({'Error': str(e)}), 500
@@ -182,6 +188,8 @@ def run_hls(channel_file):
     url = get_channel_url(channel_id)
     if not url:
         return jsonify({'Error': 'Url not found'}), 400
+    if channel_id in hls_running_streams and hls_running_streams[channel_id].poll() is None:
+        return redirect(f'http://localhost:8080/hls/{channel_file}')
     cmd = [
         'ffmpeg',
         '-i', url.partition('$')[0],
@@ -193,7 +201,9 @@ def run_hls(channel_file):
         f'rtmp://localhost:1935/hls/{channel_id}'
     ]
     try:
-        subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        hls_running_streams[channel_id] = process
+        return redirect(f'http://localhost:8080/hls/{channel_file}')
     except Exception as e:
         return jsonify({'Error': str(e)}), 500
 
