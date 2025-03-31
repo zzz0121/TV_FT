@@ -30,18 +30,19 @@ jobs:
       - name: List dist directory contents
         run: dir dist
 
+      - name: Get info from version.json
+        id: get_info
+        run: |
+          $json = Get-Content version.json | ConvertFrom-Json
+          echo "version=$($json.version)" >> $env:GITHUB_ENV
+          echo "name=$($json.name)" >> $env:GITHUB_ENV
+        shell: pwsh
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: IPTV-API
+          name: ${{ env.name }}-v${{ env.version }}
           path: dist
-
-      - name: Get version from version.json
-        id: get_info
-        run: |
-          $version = (Get-Content version.json | ConvertFrom-Json).version
-          echo "version=$version" >> $env:GITHUB_ENV
-        shell: pwsh
 
       - name: Install jq
         run: choco install jq
@@ -76,6 +77,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/IPTV-API.exe
-          asset_name: IPTV-API.exe
+          asset_path: dist/${{ env.name }}-v${{ env.version }}.exe
+          asset_name: ${{ env.name }}-v${{ env.version }}.exe
           asset_content_type: application/octet-stream
