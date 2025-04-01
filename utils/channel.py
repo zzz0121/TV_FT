@@ -819,7 +819,9 @@ def write_channel_to_file(data, ipv6=False, first_channel_name=None, callback=No
         if any(pref in ipv_type_prefer for pref in ["自动", "auto"]):
             ipv_type_prefer = ["ipv6", "ipv4"] if ipv6 else ["ipv4", "ipv6"]
         origin_type_prefer = config.origin_type_prefer
-        rtmp_url = f"{get_ip_address()}/rtmp/"
+        address = get_ip_address()
+        live_url = f"{address}/live/"
+        hls_url = f"{address}/hls/"
         file_list = [
             {"path": config.final_file, "enable_log": True},
             {"path": constants.ipv4_result_path, "ipv_type_prefer": ["ipv4"]},
@@ -827,11 +829,28 @@ def write_channel_to_file(data, ipv6=False, first_channel_name=None, callback=No
         ]
         if config.open_rtmp and not os.environ.get("GITHUB_ACTIONS"):
             file_list += [
-                {"path": constants.rtmp_result_path, "rtmp_url": rtmp_url},
-                {"path": constants.ipv4_rtmp_result_path, "rtmp_url": rtmp_url,
-                 "ipv_type_prefer": ["ipv4"]},
-                {"path": constants.ipv6_rtmp_result_path, "rtmp_url": rtmp_url,
-                 "ipv_type_prefer": ["ipv6"]},
+                {"path": constants.live_result_path, "rtmp_url": live_url},
+                {
+                    "path": constants.live_ipv4_result_path,
+                    "rtmp_url": live_url,
+                    "ipv_type_prefer": ["ipv4"]
+                },
+                {
+                    "path": constants.live_ipv6_result_path,
+                    "rtmp_url": live_url,
+                    "ipv_type_prefer": ["ipv6"]
+                },
+                {"path": constants.hls_result_path, "rtmp_url": hls_url},
+                {
+                    "path": constants.hls_ipv4_result_path,
+                    "rtmp_url": hls_url,
+                    "ipv_type_prefer": ["ipv4"]
+                },
+                {
+                    "path": constants.hls_ipv6_result_path,
+                    "rtmp_url": hls_url,
+                    "ipv_type_prefer": ["ipv6"]
+                },
             ]
         for file in file_list:
             process_write_content(

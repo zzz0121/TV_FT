@@ -15,13 +15,19 @@ ipv4_result_path = os.path.join(output_dir, "ipv4/result.txt")
 
 ipv6_result_path = os.path.join(output_dir, "ipv6/result.txt")
 
-rtmp_result_path = os.path.join(output_dir, "rtmp.txt")
+live_result_path = os.path.join(output_dir, "live.txt")
 
-ipv4_rtmp_result_path = os.path.join(output_dir, "ipv4/rtmp.txt")
+live_ipv4_result_path = os.path.join(output_dir, "ipv4/live.txt")
 
-ipv6_rtmp_result_path = os.path.join(output_dir, "ipv6/rtmp.txt")
+live_ipv6_result_path = os.path.join(output_dir, "ipv6/live.txt")
 
 rtmp_data_path = os.path.join(output_dir, "data/rtmp.db")
+
+hls_result_path = os.path.join(output_dir, "hls.txt")
+
+hls_ipv4_result_path = os.path.join(output_dir, "ipv4/hls.txt")
+
+hls_ipv6_result_path = os.path.join(output_dir, "ipv6/hls.txt")
 
 cache_path = os.path.join(output_dir, "data/cache.pkl")
 
