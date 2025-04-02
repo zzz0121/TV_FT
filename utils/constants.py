@@ -5,6 +5,10 @@ config_dir = "config"
 
 output_dir = "output"
 
+live_path = os.path.join(config_dir, "live")
+
+hls_path = os.path.join(config_dir, "hls")
+
 whitelist_path = os.path.join(config_dir, "whitelist.txt")
 
 blacklist_path = os.path.join(config_dir, "blacklist.txt")
