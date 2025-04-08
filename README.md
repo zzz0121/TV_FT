@@ -42,6 +42,14 @@
 - [📣 免责声明](#免责声明)
 - [⚖️ 许可证](#许可证)
 
+> [!IMPORTANT]\
+> 默认数据源，如订阅源，来源于Github开源项目，仅供示例作用，可能出现稳定性问题\
+> 本项目不提供对接口结果稳定性的保证与解释\
+> 若想要实现更佳的稳定性，建议自行维护数据源
+
+<details>
+  <summary>默认数据源</summary>
+
 📍订阅源来自：
 
 - [Guovin/iptv-database](https://github.com/Guovin/iptv-database)
@@ -60,6 +68,8 @@
 
 - [fanmingming/live](https://github.com/fanmingming/live)
 
+</details>
+
 ## 特点
 
 - ✅ 自定义模板，生成您想要的频道
@@ -73,36 +83,33 @@
 
 ## 最新结果
 
-- 接口源：
+> [!IMPORTANT]\
+> 以下地址国内访问可能会失败，建议在前拼接代理地址使用，可公众号回复CDN获取
+
+### 接口源
+
+- 默认
 
 ```bash
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
 ```
 
-```bash
-https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
-```
-
-或
+- IPv6
 
 ```bash
-https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.m3u
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u
 ```
+
+- IPv4
 
 ```bash
-https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.txt
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u
 ```
 
-- 数据源：
+### 点播源
 
 ```bash
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
-```
-
-或
-
-```bash
-https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/source.json
 ```
 
 ## 配置

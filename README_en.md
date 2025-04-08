@@ -43,6 +43,15 @@ other features, under development...
 - [📣 Disclaimer](#disclaimer)
 - [⚖️ License](#license)
 
+> [!IMPORTANT]\
+> The default data sources, such as subscription sources, come from open-source projects on GitHub and are for
+> demonstration purposes only. They may have stability issues.\
+> This project does not guarantee or explain the stability of the interface results.\
+> For better stability, it is recommended to maintain your own data sources.
+
+<details>
+  <summary>Default Data Sources</summary>
+
 📍Subscription sources are from:
 
 - [Guovin/iptv-database](https://github.com/Guovin/iptv-database)
@@ -61,6 +70,8 @@ other features, under development...
 
 - [fanmingming/live](https://github.com/fanmingming/live)
 
+</details>
+
 ## Features
 
 - ✅ Customize the template to generate the channel you want
@@ -75,36 +86,34 @@ other features, under development...
 
 ## Latest results
 
-- Interface source:
+> [!IMPORTANT]\
+> The following addresses may fail to be accessed domestically. It is recommended to prepend a proxy address for use.
+> You can reply with "CDN" on the public account to obtain it.
+
+### Interface source
+
+- Default
 
 ```bash
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
 ```
 
-```bash
-https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
-```
-
-or
+- IPv6
 
 ```bash
-https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.m3u
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u
 ```
+
+- IPv4
 
 ```bash
-https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.txt
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u
 ```
 
-- Data source:
+### VOD source
 
 ```bash
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
-```
-
-or
-
-```bash
-https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/source.json
 ```
 
 ## Config
