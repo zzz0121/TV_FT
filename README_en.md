@@ -277,6 +277,13 @@ Taking the host path /etc/docker as an example:
 
 - RTMP Streaming:
 
+> [!NOTE]\
+> To stream local video sources, create a `live` or `hls` (recommended) folder in the `config` directory.\
+> The `live` folder is used for live streaming interfaces, and the `hls` folder is used for HLS streaming interfaces.\
+> Place video files named after the `channel name` into these folders, and the program will automatically stream them to
+> the corresponding channels.\
+> Visit http://localhost:8080/stat to view real-time streaming status statistics.
+
 | Streaming Endpoint | Description                      |
 |:-------------------|:---------------------------------|
 | /live              | live streaming endpoint          |
