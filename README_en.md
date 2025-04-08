@@ -43,11 +43,11 @@ other features, under development...
 - [📣 Disclaimer](#disclaimer)
 - [⚖️ License](#license)
 
-> [!IMPORTANT]\
-> The default data sources, such as subscription sources, come from open-source projects on GitHub and are for
-> demonstration purposes only. They may have stability issues.\
-> This project does not guarantee or explain the stability of the interface results.\
-> For better stability, it is recommended to maintain your own data sources.
+> [!IMPORTANT]
+> 1. The default data sources, such as subscription sources, come from open-source projects on GitHub and are for
+     demonstration purposes only. They may have stability issues.
+> 2. This project does not guarantee or explain the stability of the interface results.
+> 3. For better stability, it is recommended to maintain your own data sources.
 
 <details>
   <summary>Default Data Sources</summary>
@@ -277,12 +277,12 @@ Taking the host path /etc/docker as an example:
 
 - RTMP Streaming:
 
-> [!NOTE]\
-> To stream local video sources, create a `live` or `hls` (recommended) folder in the `config` directory.\
-> The `live` folder is used for live streaming interfaces, and the `hls` folder is used for HLS streaming interfaces.\
-> Place video files named after the `channel name` into these folders, and the program will automatically stream them to
-> the corresponding channels.\
-> Visit http://localhost:8080/stat to view real-time streaming status statistics.
+> [!NOTE]
+> 1. To stream local video sources, create a `live` or `hls` (recommended) folder in the `config` directory.
+> 2. The `live` folder is used for live streaming interfaces, and the `hls` folder is used for HLS streaming interfaces.
+> 3. Place video files named after the `channel name` into these folders, and the program will automatically stream them
+     to the corresponding channels.
+> 4. Visit http://localhost:8080/stat to view real-time streaming status statistics.
 
 | Streaming Endpoint | Description                      |
 |:-------------------|:---------------------------------|
