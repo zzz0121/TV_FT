@@ -39,7 +39,7 @@ other features, under development...
 - [📖 Detailed Tutorial](./docs/tutorial_en.md)
 - [🗓️ Changelog](./CHANGELOG.md)
 - [❤️ Appreciate](#appreciate)
-- [👀 Follow(Update Subscription + Q&A)](#follow)
+- [👀 Follow the public account](#follow)
 - [📣 Disclaimer](#disclaimer)
 - [⚖️ License](#license)
 
