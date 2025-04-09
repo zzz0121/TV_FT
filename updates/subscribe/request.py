@@ -104,7 +104,7 @@ async def get_channels_by_subscribe_urls(
                             if in_whitelist:
                                 info = "!"
                             url = add_url_info(url, info)
-                        value = url if multicast else {"url": url}
+                        value = url if multicast else {"url": url, "headers": item.get("headers", None)}
                         name = format_channel_name(name)
                         if name in channels:
                             if multicast:

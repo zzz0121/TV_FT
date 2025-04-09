@@ -50,8 +50,6 @@ def format_channel_data(url: str, origin: OriginType) -> ChannelData:
         "id": hash(url),
         "url": url,
         "host": get_url_host(url),
-        "date": None,
-        "resolution": None,
         "origin": url_origin,
         "ipv_type": None
     }
@@ -475,13 +473,15 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
     url_hosts = set([get_url_host(url) for url in urls])
     for item in data:
         try:
-            channel_id, url, host, date, resolution, url_origin, ipv_type = (
-                item.get("id", None), item["url"],
+            channel_id, url, host, date, resolution, url_origin, ipv_type, headers = (
+                item.get("id", None),
+                item["url"],
                 item.get("host", None),
                 item.get("date", None),
                 item.get("resolution", None),
                 origin or item["origin"],
-                item.get("ipv_type", None)
+                item.get("ipv_type", None),
+                item.get("headers", None)
             )
             if not url_origin:
                 continue
@@ -518,7 +518,8 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                                             "date": date,
                                             "resolution": resolution,
                                             "origin": url_origin,
-                                            "ipv_type": ipv_type
+                                            "ipv_type": ipv_type,
+                                            "headers": headers
                                         }
                                         break
                                 break
@@ -538,7 +539,8 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                         "date": date,
                         "resolution": resolution,
                         "origin": url_origin,
-                        "ipv_type": ipv_type
+                        "ipv_type": ipv_type,
+                        "headers": headers
                     })
                     urls.add(pure_url)
                     url_hosts.add(host)
@@ -675,11 +677,12 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     result = {}
     semaphore = asyncio.Semaphore(10)
 
-    async def limited_get_speed(url, cache_key, is_ipv6, ipv6_proxy, resolution, filter_resolution, min_resolution,
+    async def limited_get_speed(url, headers, cache_key, is_ipv6, ipv6_proxy, resolution, filter_resolution,
+                                min_resolution,
                                 timeout,
                                 callback):
         async with semaphore:
-            return await get_speed(url, cache_key, is_ipv6=is_ipv6, ipv6_proxy=ipv6_proxy,
+            return await get_speed(url, headers, cache_key, is_ipv6=is_ipv6, ipv6_proxy=ipv6_proxy,
                                    resolution=resolution, filter_resolution=filter_resolution,
                                    min_resolution=min_resolution, timeout=timeout,
                                    callback=callback)
@@ -687,7 +690,8 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     tasks = [
         asyncio.create_task(
             limited_get_speed(
-                info["url"],
+                url=info["url"],
+                headers=info.get("headers", None),
                 cache_key=info["host"],
                 is_ipv6=info["ipv_type"] == "ipv6",
                 ipv6_proxy=ipv6_proxy_url,
