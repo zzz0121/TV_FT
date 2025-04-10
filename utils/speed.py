@@ -13,7 +13,7 @@ from multidict import CIMultiDictProxy
 import utils.constants as constants
 from utils.config import config
 from utils.tools import get_resolution_value
-from utils.types import TestResult, ChannelTestResult, TestResultCacheData
+from utils.types import TestResult, ChannelTestResult, TestResultCacheData, ChannelData
 
 http.cookies._is_legal_key = lambda _: True
 cache: TestResultCacheData = {}
@@ -313,15 +313,15 @@ async def get_speed(url, headers=None, cache_key=None, is_ipv6=False, ipv6_proxy
         return data
 
 
-def sort_urls_key(item: ChannelTestResult) -> float:
+def sort_urls_key(item: TestResult | ChannelData) -> float:
     """
     Sort the urls with key
     """
-    speed, resolution, origin = item["speed"], item["resolution"], item["origin"]
+    speed, origin = item["speed"], item["origin"]
     if origin in ["whitelist", "live", "hls"]:
         return float("inf")
     else:
-        return speed + get_resolution_value(resolution)
+        return speed
 
 
 def sort_urls(name, data, supply=config.open_supply, filter_speed=config.open_filter_speed, min_speed=config.min_speed,
