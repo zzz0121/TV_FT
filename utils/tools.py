@@ -534,13 +534,15 @@ def format_name(name: str) -> str:
     return name.lower()
 
 
-def get_key_value(content: str) -> dict:
+def get_headers_key_value(content: str) -> dict:
     """
-    Get the key value from content
+    Get the headers key value from content
     """
     key_value = {}
     for match in constants.key_value_pattern.finditer(content):
         key = match.group("key").strip().replace("http-", "").lower()
+        if "refer" in key:
+            key = "referer"
         value = match.group("value").replace('"', "").strip()
         if key and value:
             key_value[key] = value
@@ -550,14 +552,9 @@ def get_key_value(content: str) -> dict:
 def get_name_url(content, pattern, check_url=True):
     """
     Extract name and URL from content using a regex pattern.
-
-    Parameters:
-    - content: str, the input content to search.
-    - pattern: re.Pattern, the compiled regex pattern to match.
-    - check_url: bool, whether to validate the presence of a URL.
-
-    Returns:
-    - list[dict]: A list of dictionaries with 'name', 'url', and 'headers' keys.
+    :param content: str, the input content to search.
+    :param pattern: re.Pattern, the compiled regex pattern to match.
+    :param check_url: bool, whether to validate the presence of a URL.
     """
     result = []
     for match in pattern.finditer(content):
@@ -566,14 +563,14 @@ def get_name_url(content, pattern, check_url=True):
         url = (group_dict.get("url", "") or "").strip()
         if not name or (check_url and not url):
             continue
-        attributes = {**get_key_value(group_dict.get("attributes", "")), **get_key_value(group_dict.get("options", ""))}
+        attributes = {**get_headers_key_value(group_dict.get("attributes", "")),
+                      **get_headers_key_value(group_dict.get("options", ""))}
         headers = {
             "User-Agent": attributes.get("useragent", ""),
             "Referer": attributes.get("referer", ""),
             "Origin": attributes.get("origin", "")
         }
         headers = {k: v for k, v in headers.items() if v}
-        print(headers)
         result.append({"name": name, "url": url, "headers": headers})
     return result
 

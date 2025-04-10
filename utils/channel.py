@@ -494,7 +494,7 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                     host = get_url_host(url_partition[0])
                 url_info = url_partition[2]
                 white_info = url_info and url_info.startswith("!")
-                if not white_info and pure_url in urls:
+                if not white_info and pure_url in urls and not headers:
                     continue
                 if not ipv_type:
                     if ipv_type_data:
@@ -506,7 +506,7 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                 if not white_info:
                     if host in url_hosts:
                         for p_url in urls:
-                            if get_url_host(p_url) == host and len(p_url) < len(pure_url):
+                            if get_url_host(p_url) == host and (len(p_url) < len(pure_url) or headers):
                                 urls.remove(p_url)
                                 urls.add(pure_url)
                                 for index, info in enumerate(info_data[cate][name]):

@@ -98,11 +98,10 @@ async def get_speed_m3u8(url: str, headers: dict = None, resolution: str = None,
         url = quote(url, safe=':/?$&=@[]%').partition('$')[0]
         async with ClientSession(connector=TCPConnector(ssl=False), trust_env=True) as session:
             m3u8_headers = await get_m3u8_headers(url, headers, session)
-            headers.update(m3u8_headers)
-            location = headers.get('Location')
+            location = m3u8_headers.get('Location')
             if location:
                 info.update(await get_speed_m3u8(location, headers, resolution, filter_resolution, timeout))
-            elif check_m3u8_valid(headers):
+            elif check_m3u8_valid(m3u8_headers):
                 m3u8_obj = m3u8.load(url, headers=headers, timeout=2)
                 playlists = m3u8_obj.data.get('playlists')
                 segments = m3u8_obj.segments
@@ -129,7 +128,7 @@ async def get_speed_m3u8(url: str, headers: dict = None, resolution: str = None,
                     if info['delay'] is None and download_info['delay'] is not None:
                         info['delay'] = download_info['delay']
                 info['speed'] = (sum(speed_list) / len(speed_list)) if speed_list else 0
-            elif headers.get('Content-Length'):
+            elif m3u8_headers.get('Content-Length'):
                 info.update(await get_speed_with_download(url, headers, session, timeout))
     except:
         pass
