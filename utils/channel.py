@@ -1,6 +1,7 @@
 import asyncio
 import base64
 import copy
+import json
 import os
 import pickle
 import re
@@ -669,6 +670,7 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     """
     ipv6_proxy_url = None if (not config.open_ipv6 or ipv6) else constants.ipv6_proxy
     open_filter_resolution = config.open_filter_resolution
+    open_headers = config.open_headers
     min_resolution_value = config.min_resolution_value
     get_resolution = open_filter_resolution and check_ffmpeg_installed_status()
     sort_timeout = config.sort_timeout
@@ -691,7 +693,7 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
         asyncio.create_task(
             limited_get_speed(
                 url=info["url"],
-                headers=info.get("headers", None),
+                headers=(open_headers and info.get("headers", None)) or None,
                 cache_key=info["host"],
                 is_ipv6=info["ipv_type"] == "ipv6",
                 ipv6_proxy=ipv6_proxy_url,
@@ -756,7 +758,7 @@ def process_write_content(path: str,
     content = ""
     no_result_name = []
     first_cate = True
-    result_data = []
+    result_data = defaultdict(list)
     custom_print.disable = not enable_print
     rtmp_url = live_url if live else hls_url if hls else None
     rtmp_type = ["live", "hls"] if live and hls else ["live"] if live else ["hls"] if hls else []
@@ -769,7 +771,7 @@ def process_write_content(path: str,
         for i, name in enumerate(channel_obj_keys):
             info_list = data.get(cate, {}).get(name, [])
             channel_urls = get_total_urls(info_list, ipv_type_prefer, origin_type_prefer, rtmp_type)
-            result_data += channel_urls
+            result_data[name].extend(channel_urls)
             end_char = ", " if i < names_len - 1 else ""
             custom_print(f"{name}:", len(channel_urls), end=end_char)
             if not channel_urls:
@@ -812,13 +814,14 @@ def process_write_content(path: str,
         try:
             cursor = conn.cursor()
             cursor.execute(
-                "CREATE TABLE IF NOT EXISTS result_data (id TEXT PRIMARY KEY, url TEXT)"
+                "CREATE TABLE IF NOT EXISTS result_data (id TEXT PRIMARY KEY, url TEXT, headers TEXT)"
             )
-            for item in result_data:
-                cursor.execute(
-                    "INSERT OR REPLACE INTO result_data (id, url) VALUES (?, ?)",
-                    (item["id"], item["url"])
-                )
+            for data_list in result_data.values():
+                for item in data_list:
+                    cursor.execute(
+                        "INSERT OR REPLACE INTO result_data (id, url, headers) VALUES (?, ?, ?)",
+                        (item["id"], item["url"], json.dumps(item.get("headers", None)))
+                    )
             conn.commit()
         finally:
             return_db_connection(constants.rtmp_data_path, conn)
@@ -826,7 +829,7 @@ def process_write_content(path: str,
         f.write(content)
         if callback:
             callback()
-    convert_to_m3u(path, first_channel_name)
+    convert_to_m3u(path, first_channel_name, data=result_data)
     if callback:
         callback()
 
