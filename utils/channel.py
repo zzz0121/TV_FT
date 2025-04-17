@@ -668,7 +668,7 @@ def append_total_data(
                         print_channel_number(data, cate, name)
 
 
-async def process_sort_channel_list(data, ipv6=False, callback=None):
+async def process_sort_channel_list(data, filter_data=None, ipv6=False, callback=None):
     """
     Process the sort channel list
     """
@@ -678,8 +678,9 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
     min_resolution_value = config.min_resolution_value
     get_resolution = open_filter_resolution and check_ffmpeg_installed_status()
     sort_timeout = config.sort_timeout
-    need_sort_data = copy.deepcopy(data)
-    process_nested_dict(need_sort_data, seen={})
+    if not filter_data:
+        filter_data = copy.deepcopy(data)
+        process_nested_dict(filter_data, seen={})
     result = {}
     semaphore = asyncio.Semaphore(10)
 
@@ -708,7 +709,7 @@ async def process_sort_channel_list(data, ipv6=False, callback=None):
                 callback=callback,
             )
         )
-        for channel_obj in need_sort_data.values()
+        for channel_obj in filter_data.values()
         for info_list in channel_obj.values()
         for info in info_list
     ]
