@@ -352,7 +352,7 @@ class ConfigManager:
 
     @property
     def open_rtmp(self):
-        return self.config.getboolean("Settings", "open_rtmp", fallback=False)
+        return not os.environ.get("GITHUB_ACTIONS") and self.config.getboolean("Settings", "open_rtmp", fallback=True)
 
     @property
     def open_headers(self):
