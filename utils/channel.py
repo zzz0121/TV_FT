@@ -11,6 +11,7 @@ from logging import INFO
 from bs4 import NavigableString
 
 import utils.constants as constants
+from utils.alias import Alias
 from utils.config import config
 from utils.db import get_db_connection, return_db_connection
 from utils.speed import (
@@ -39,6 +40,8 @@ from utils.tools import (
     get_name_uri_from_dir
 )
 from utils.types import ChannelData, OriginType, CategoryChannelData
+
+channel_alias = Alias()
 
 
 def format_channel_data(url: str, origin: OriginType) -> ChannelData:
@@ -158,6 +161,9 @@ def format_channel_name(name):
     """
     if config.open_keep_all:
         return name
+    alias_primary_name = channel_alias.get_primary(name)
+    if alias_primary_name:
+        return alias_primary_name
     return format_name(name)
 
 
