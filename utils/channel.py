@@ -485,7 +485,7 @@ def append_data_to_info_data(info_data, cate, name, data, origin=None, check=Tru
                 item.get("host", None),
                 item.get("date", None),
                 item.get("resolution", None),
-                origin or item["origin"],
+                item.get("origin", origin),
                 item.get("ipv_type", None),
                 item.get("headers", None),
                 item.get("extra_info", ""),
