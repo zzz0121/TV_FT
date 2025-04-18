@@ -159,12 +159,7 @@ def format_channel_name(name):
     """
     Format the channel name with sub and replace and lower
     """
-    if config.open_keep_all:
-        return name
-    alias_primary_name = channel_alias.get_primary(name)
-    if alias_primary_name:
-        return alias_primary_name
-    return format_name(name)
+    return name if config.open_keep_all else channel_alias.get_primary(name)
 
 
 def channel_name_is_equal(name1, name2):

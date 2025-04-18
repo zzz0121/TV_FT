@@ -1,7 +1,7 @@
 import os
 
 import utils.constants as constants
-from utils.tools import get_real_path, resource_path
+from utils.tools import get_real_path, resource_path, format_name
 
 
 class Alias:
@@ -17,6 +17,7 @@ class Alias:
                         parts = [p.strip() for p in line.split(",")]
                         primary = parts[0]
                         aliases = set(parts[1:])
+                        aliases.add(format_name(primary))
                         self.primary_to_aliases[primary] = aliases
                         for alias in aliases:
                             self.alias_to_primary[alias] = primary
@@ -32,7 +33,11 @@ class Alias:
         """
         Get the primary name by alias
         """
-        return self.alias_to_primary.get(name, None)
+        primary_name = self.alias_to_primary.get(name, None)
+        if primary_name is None:
+            alias_format_name = format_name(name)
+            primary_name = self.alias_to_primary.get(alias_format_name, None)
+        return primary_name
 
     def set(self, name: str, aliases: set[str]):
         """
