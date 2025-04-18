@@ -56,10 +56,11 @@ txt_pattern = re.compile(r"^(?P<name>[^,，]+)[,，](?!#genre#)" + r"(" + url_pa
 multiline_txt_pattern = re.compile(r"^(?P<name>[^,，]+)[,，](?!#genre#)" + r"(" + url_pattern.pattern + r")",
                                    re.MULTILINE)
 
-m3u_pattern = re.compile(r"^#EXTINF:-1\s+(?P<attributes>[^,，]+)[，,](?P<name>.*?)\n" + r"(" + url_pattern.pattern + r")")
+m3u_pattern = re.compile(
+    r"^#EXTINF:-1[\s+,，](?P<attributes>[^,，]+)[，,](?P<name>.*?)\n" + r"(" + url_pattern.pattern + r")")
 
 multiline_m3u_pattern = re.compile(
-    r"^#EXTINF:-1\s+(?P<attributes>[^,，]+)[，,](?P<name>.*?)\n(?P<options>(#EXTVLCOPT:.*\n)*?)" + r"(" + url_pattern.pattern + r")",
+    r"^#EXTINF:-1[\s+,，](?P<attributes>[^,，]+)[，,](?P<name>.*?)\n(?P<options>(#EXTVLCOPT:.*\n)*?)" + r"(" + url_pattern.pattern + r")",
     re.MULTILINE)
 
 key_value_pattern = re.compile(r'(?P<key>\w+)=(?P<value>\S+)')
