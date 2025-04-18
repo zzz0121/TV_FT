@@ -681,21 +681,17 @@ async def process_sort_channel_list(data, filter_data=None, ipv6=False, callback
     ipv6_proxy_url = None if (not config.open_ipv6 or ipv6) else constants.ipv6_proxy
     open_filter_resolution = config.open_filter_resolution
     open_headers = config.open_headers
-    min_resolution_value = config.min_resolution_value
     get_resolution = open_filter_resolution and check_ffmpeg_installed_status()
-    sort_timeout = config.sort_timeout
     if not filter_data:
         filter_data = copy.deepcopy(data)
         process_nested_dict(filter_data, seen={})
     result = {}
     semaphore = asyncio.Semaphore(10)
 
-    async def limited_get_speed(url, headers, cache_key, is_ipv6, ipv6_proxy, resolution, filter_resolution,
-                                timeout, callback):
+    async def limited_get_speed(url, headers, cache_key, is_ipv6, ipv6_proxy, resolution, filter_resolution, callback):
         async with semaphore:
             return await get_speed(url, headers, cache_key, is_ipv6=is_ipv6, ipv6_proxy=ipv6_proxy,
-                                   resolution=resolution, filter_resolution=filter_resolution,
-                                   timeout=timeout, callback=callback)
+                                   resolution=resolution, filter_resolution=filter_resolution, callback=callback)
 
     tasks = [
         asyncio.create_task(
@@ -707,7 +703,6 @@ async def process_sort_channel_list(data, filter_data=None, ipv6=False, callback
                 ipv6_proxy=ipv6_proxy_url,
                 resolution=info["resolution"],
                 filter_resolution=get_resolution,
-                timeout=sort_timeout,
                 callback=callback,
             )
         )
@@ -717,14 +712,9 @@ async def process_sort_channel_list(data, filter_data=None, ipv6=False, callback
     ]
     await asyncio.gather(*tasks)
     logger = get_logger(constants.sort_log_path, level=INFO, init=True)
-    open_supply = config.open_supply
-    open_filter_speed = config.open_filter_speed
-    min_speed = config.min_speed
     for cate, obj in data.items():
         for name, info_list in obj.items():
-            info_list = sort_urls(name, info_list, supply=open_supply, filter_speed=open_filter_speed,
-                                  min_speed=min_speed, filter_resolution=open_filter_resolution,
-                                  min_resolution=min_resolution_value, logger=logger)
+            info_list = sort_urls(name, info_list, logger=logger)
             append_data_to_info_data(
                 result,
                 cate,

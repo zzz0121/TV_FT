@@ -21,6 +21,7 @@ sort_timeout = config.sort_timeout
 sort_duplicate_limit = config.sort_duplicate_limit
 open_filter_resolution = config.open_filter_resolution
 min_resolution_value = config.min_resolution_value
+max_resolution_value = config.max_resolution_value
 open_supply = config.open_supply
 open_filter_speed = config.open_filter_speed
 min_speed_value = config.min_speed
@@ -364,7 +365,7 @@ def sort_urls_key(item: TestResult | ChannelData) -> float:
 
 def sort_urls(name, data, supply=open_supply, filter_speed=open_filter_speed, min_speed=min_speed_value,
               filter_resolution=open_filter_resolution, min_resolution=min_resolution_value,
-              logger=None) -> list[ChannelTestResult]:
+              max_resolution=max_resolution_value, logger=None) -> list[ChannelTestResult]:
     """
     Sort the urls with info
     """
@@ -397,9 +398,15 @@ def sort_urls(name, data, supply=open_supply, filter_speed=open_filter_speed, mi
                         )
                 except Exception as e:
                     print(e)
-                if avg_delay < 0 or (not supply and ((filter_speed and avg_speed < min_speed) or (
-                        filter_resolution and resolution and get_resolution_value(resolution) < min_resolution))):
+                if avg_delay < 0:
                     continue
+                if not supply:
+                    if filter_speed and avg_speed < min_speed:
+                        continue
+                    if filter_resolution and resolution:
+                        resolution_value = get_resolution_value(resolution)
+                        if resolution_value < min_resolution or resolution_value > max_resolution:
+                            continue
                 result["delay"] = avg_delay
                 result["speed"] = avg_speed
                 result["resolution"] = resolution
