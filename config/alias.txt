@@ -3,7 +3,7 @@
 # This is the alias list for channel names, used to map multiple names to a single name when fetching from the interface, improving the fetch volume and accuracy.
 # Format: TemplateChannelName,Alias1,Alias2,Alias3
 
-CCTV-1,CCTV1综合,射雕英雄传
+CCTV-1,CCTV1综合
 CCTV-2,CCTV2财经
 CCTV-3,CCTV3综艺
 CCTV-4,CCTV4中文国际
