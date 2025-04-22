@@ -14,7 +14,6 @@
 | open_multicast_foodie  | 开启 Foodie 组播源工作模式                                                                                                                                                     | True              |
 | open_multicast_fofa    | 开启 FOFA 组播源工作模式                                                                                                                                                       | False             |
 | open_online_search     | 开启关键字搜索源功能                                                                                                                                                            | False             |
-| open_proxy             | 开启代理，自动获取免费可用代理，若更新无数据可开启此模式                                                                                                                                          | False             |
 | open_request           | 开启查询请求，数据来源于网络（仅针对酒店源与组播源）                                                                                                                                            | False             |
 | open_rtmp              | 开启RTMP推流功能，需要安装FFmpeg，利用本地带宽提升接口播放体验                                                                                                                                  | False             |
 | open_service           | 开启页面服务，用于控制是否启动结果页面服务；如果使用青龙等平台部署，有专门设定的定时任务，需要更新完成后停止运行，可以关闭该功能                                                                                                      | True              |

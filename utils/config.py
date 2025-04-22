@@ -290,10 +290,6 @@ class ConfigManager:
         return self.config.getint("Settings", "sort_timeout", fallback=10)
 
     @property
-    def open_proxy(self):
-        return self.config.getboolean("Settings", "open_proxy", fallback=False)
-
-    @property
     def open_driver(self):
         return self.config.getboolean(
             "Settings", "open_driver", fallback=False
