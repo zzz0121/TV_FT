@@ -67,6 +67,7 @@ async def get_epg(names=None, callback=None):
     session = Session()
 
     def process_run(url):
+        nonlocal all_result_verify, result
         try:
             response = None
             try:
