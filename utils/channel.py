@@ -11,6 +11,7 @@ from logging import INFO
 from bs4 import NavigableString
 
 import utils.constants as constants
+from updates.epg.tools import write_to_xml, compress_to_gz
 from utils.alias import Alias
 from utils.config import config
 from utils.db import get_db_connection, return_db_connection
@@ -731,8 +732,7 @@ def process_write_content(path: str,
                           ipv_type_prefer: list[str] = None,
                           origin_type_prefer: list[str] = None,
                           first_channel_name: str = None,
-                          enable_print: bool = False,
-                          callback=None
+                          enable_print: bool = False
                           ):
     """
     Get channel write content
@@ -745,7 +745,6 @@ def process_write_content(path: str,
     :param ipv_type_prefer: ipv type prefer
     :param origin_type_prefer: origin type prefer
     :param first_channel_name: the first channel name
-    :param callback: callback function
     """
     content = ""
     no_result_name = []
@@ -826,22 +825,29 @@ def process_write_content(path: str,
             return_db_connection(constants.rtmp_data_path, conn)
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
-        if callback:
-            callback()
     convert_to_m3u(path, first_channel_name, data=result_data)
-    if callback:
-        callback()
 
 
-def write_channel_to_file(data, ipv6=False, first_channel_name=None, callback=None):
+def write_channel_to_file(data, epg=None, ipv6=False, first_channel_name=None):
     """
     Write channel to file
     """
     try:
+        print("Write channel to file...")
         output_dir = constants.output_dir
-        dir_list = [output_dir, f"{output_dir}/ipv4", f"{output_dir}/ipv6", f"{output_dir}/data", f"{output_dir}/log"]
+        dir_list = [
+            output_dir,
+            f"{output_dir}/epg",
+            f"{output_dir}/ipv4",
+            f"{output_dir}/ipv6",
+            f"{output_dir}/data",
+            f"{output_dir}/log",
+        ]
         for dir_name in dir_list:
             os.makedirs(dir_name, exist_ok=True)
+        if epg:
+            write_to_xml(epg, constants.epg_result_path)
+            compress_to_gz(constants.epg_result_path, constants.epg_gz_result_path)
         open_empty_category = config.open_empty_category
         ipv_type_prefer = list(config.ipv_type_prefer)
         if any(pref in ipv_type_prefer for pref in ["自动", "auto"]):
@@ -855,7 +861,7 @@ def write_channel_to_file(data, ipv6=False, first_channel_name=None, callback=No
             {"path": constants.ipv4_result_path, "ipv_type_prefer": ["ipv4"]},
             {"path": constants.ipv6_result_path, "ipv_type_prefer": ["ipv6"]}
         ]
-        if config.open_rtmp and not os.environ.get("GITHUB_ACTIONS"):
+        if config.open_rtmp and not os.getenv("GITHUB_ACTIONS"):
             file_list += [
                 {"path": constants.live_result_path, "live": True},
                 {
@@ -893,8 +899,8 @@ def write_channel_to_file(data, ipv6=False, first_channel_name=None, callback=No
                 origin_type_prefer=origin_type_prefer,
                 first_channel_name=first_channel_name,
                 enable_print=file.get("enable_log", False),
-                callback=callback,
             )
+        print("✅ Write channel to file success")
     except Exception as e:
         print(f"❌ Write channel to file failed: {e}")
 

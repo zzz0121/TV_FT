@@ -241,6 +241,7 @@ class ConfigManager:
     @property
     def open_method(self):
         return {
+            "epg": self.open_epg,
             "local": self.open_local,
             "subscribe": self.open_subscribe,
             "hotel": self.open_hotel,
@@ -320,11 +321,11 @@ class ConfigManager:
 
     @property
     def app_host(self):
-        return os.environ.get("APP_HOST") or self.config.get("Settings", "app_host", fallback="http://localhost")
+        return os.getenv("APP_HOST") or self.config.get("Settings", "app_host", fallback="http://localhost")
 
     @property
     def app_port(self):
-        return os.environ.get("APP_PORT") or self.config.getint("Settings", "app_port", fallback=8000)
+        return os.getenv("APP_PORT") or self.config.getint("Settings", "app_port", fallback=8000)
 
     @property
     def open_supply(self):
@@ -360,11 +361,15 @@ class ConfigManager:
 
     @property
     def open_rtmp(self):
-        return not os.environ.get("GITHUB_ACTIONS") and self.config.getboolean("Settings", "open_rtmp", fallback=True)
+        return not os.getenv("GITHUB_ACTIONS") and self.config.getboolean("Settings", "open_rtmp", fallback=True)
 
     @property
     def open_headers(self):
         return self.config.getboolean("Settings", "open_headers", fallback=False)
+
+    @property
+    def open_epg(self):
+        return self.config.getboolean("Settings", "open_epg", fallback=True)
 
     def load(self):
         """
