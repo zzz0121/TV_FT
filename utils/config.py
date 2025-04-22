@@ -201,10 +201,6 @@ class ConfigManager:
         return self.config.getboolean("Settings", "open_m3u_result", fallback=True)
 
     @property
-    def open_keep_all(self):
-        return self.config.getboolean("Settings", "open_keep_all", fallback=False)
-
-    @property
     def open_subscribe(self):
         return self.config.getboolean("Settings", f"open_subscribe", fallback=True)
 

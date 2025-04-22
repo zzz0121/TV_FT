@@ -246,20 +246,6 @@ class DefaultUI:
         )
         self.open_proxy_checkbutton.pack(side=tk.LEFT, padx=4, pady=8)
 
-        self.open_keep_all_label = tk.Label(
-            frame_proxy_mode_params_column2, text="完整记录:", width=12
-        )
-        self.open_keep_all_label.pack(side=tk.LEFT, padx=4, pady=8)
-        self.open_keep_all_var = tk.BooleanVar(value=config.open_keep_all)
-        self.open_keep_all_checkbutton = ttk.Checkbutton(
-            frame_proxy_mode_params_column2,
-            variable=self.open_keep_all_var,
-            onvalue=True,
-            offvalue=False,
-            command=self.update_open_keep_all
-        )
-        self.open_keep_all_checkbutton.pack(side=tk.LEFT, padx=4, pady=8)
-
         frame_m3u = tk.Frame(root)
         frame_m3u.pack(fill=tk.X)
         frame_proxy_m3u_column1 = tk.Frame(frame_m3u)
@@ -505,9 +491,6 @@ class DefaultUI:
     def update_open_proxy(self):
         config.set("Settings", "open_proxy", str(self.open_proxy_var.get()))
 
-    def update_open_keep_all(self):
-        config.set("Settings", "open_keep_all", str(self.open_keep_all_var.get()))
-
     def update_open_m3u_result(self):
         config.set("Settings", "open_m3u_result", str(self.open_m3u_result_var.get()))
 
@@ -582,7 +565,6 @@ class DefaultUI:
             "final_file_entry",
             "final_file_button",
             "final_file_edit_button",
-            "open_keep_all_checkbutton",
             "open_m3u_result_checkbutton",
             "open_headers_checkbutton",
             "urls_limit_entry",

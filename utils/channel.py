@@ -160,15 +160,13 @@ def format_channel_name(name):
     """
     Format the channel name with sub and replace and lower
     """
-    return name if config.open_keep_all else channel_alias.get_primary(name)
+    return channel_alias.get_primary(name)
 
 
 def channel_name_is_equal(name1, name2):
     """
     Check if the channel name is equal
     """
-    if config.open_keep_all:
-        return True
     name1_format = format_channel_name(name1)
     name2_format = format_channel_name(name2)
     return name1_format == name2_format
@@ -644,30 +642,6 @@ def append_total_data(
                     )
                     print(f"{method.capitalize()}:", len(name_results), end=", ")
             print_channel_number(data, cate, name)
-        if config.open_keep_all:
-            extra_cate = "📥其它频道"
-            for method, result in total_result:
-                if config.open_method[method]:
-                    origin_method = get_origin_method_name(method)
-                    if not origin_method:
-                        continue
-                    for name, urls in result.items():
-                        if name in names:
-                            continue
-                        print(f"{name}:", end=" ")
-                        if config.open_history or config.open_local or config.open_rtmp:
-                            old_info_list = channel_obj.get(name, [])
-                            if old_info_list:
-                                append_old_data_to_info_data(
-                                    data, extra_cate, name, old_info_list, whitelist=whitelist, blacklist=blacklist,
-                                    ipv_type_data=url_hosts_ipv_type
-                                )
-                        append_data_to_info_data(
-                            data, extra_cate, name, urls, origin=origin_method, whitelist=whitelist,
-                            blacklist=blacklist, ipv_type_data=url_hosts_ipv_type
-                        )
-                        print(name, f"{method.capitalize()}:", len(urls), end=", ")
-                        print_channel_number(data, cate, name)
 
 
 async def process_sort_channel_list(data, filter_data=None, ipv6=False, callback=None):
