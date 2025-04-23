@@ -17,8 +17,8 @@ from utils.types import TestResult, ChannelTestResult, TestResultCacheData, Chan
 
 http.cookies._is_legal_key = lambda _: True
 cache: TestResultCacheData = {}
-sort_timeout = config.sort_timeout
-sort_duplicate_limit = config.sort_duplicate_limit
+speed_test_timeout = config.speed_test_timeout
+speed_test_limit = config.speed_test_limit
 open_filter_resolution = config.open_filter_resolution
 min_resolution_value = config.min_resolution_value
 max_resolution_value = config.max_resolution_value
@@ -31,7 +31,7 @@ default_ipv6_resolution = "1920x1080"
 
 
 async def get_speed_with_download(url: str, headers: dict = None, session: ClientSession = None,
-                                  timeout: int = sort_timeout) -> dict[
+                                  timeout: int = speed_test_timeout) -> dict[
     str, float | None]:
     """
     Get the speed of the url with a total timeout
@@ -90,7 +90,7 @@ async def get_headers(url: str, headers: dict = None, session: ClientSession = N
 
 
 async def get_url_content(url: str, headers: dict = None, session: ClientSession = None,
-                          timeout: int = sort_timeout) -> str:
+                          timeout: int = speed_test_timeout) -> str:
     """
     Get the content of the url
     """
@@ -126,7 +126,7 @@ def check_m3u8_valid(headers: CIMultiDictProxy[str] | dict[any, any]) -> bool:
 
 async def get_result(url: str, headers: dict = None, resolution: str = None,
                      filter_resolution: bool = config.open_filter_resolution,
-                     timeout: int = sort_timeout) -> dict[str, float | None]:
+                     timeout: int = speed_test_timeout) -> dict[str, float | None]:
     """
     Get the test result of the url
     """
@@ -175,7 +175,7 @@ async def get_result(url: str, headers: dict = None, resolution: str = None,
         return info
 
 
-async def get_delay_requests(url, timeout=sort_timeout, proxy=None):
+async def get_delay_requests(url, timeout=speed_test_timeout, proxy=None):
     """
     Get the delay of the url by requests
     """
@@ -216,7 +216,7 @@ def check_ffmpeg_installed_status():
         return status
 
 
-async def ffmpeg_url(url, timeout=sort_timeout):
+async def ffmpeg_url(url, timeout=speed_test_timeout):
     """
     Get url info by ffmpeg
     """
@@ -247,7 +247,7 @@ async def ffmpeg_url(url, timeout=sort_timeout):
         return res
 
 
-async def get_resolution_ffprobe(url: str, headers: dict = None, timeout: int = sort_timeout) -> str | None:
+async def get_resolution_ffprobe(url: str, headers: dict = None, timeout: int = speed_test_timeout) -> str | None:
     """
     Get the resolution of the url by ffprobe
     """
@@ -323,13 +323,13 @@ def get_avg_result(result, default_resolution=0) -> TestResult:
 
 
 async def get_speed(url, headers=None, cache_key=None, is_ipv6=False, ipv6_proxy=None, resolution=None,
-                    filter_resolution=open_filter_resolution, timeout=sort_timeout, callback=None) -> TestResult:
+                    filter_resolution=open_filter_resolution, timeout=speed_test_timeout, callback=None) -> TestResult:
     """
     Get the speed (response time and resolution) of the url
     """
     data: TestResult = {'speed': None, 'delay': None, 'resolution': resolution}
     try:
-        if cache_key in cache and len(cache[cache_key]) >= sort_duplicate_limit:
+        if cache_key in cache and len(cache[cache_key]) >= speed_test_limit:
             data = get_avg_result(cache[cache_key], resolution)
         else:
             if is_ipv6 and ipv6_proxy:

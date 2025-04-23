@@ -17,7 +17,7 @@ from updates.subscribe import get_channels_by_subscribe_urls
 from utils.channel import (
     get_channel_items,
     append_total_data,
-    process_sort_channel_list,
+    test_speed,
     write_channel_to_file,
     get_channel_data_cache_with_compare,
 )
@@ -132,21 +132,21 @@ class UpdateSource:
                 )
                 channel_data_cache = copy.deepcopy(self.channel_data)
                 ipv6_support = config.ipv6_support or check_ipv6_support()
-                open_sort = config.open_sort
-                if open_sort:
+                open_speed_test = config.open_speed_test
+                if open_speed_test:
                     urls_total = get_urls_len(self.channel_data)
                     data = copy.deepcopy(self.channel_data)
                     process_nested_dict(data, seen={})
                     self.total = get_urls_len(data)
-                    print(f"Total urls: {urls_total}, need to sort: {self.total}")
+                    print(f"Total urls: {urls_total}, need to speed test: {self.total}")
                     sort_callback = lambda: self.pbar_update(name="测速", item_name="接口")
                     self.update_progress(
                         f"正在测速排序, 共{urls_total}个接口, {self.total}个接口需要进行测速",
                         0,
                     )
                     self.start_time = time()
-                    self.pbar = tqdm(total=self.total, desc="Sorting")
-                    self.channel_data = await process_sort_channel_list(
+                    self.pbar = tqdm(total=self.total, desc="Speed test")
+                    self.channel_data = await test_speed(
                         self.channel_data,
                         filter_data=data,
                         ipv6=ipv6_support,
@@ -164,7 +164,7 @@ class UpdateSource:
                     first_channel_name=channel_names[0],
                 )
                 if config.open_history:
-                    if open_sort:
+                    if open_speed_test:
                         get_channel_data_cache_with_compare(
                             channel_data_cache, self.channel_data
                         )

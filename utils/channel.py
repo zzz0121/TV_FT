@@ -644,9 +644,9 @@ def append_total_data(
             print_channel_number(data, cate, name)
 
 
-async def process_sort_channel_list(data, filter_data=None, ipv6=False, callback=None):
+async def test_speed(data, filter_data=None, ipv6=False, callback=None):
     """
-    Process the sort channel list
+    Test speed and sort of channel data
     """
     ipv6_proxy_url = None if (not config.open_ipv6 or ipv6) else constants.ipv6_proxy
     open_filter_resolution = config.open_filter_resolution

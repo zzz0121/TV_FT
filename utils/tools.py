@@ -427,7 +427,7 @@ def remove_duplicates_from_list(data_list, seen):
         if origin in ["whitelist", "live", "hls"]:
             continue
         seen_num = seen.get(part, 0)
-        if (seen_num < config.sort_duplicate_limit) or (seen_num == 0 and config.sort_duplicate_limit == 0):
+        if (seen_num < config.speed_test_limit) or (seen_num == 0 and config.speed_test_limit == 0):
             seen[part] = seen_num + 1
             unique_list.append(item)
     return unique_list
