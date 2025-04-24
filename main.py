@@ -121,7 +121,6 @@ class UpdateSource:
                 self.tasks = []
                 append_total_data(
                     self.channel_items.items(),
-                    channel_names,
                     self.channel_data,
                     self.hotel_fofa_result,
                     self.multicast_result,
@@ -130,22 +129,23 @@ class UpdateSource:
                     self.online_search_result,
                 )
                 ipv6_support = config.ipv6_support or check_ipv6_support()
-                open_speed_test = config.open_speed_test
-                if open_speed_test:
+                if config.open_speed_test:
                     urls_total = get_urls_len(self.channel_data)
-                    data = copy.deepcopy(self.channel_data)
-                    process_nested_dict(data, seen=set(), filter_host=config.speed_test_filter_host)
-                    self.total = get_urls_len(data)
+                    test_data = copy.deepcopy(self.channel_data)
+                    if config.speed_test_filter_host:
+                        process_nested_dict(test_data, seen=set(), filter_host=config.speed_test_filter_host)
+                    self.total = get_urls_len(test_data)
                     print(f"Total urls: {urls_total}, need to test speed: {self.total}")
                     sort_callback = lambda: self.pbar_update(name="测速", item_name="接口")
                     self.update_progress(
-                        f"正在测速排序, 共{urls_total}个接口, {self.total}个接口需要进行测速",
+                        f"正在进行测速, 共{urls_total}个接口, {self.total}个接口需要进行测速",
                         0,
                     )
                     self.start_time = time()
                     self.pbar = tqdm(total=self.total, desc="Speed test")
                     self.channel_data = await test_speed(
                         self.channel_data,
+                        filter_data=test_data,
                         ipv6=ipv6_support,
                         callback=sort_callback,
                     )

@@ -313,13 +313,23 @@ async def check_stream_delay(url_info):
         return -1
 
 
-def get_avg_result(result, default_resolution=0) -> TestResult:
+def get_avg_result(result) -> TestResult:
     return {
         'speed': sum(item['speed'] or 0 for item in result) / len(result),
         'delay': max(
             int(sum(item['delay'] or -1 for item in result) / len(result)), -1),
-        'resolution': max((item['resolution'] for item in result), key=get_resolution_value) or default_resolution
+        'resolution': max((item['resolution'] for item in result), key=get_resolution_value)
     }
+
+
+def get_speed_result(key: str) -> TestResult:
+    """
+    Get the speed result of the url
+    """
+    if key in cache:
+        return get_avg_result(cache[key])
+    else:
+        return {'speed': 0, 'delay': -1, 'resolution': 0}
 
 
 async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_filter_resolution,
@@ -333,7 +343,7 @@ async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_
     try:
         cache_key = data['host'] if speed_test_filter_host else url
         if cache_key and cache_key in cache:
-            result = get_avg_result(cache[cache_key], resolution)
+            result = get_avg_result(cache[cache_key])
         else:
             if data['ipv_type'] == "ipv6" and ipv6_proxy:
                 result['speed'] = float("inf")
