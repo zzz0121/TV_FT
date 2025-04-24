@@ -321,7 +321,7 @@ class ConfigManager:
 
     @property
     def open_supply(self):
-        return self.config.getboolean("Settings", "open_supply", fallback=True)
+        return self.config.getboolean("Settings", "open_supply", fallback=False)
 
     @property
     def update_time_position(self):
@@ -344,8 +344,8 @@ class ConfigManager:
         return self.config.getint("Settings", "local_num", fallback=10)
 
     @property
-    def speed_test_limit(self):
-        return self.config.getint("Settings", "speed_test_limit", fallback=1)
+    def speed_test_filter_host(self):
+        return self.config.getboolean("Settings", "speed_test_filter_host", fallback=False)
 
     @property
     def cdn_url(self):

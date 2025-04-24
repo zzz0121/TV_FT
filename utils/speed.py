@@ -18,7 +18,7 @@ from utils.types import TestResult, ChannelTestResult, TestResultCacheData, Chan
 http.cookies._is_legal_key = lambda _: True
 cache: TestResultCacheData = {}
 speed_test_timeout = config.speed_test_timeout
-speed_test_limit = config.speed_test_limit
+speed_test_filter_host = config.speed_test_filter_host
 open_filter_resolution = config.open_filter_resolution
 min_resolution_value = config.min_resolution_value
 max_resolution_value = config.max_resolution_value
@@ -322,39 +322,42 @@ def get_avg_result(result, default_resolution=0) -> TestResult:
     }
 
 
-async def get_speed(url, headers=None, cache_key=None, is_ipv6=False, ipv6_proxy=None, resolution=None,
-                    filter_resolution=open_filter_resolution, timeout=speed_test_timeout, callback=None) -> TestResult:
+async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_filter_resolution,
+                    timeout=speed_test_timeout, callback=None) -> TestResult:
     """
     Get the speed (response time and resolution) of the url
     """
-    data: TestResult = {'speed': None, 'delay': None, 'resolution': resolution}
+    url = data['url']
+    resolution = data['resolution']
+    result: TestResult = {'speed': None, 'delay': None, 'resolution': resolution}
     try:
-        if cache_key in cache and len(cache[cache_key]) >= speed_test_limit:
-            data = get_avg_result(cache[cache_key], resolution)
+        cache_key = data['host'] if speed_test_filter_host else url
+        if cache_key and cache_key in cache:
+            result = get_avg_result(cache[cache_key], resolution)
         else:
-            if is_ipv6 and ipv6_proxy:
-                data['speed'] = float("inf")
-                data['delay'] = default_ipv6_delay
-                data['resolution'] = default_ipv6_resolution
+            if data['ipv_type'] == "ipv6" and ipv6_proxy:
+                result['speed'] = float("inf")
+                result['delay'] = default_ipv6_delay
+                result['resolution'] = default_ipv6_resolution
             elif constants.rt_url_pattern.match(url) is not None:
                 start_time = time()
-                if not data['resolution'] and filter_resolution:
-                    data['resolution'] = await get_resolution_ffprobe(url, headers, timeout)
-                data['delay'] = int(round((time() - start_time) * 1000))
-                data['speed'] = float("inf") if data['resolution'] is not None else 0
+                if not result['resolution'] and filter_resolution:
+                    result['resolution'] = await get_resolution_ffprobe(url, headers, timeout)
+                result['delay'] = int(round((time() - start_time) * 1000))
+                result['speed'] = float("inf") if result['resolution'] is not None else 0
             else:
-                data.update(await get_result(url, headers, resolution, filter_resolution, timeout))
+                result.update(await get_result(url, headers, resolution, filter_resolution, timeout))
             if cache_key:
-                cache.setdefault(cache_key, []).append(data)
+                cache.setdefault(cache_key, []).append(result)
     finally:
         if callback:
             callback()
-        return data
+        return result
 
 
-def sort_urls_key(item: TestResult | ChannelData) -> float:
+def sort_result_key(item: TestResult | ChannelData) -> float:
     """
-    Sort the urls with key
+    Sort the result with key
     """
     speed, origin = item["speed"], item["origin"]
     if origin in ["whitelist", "live", "hls"]:
@@ -363,53 +366,35 @@ def sort_urls_key(item: TestResult | ChannelData) -> float:
         return speed
 
 
-def sort_urls(name, data, supply=open_supply, filter_speed=open_filter_speed, min_speed=min_speed_value,
-              filter_resolution=open_filter_resolution, min_resolution=min_resolution_value,
-              max_resolution=max_resolution_value, logger=None) -> list[ChannelTestResult]:
+def get_sort_result(results, name=None, supply=open_supply, filter_speed=open_filter_speed,
+                    min_speed=min_speed_value,
+                    filter_resolution=open_filter_resolution, min_resolution=min_resolution_value,
+                    max_resolution=max_resolution_value, logger=None) -> list[ChannelTestResult]:
     """
-    Sort the urls with info
+    get the sort result
     """
-    filter_data = []
-    for item in data:
-        host, date, resolution, origin, ipv_type = (
-            item["host"],
-            item["date"],
-            item["resolution"],
-            item["origin"],
-            item["ipv_type"]
-        )
-        result: ChannelTestResult = {
-            **item,
-            "delay": None,
-            "speed": None,
-        }
-        if origin in ["whitelist", "live", "hls"]:
-            filter_data.append(result)
+    total_result = []
+    for result in results:
+        if result["origin"] in ["whitelist", "live", "hls"]:
+            total_result.append(result)
             continue
-        if host and host in cache:
-            cache_list = cache[host]
-            if cache_list:
-                avg_result = get_avg_result(cache_list, resolution)
-                avg_speed, avg_delay, resolution = avg_result["speed"], avg_result["delay"], avg_result["resolution"]
-                try:
-                    if logger:
-                        logger.info(
-                            f"Name: {name}, URL: {result["url"]}, IPv_Type: {ipv_type}, Date: {date}, Delay: {avg_delay} ms, Speed: {avg_speed:.2f} M/s, Resolution: {resolution}"
-                        )
-                except Exception as e:
-                    print(e)
-                if avg_delay < 0:
+        result_speed, result_delay, resolution = result["speed"] or 0, result["delay"] or -1, result["resolution"]
+        try:
+            if logger:
+                logger.info(
+                    f"Name: {name}, URL: {result["url"]}, IPv_Type: {result["ipv_type"]}, Date: {result["date"]}, Delay: {result_delay} ms, Speed: {result_speed:.2f} M/s, Resolution: {resolution}"
+                )
+        except Exception as e:
+            print(e)
+        if result_delay < 0:
+            continue
+        if not supply:
+            if filter_speed and result_speed < min_speed:
+                continue
+            if filter_resolution and resolution:
+                resolution_value = get_resolution_value(resolution)
+                if resolution_value < min_resolution or resolution_value > max_resolution:
                     continue
-                if not supply:
-                    if filter_speed and avg_speed < min_speed:
-                        continue
-                    if filter_resolution and resolution:
-                        resolution_value = get_resolution_value(resolution)
-                        if resolution_value < min_resolution or resolution_value > max_resolution:
-                            continue
-                result["delay"] = avg_delay
-                result["speed"] = avg_speed
-                result["resolution"] = resolution
-                filter_data.append(result)
-    filter_data.sort(key=sort_urls_key, reverse=True)
-    return filter_data
+        total_result.append(result)
+    total_result.sort(key=sort_result_key, reverse=True)
+    return total_result

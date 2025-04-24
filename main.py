@@ -19,7 +19,6 @@ from utils.channel import (
     append_total_data,
     test_speed,
     write_channel_to_file,
-    get_channel_data_cache_with_compare,
 )
 from utils.config import config
 from utils.tools import (
@@ -130,15 +129,14 @@ class UpdateSource:
                     self.subscribe_result,
                     self.online_search_result,
                 )
-                channel_data_cache = copy.deepcopy(self.channel_data)
                 ipv6_support = config.ipv6_support or check_ipv6_support()
                 open_speed_test = config.open_speed_test
                 if open_speed_test:
                     urls_total = get_urls_len(self.channel_data)
                     data = copy.deepcopy(self.channel_data)
-                    process_nested_dict(data, seen={})
+                    process_nested_dict(data, seen=set(), filter_host=config.speed_test_filter_host)
                     self.total = get_urls_len(data)
-                    print(f"Total urls: {urls_total}, need to speed test: {self.total}")
+                    print(f"Total urls: {urls_total}, need to test speed: {self.total}")
                     sort_callback = lambda: self.pbar_update(name="测速", item_name="接口")
                     self.update_progress(
                         f"正在测速排序, 共{urls_total}个接口, {self.total}个接口需要进行测速",
@@ -148,7 +146,6 @@ class UpdateSource:
                     self.pbar = tqdm(total=self.total, desc="Speed test")
                     self.channel_data = await test_speed(
                         self.channel_data,
-                        filter_data=data,
                         ipv6=ipv6_support,
                         callback=sort_callback,
                     )
@@ -164,15 +161,11 @@ class UpdateSource:
                     first_channel_name=channel_names[0],
                 )
                 if config.open_history:
-                    if open_speed_test:
-                        get_channel_data_cache_with_compare(
-                            channel_data_cache, self.channel_data
-                        )
                     with open(
                             constants.cache_path,
                             "wb",
                     ) as file:
-                        pickle.dump(channel_data_cache, file)
+                        pickle.dump(self.channel_data, file)
                 print(
                     f"🥳 Update completed! Total time spent: {format_interval(time() - main_start_time)}. Please check the {user_final_file} file!"
                 )

@@ -416,32 +416,30 @@ def get_result_file_content(path=None, show_content=False, file_type=None):
     return response
 
 
-def remove_duplicates_from_list(data_list, seen):
+def remove_duplicates_from_list(data_list, seen, filter_host=False):
     """
     Remove duplicates from data list
     """
     unique_list = []
     for item in data_list:
-        part = item["host"]
-        origin = item["origin"]
-        if origin in ["whitelist", "live", "hls"]:
+        if item["origin"] in ["whitelist", "live", "hls"]:
             continue
-        seen_num = seen.get(part, 0)
-        if (seen_num < config.speed_test_limit) or (seen_num == 0 and config.speed_test_limit == 0):
-            seen[part] = seen_num + 1
+        part = item["host"] if filter_host else item["url"]
+        if part not in seen:
+            seen.add(part)
             unique_list.append(item)
     return unique_list
 
 
-def process_nested_dict(data, seen):
+def process_nested_dict(data, seen, filter_host=False):
     """
     Process nested dict
     """
     for key, value in data.items():
         if isinstance(value, dict):
-            process_nested_dict(value, seen)
+            process_nested_dict(value, seen, filter_host)
         elif isinstance(value, list):
-            data[key] = remove_duplicates_from_list(value, seen)
+            data[key] = remove_duplicates_from_list(value, seen, filter_host)
 
 
 def get_url_host(url):

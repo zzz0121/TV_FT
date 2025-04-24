@@ -1,6 +1,5 @@
 import asyncio
 import base64
-import copy
 import json
 import os
 import pickle
@@ -17,7 +16,7 @@ from utils.config import config
 from utils.db import get_db_connection, return_db_connection
 from utils.speed import (
     get_speed,
-    sort_urls,
+    get_sort_result,
     check_ffmpeg_installed_status
 )
 from utils.tools import (
@@ -25,7 +24,6 @@ from utils.tools import (
     get_name_url,
     check_url_by_keywords,
     get_total_urls,
-    process_nested_dict,
     add_url_info,
     resource_path,
     get_urls_from_file,
@@ -644,7 +642,7 @@ def append_total_data(
             print_channel_number(data, cate, name)
 
 
-async def test_speed(data, filter_data=None, ipv6=False, callback=None):
+async def test_speed(data, ipv6=False, callback=None):
     """
     Test speed and sort of channel data
     """
@@ -652,48 +650,47 @@ async def test_speed(data, filter_data=None, ipv6=False, callback=None):
     open_filter_resolution = config.open_filter_resolution
     open_headers = config.open_headers
     get_resolution = open_filter_resolution and check_ffmpeg_installed_status()
-    if not filter_data:
-        filter_data = copy.deepcopy(data)
-        process_nested_dict(filter_data, seen={})
-    result = {}
+    channel_result = {}
     semaphore = asyncio.Semaphore(10)
 
-    async def limited_get_speed(url, headers, cache_key, is_ipv6, ipv6_proxy, resolution, filter_resolution, callback):
+    async def limited_get_speed(data, headers, ipv6_proxy, filter_resolution, callback):
         async with semaphore:
-            return await get_speed(url, headers, cache_key, is_ipv6=is_ipv6, ipv6_proxy=ipv6_proxy,
-                                   resolution=resolution, filter_resolution=filter_resolution, callback=callback)
+            return await get_speed(data, headers, ipv6_proxy=ipv6_proxy, filter_resolution=filter_resolution,
+                                   callback=callback)
 
-    tasks = [
-        asyncio.create_task(
+    tasks_with_context = [
+        (cate, name, info, asyncio.create_task(
             limited_get_speed(
-                url=info["url"],
+                info,
                 headers=(open_headers and info.get("headers", None)) or None,
-                cache_key=info["host"],
-                is_ipv6=info["ipv_type"] == "ipv6",
                 ipv6_proxy=ipv6_proxy_url,
-                resolution=info["resolution"],
                 filter_resolution=get_resolution,
                 callback=callback,
             )
-        )
-        for channel_obj in filter_data.values()
-        for info_list in channel_obj.values()
+        ))
+        for cate, channel_obj in data.items()
+        for name, info_list in channel_obj.items()
         for info in info_list
     ]
-    await asyncio.gather(*tasks)
+
+    tasks_result = await asyncio.gather(*(task for _, _, _, task in tasks_with_context))
+
+    grouped_results = defaultdict(lambda: defaultdict(list))
+    for (cate, name, info, _), result in zip(tasks_with_context, tasks_result):
+        grouped_results[cate][name].append({**info, **result})
     logger = get_logger(constants.sort_log_path, level=INFO, init=True)
     for cate, obj in data.items():
-        for name, info_list in obj.items():
-            info_list = sort_urls(name, info_list, logger=logger)
+        for name in obj.keys():
+            sort_result = get_sort_result(grouped_results[cate][name], name=name, logger=logger)
             append_data_to_info_data(
-                result,
+                channel_result,
                 cate,
                 name,
-                info_list,
+                sort_result,
                 check=False,
             )
     logger.handlers.clear()
-    return result
+    return channel_result
 
 
 def process_write_content(path: str,
