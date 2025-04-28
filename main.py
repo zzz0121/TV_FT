@@ -18,7 +18,7 @@ from utils.channel import (
     get_channel_items,
     append_total_data,
     test_speed,
-    write_channel_to_file,
+    write_channel_to_file, sort_channel_result,
 )
 from utils.config import config
 from utils.tools import (
@@ -30,7 +30,8 @@ from utils.tools import (
     get_urls_from_file,
     get_version_info,
     join_url,
-    get_urls_len
+    get_urls_len,
+    merge_objects
 )
 from utils.types import CategoryChannelData
 
@@ -129,26 +130,27 @@ class UpdateSource:
                     self.online_search_result,
                 )
                 ipv6_support = config.ipv6_support or check_ipv6_support()
+                cache_result = self.channel_data
                 if config.open_speed_test:
                     urls_total = get_urls_len(self.channel_data)
                     test_data = copy.deepcopy(self.channel_data)
-                    if config.speed_test_filter_host:
-                        process_nested_dict(test_data, seen=set(), filter_host=config.speed_test_filter_host)
+                    process_nested_dict(test_data, seen=set(), filter_host=config.speed_test_filter_host)
                     self.total = get_urls_len(test_data)
                     print(f"Total urls: {urls_total}, need to test speed: {self.total}")
-                    sort_callback = lambda: self.pbar_update(name="测速", item_name="接口")
                     self.update_progress(
                         f"正在进行测速, 共{urls_total}个接口, {self.total}个接口需要进行测速",
                         0,
                     )
                     self.start_time = time()
                     self.pbar = tqdm(total=self.total, desc="Speed test")
-                    self.channel_data = await test_speed(
+                    test_result = await test_speed(
                         self.channel_data,
-                        filter_data=test_data,
                         ipv6=ipv6_support,
-                        callback=sort_callback,
+                        callback=lambda: self.pbar_update(name="测速", item_name="接口"),
                     )
+                    cache_result = test_result
+                    self.channel_data = sort_channel_result(self.channel_data, test_result,
+                                                            filter_host=config.speed_test_filter_host)
                     self.pbar.close()
                 self.update_progress(
                     f"正在生成结果文件",
@@ -161,17 +163,21 @@ class UpdateSource:
                     first_channel_name=channel_names[0],
                 )
                 if config.open_history:
-                    with open(
-                            constants.cache_path,
-                            "wb",
-                    ) as file:
-                        pickle.dump(self.channel_data, file)
+                    if os.path.exists(constants.cache_path):
+                        with open(constants.cache_path, "rb") as file:
+                            try:
+                                cache = pickle.load(file)
+                            except EOFError:
+                                cache = {}
+                            cache_result = merge_objects(cache, cache_result)
+                    with open(constants.cache_path, "wb") as file:
+                        pickle.dump(cache_result, file)
                 print(
                     f"🥳 Update completed! Total time spent: {format_interval(time() - main_start_time)}. Please check the {user_final_file} file!"
                 )
             if self.run_ui:
                 open_service = config.open_service
-                service_tip = ", 可使用以下地址观看直播:" if open_service else ""
+                service_tip = ", 可使用以下地址进行观看:" if open_service else ""
                 tip = (
                     f"✅ 服务启动成功{service_tip}"
                     if open_service and config.open_update == False
