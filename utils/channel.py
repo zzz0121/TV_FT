@@ -676,7 +676,7 @@ async def test_speed(data, ipv6=False, callback=None):
     ipv6_proxy_url = None if (not config.open_ipv6 or ipv6) else constants.ipv6_proxy
     open_headers = config.open_headers
     get_resolution = config.open_filter_resolution and check_ffmpeg_installed_status()
-    semaphore = asyncio.Semaphore(10)
+    semaphore = asyncio.Semaphore(config.speed_test_limit)
 
     async def limited_get_speed(channel_info):
         """

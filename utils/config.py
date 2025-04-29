@@ -363,6 +363,10 @@ class ConfigManager:
     def open_epg(self):
         return self.config.getboolean("Settings", "open_epg", fallback=True)
 
+    @property
+    def speed_test_limit(self):
+        return self.config.getint("Settings", "speed_test_limit", fallback=10)
+
     def load(self):
         """
         Load the config
