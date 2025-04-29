@@ -386,16 +386,24 @@ def convert_to_m3u(path=None, first_channel_name=None, data=None):
                         m3u_output += f'#EXTINF:-1 tvg-name="{processed_channel_name}" tvg-logo="{join_url(config.cdn_url, f'https://raw.githubusercontent.com/fanmingming/live/main/tv/{processed_channel_name}.png')}"'
                         if current_group:
                             m3u_output += f' group-title="{current_group}"'
-                        m3u_output += f",{original_channel_name}\n"
-                        if data and config.open_headers:
+                        item_data = {}
+                        if data:
                             item_list = data.get(original_channel_name, [])
                             for item in item_list:
                                 if item["url"] == channel_link:
-                                    headers = item.get("headers")
-                                    if headers:
-                                        for key, value in headers.items():
-                                            m3u_output += f"#EXTVLCOPT:http-{key.lower()}={value}\n"
+                                    item_data = item
                                     break
+                        if item_data:
+                            catchup = item_data.get("catchup")
+                            if catchup:
+                                for key, value in catchup.items():
+                                    m3u_output += f' {key}="{value}"'
+                        m3u_output += f",{original_channel_name}\n"
+                        if item_data and config.open_headers:
+                            headers = item_data.get("headers")
+                            if headers:
+                                for key, value in headers.items():
+                                    m3u_output += f"#EXTVLCOPT:http-{key.lower()}={value}\n"
                         m3u_output += f"{channel_link}\n"
             m3u_file_path = os.path.splitext(path)[0] + ".m3u"
             with open(m3u_file_path, "w", encoding="utf-8") as m3u_file:
@@ -543,7 +551,7 @@ def get_headers_key_value(content: str) -> dict:
     """
     key_value = {}
     for match in constants.key_value_pattern.finditer(content):
-        key = match.group("key").strip().replace("http-", "").lower()
+        key = match.group("key").strip().replace("http-", "").replace("-", "").lower()
         if "refer" in key:
             key = "referer"
         value = match.group("value").replace('"', "").strip()
@@ -575,11 +583,17 @@ def get_name_url(content, pattern, open_headers=False, check_url=True):
             "Referer": attributes.get("referer", ""),
             "Origin": attributes.get("origin", "")
         }
+        catchup = {
+            "catchup": attributes.get("catchup", ""),
+            "catchup-source": attributes.get("catchupsource", ""),
+        }
         headers = {k: v for k, v in headers.items() if v}
+        catchup = {k: v for k, v in catchup.items() if v}
         if not open_headers and headers:
             continue
         if open_headers:
             data["headers"] = headers
+        data["catchup"] = catchup
         result.append(data)
     return result
 

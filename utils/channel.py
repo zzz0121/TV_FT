@@ -514,6 +514,7 @@ def append_data_to_info_data(
             url_origin = item.get("origin", origin)
             ipv_type = item.get("ipv_type")
             headers = item.get("headers")
+            catchup = item.get("catchup")
             extra_info = item.get("extra_info", "")
 
             if not url_origin or not url:
@@ -550,6 +551,7 @@ def append_data_to_info_data(
                             "origin": origin,
                             "ipv_type": ipv_type,
                             "headers": headers,
+                            "catchup": catchup,
                             "extra_info": extra_info
                         }
                     break
@@ -571,6 +573,7 @@ def append_data_to_info_data(
                     "origin": url_origin,
                     "ipv_type": ipv_type,
                     "headers": headers,
+                    "catchup": catchup,
                     "extra_info": extra_info
                 })
                 existing_urls.add(url)
