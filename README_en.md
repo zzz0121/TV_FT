@@ -75,6 +75,7 @@ other features, under development...
 - ✅ Supports RTMP streaming (live/hls) to enhance playback experience
 - ✅ Supports multiple source acquisition methods: local source, multicast source, hotel source, subscription source,
   keyword search
+- ✅ Support for playback interface retrieval and generation
 - ✅ Supports EPG functionality, displaying channel preview content
 - ✅ Interface speed verification, obtain delay, speed, resolution, filter invalid interface
 - ✅ Preferences: IPv4、IPv6, priority and quantity of interface source sorting, and interface whitelist
