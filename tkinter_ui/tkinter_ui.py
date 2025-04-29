@@ -293,7 +293,7 @@ def get_root_location(root):
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     width = 620
-    height = 600
+    height = 650
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
     return (width, height, x, y)
