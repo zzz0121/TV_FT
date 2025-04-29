@@ -137,15 +137,20 @@ class SpeedUI:
         frame_default_sort_params.pack(fill=tk.X)
 
         self.speed_test_filter_host_label = tk.Label(
-            frame_default_sort_params, text="重复执行:", width=12
+            frame_default_sort_params, text="共享Host结果:", width=12
         )
         self.speed_test_filter_host_label.pack(side=tk.LEFT, padx=4, pady=8)
-        self.speed_test_filter_host_entry = tk.Entry(
-            frame_default_sort_params, width=10
+        self.speed_test_filter_host_var = tk.BooleanVar(
+            value=config.speed_test_filter_host
         )
-        self.speed_test_filter_host_entry.pack(side=tk.LEFT, padx=4, pady=8)
-        self.speed_test_filter_host_entry.insert(0, config.speed_test_filter_host)
-        self.speed_test_filter_host_entry.bind("<KeyRelease>", self.update_speed_test_filter_host)
+        self.speed_test_filter_host_checkbutton = ttk.Checkbutton(
+            frame_default_sort_params,
+            variable=self.speed_test_filter_host_var,
+            onvalue=True,
+            offvalue=False,
+            command=self.update_speed_test_filter_host
+        )
+        self.speed_test_filter_host_checkbutton.pack(side=tk.LEFT, padx=4, pady=8)
 
     def update_open_speed_test(self):
         config.set("Settings", "open_speed_test", str(self.open_speed_test_var.get()))
@@ -177,7 +182,7 @@ class SpeedUI:
         config.set("Settings", "max_resolution", self.max_resolution_entry.get())
 
     def update_speed_test_filter_host(self, event):
-        config.set("Settings", "speed_test_filter_host", self.speed_test_filter_host_entry.get())
+        config.set("Settings", "speed_test_filter_host", self.speed_test_filter_host_var.get())
 
     def change_entry_state(self, state):
         for entry in [
@@ -188,6 +193,6 @@ class SpeedUI:
             "open_filter_resolution_checkbutton",
             "min_resolution_entry",
             "max_resolution_entry",
-            "speed_test_filter_host_entry"
+            "speed_test_filter_host_checkbutton"
         ]:
             getattr(self, entry).config(state=state)
