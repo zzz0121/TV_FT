@@ -37,7 +37,7 @@ async def get_speed_with_download(url: str, headers: dict = None, session: Clien
     Get the speed of the url with a total timeout
     """
     start_time = time()
-    delay = None
+    delay = -1
     total_size = 0
     if session is None:
         session = ClientSession(connector=TCPConnector(ssl=False), trust_env=True)
@@ -130,7 +130,7 @@ async def get_result(url: str, headers: dict = None, resolution: str = None,
     """
     Get the test result of the url
     """
-    info = {'speed': None, 'delay': None, 'resolution': resolution}
+    info = {'speed': 0, 'delay': -1, 'resolution': resolution}
     location = None
     try:
         url = quote(url, safe=':/?$&=@[]%').partition('$')[0]
@@ -170,7 +170,7 @@ async def get_result(url: str, headers: dict = None, resolution: str = None,
     except:
         pass
     finally:
-        if not resolution and filter_resolution and not location and info['delay'] is not None:
+        if not resolution and filter_resolution and not location and info['delay'] != -1:
             info['resolution'] = await get_resolution_ffprobe(url, headers, timeout)
         return info
 
@@ -339,7 +339,7 @@ async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_
     """
     url = data['url']
     resolution = data['resolution']
-    result: TestResult = {'speed': None, 'delay': None, 'resolution': resolution}
+    result: TestResult = {'speed': 0, 'delay': -1, 'resolution': resolution}
     try:
         cache_key = data['host'] if speed_test_filter_host else url
         if cache_key and cache_key in cache:
@@ -354,7 +354,8 @@ async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_
                 if not result['resolution'] and filter_resolution:
                     result['resolution'] = await get_resolution_ffprobe(url, headers, timeout)
                 result['delay'] = int(round((time() - start_time) * 1000))
-                result['speed'] = float("inf") if result['resolution'] is not None else 0
+                if result['resolution'] is not None:
+                    result['speed'] = float("inf")
             else:
                 result.update(await get_result(url, headers, resolution, filter_resolution, timeout))
             if cache_key:

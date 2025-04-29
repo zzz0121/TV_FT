@@ -1,5 +1,6 @@
 import asyncio
 import copy
+import gzip
 import os
 import pickle
 from time import time
@@ -164,13 +165,13 @@ class UpdateSource:
                 )
                 if config.open_history:
                     if os.path.exists(constants.cache_path):
-                        with open(constants.cache_path, "rb") as file:
+                        with gzip.open(constants.cache_path, "rb") as file:
                             try:
                                 cache = pickle.load(file)
                             except EOFError:
                                 cache = {}
-                            cache_result = merge_objects(cache, cache_result)
-                    with open(constants.cache_path, "wb") as file:
+                            cache_result = merge_objects(cache, cache_result, match_key="url")
+                    with gzip.open(constants.cache_path, "wb") as file:
                         pickle.dump(cache_result, file)
                 print(
                     f"🥳 Update completed! Total time spent: {format_interval(time() - main_start_time)}. Please check the {user_final_file} file!"

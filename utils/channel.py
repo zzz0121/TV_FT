@@ -1,5 +1,6 @@
 import asyncio
 import base64
+import gzip
 import json
 import os
 import pickle
@@ -42,6 +43,7 @@ from utils.tools import (
 from utils.types import ChannelData, OriginType, CategoryChannelData
 
 channel_alias = Alias()
+invalid_channels = set()
 
 
 def format_channel_data(url: str, origin: OriginType) -> ChannelData:
@@ -132,7 +134,7 @@ def get_channel_items() -> CategoryChannelData:
     if config.open_history:
         if os.path.exists(constants.cache_path):
             try:
-                with open(constants.cache_path, "rb") as file:
+                with gzip.open(constants.cache_path, "rb") as file:
                     old_result = pickle.load(file)
                     for cate, data in channels.items():
                         if cate in old_result:
@@ -146,6 +148,10 @@ def get_channel_items() -> CategoryChannelData:
                                     for info in old_result[cate][name]:
                                         if info:
                                             try:
+                                                delay = info.get("delay")
+                                                if delay == -1:
+                                                    invalid_channels.add(info["url"])
+                                                    continue
                                                 if info["origin"] == "whitelist" and not any(
                                                         url in info["url"] for url in whitelist_urls):
                                                     continue
@@ -496,7 +502,7 @@ def append_data_to_info_data(
     init_info_data(info_data, category, name)
 
     channel_list = info_data[category][name]
-    existing_urls = {info["url"]: info.get("delay") for info in channel_list if "url" in info}
+    existing_urls = {info["url"] for info in channel_list if "url" in info}
 
     for item in data:
         try:
@@ -509,11 +515,10 @@ def append_data_to_info_data(
             ipv_type = item.get("ipv_type")
             headers = item.get("headers")
             extra_info = item.get("extra_info", "")
-            delay = item.get("delay")
 
             if not url_origin or not url:
                 continue
-            if url in existing_urls and (existing_urls[url] == -1 or (url_origin != "whitelist" and not headers)):
+            if url in invalid_channels or (url in existing_urls and (url_origin != "whitelist" and not headers)):
                 continue
 
             if not ipv_type:
@@ -533,7 +538,9 @@ def append_data_to_info_data(
                     info_url = info["url"]
                     # Replace if new URL is shorter or has headers
                     if len(info_url) > len(url) or headers:
-                        existing_urls[info_url] = existing_urls.pop(url, None)
+                        if url in existing_urls:
+                            existing_urls.remove(url)
+                        existing_urls.add(info_url)
                         info_data[category][name][idx] = {
                             "id": channel_id,
                             "url": info_url,
@@ -566,7 +573,7 @@ def append_data_to_info_data(
                     "headers": headers,
                     "extra_info": extra_info
                 })
-                existing_urls[url] = delay
+                existing_urls.add(url)
 
         except Exception as e:
             print(f"Error processing channel data: {e}")
