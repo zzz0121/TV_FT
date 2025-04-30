@@ -309,4 +309,5 @@ if __name__ == "__main__":
     root.iconbitmap(resource_path("static/images/favicon.ico"))
     root.after(0, config.copy)
     root.after(0, config.copy("utils/nginx-rtmp-win32"))
+    root.after(0, config.copy("output"))
     root.mainloop()

@@ -18,7 +18,6 @@ nginx_dir = resource_path(os.path.join('utils', 'nginx-rtmp-win32'))
 nginx_path = resource_path(os.path.join(nginx_dir, 'nginx.exe'))
 stop_path = resource_path(os.path.join(nginx_dir, 'stop.bat'))
 hls_temp_path = resource_path(os.path.join(nginx_dir, 'temp/hls')) if sys.platform == "win32" else '/tmp/hls'
-os.makedirs(f"{constants.output_dir}/data", exist_ok=True)
 
 live_running_streams = OrderedDict()
 hls_running_streams = OrderedDict()
