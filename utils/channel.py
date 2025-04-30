@@ -652,6 +652,9 @@ def append_total_data(
     whitelist = get_urls_from_file(constants.whitelist_path)
     blacklist = get_urls_from_file(constants.blacklist_path, pattern_search=False)
     url_hosts_ipv_type = {}
+    open_history = config.open_history
+    open_local = config.open_local
+    open_rtmp = config.open_rtmp
     for obj in data.values():
         for value_list in obj.values():
             for value in value_list:
@@ -660,7 +663,7 @@ def append_total_data(
     for cate, channel_obj in items:
         for name, old_info_list in channel_obj.items():
             print(f"{name}:", end=" ")
-            if old_info_list and (config.open_history or config.open_local or config.open_rtmp):
+            if (open_history or open_local or open_rtmp) and old_info_list:
                 append_old_data_to_info_data(data, cate, name, old_info_list, whitelist=whitelist, blacklist=blacklist,
                                              ipv_type_data=url_hosts_ipv_type)
             for method, result in total_result:
