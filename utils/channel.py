@@ -151,10 +151,10 @@ def get_channel_items() -> CategoryChannelData:
                                         if info:
                                             try:
                                                 resolution = info.get("resolution")
-                                                if info.get("delay") == -1 or info.get("speed") == 0 or (
+                                                if info.get("delay") == -1 or info.get("speed") < 0.1 or (
                                                         resolution and get_resolution_value(
-                                                        resolution) < min_resolution_value) or check_url_by_keywords(
-                                                        url, blacklist):
+                                                    resolution) < min_resolution_value) or check_url_by_keywords(
+                                                    url, blacklist):
                                                     invalid_channels.add(info["url"])
                                                     continue
                                                 if info["origin"] == "whitelist" and not any(
