@@ -749,7 +749,7 @@ def sort_channel_result(channel_data, result, filter_host=False, ipv6_support=Tr
                         ]
                         + result[cate][name]
                 )
-            sort_result = get_sort_result(name_results, name=name, logger=logger)
+            sort_result = get_sort_result(name_results, name=name, ipv6_support=ipv6_support, logger=logger)
             append_data_to_info_data(
                 channel_result,
                 cate,
