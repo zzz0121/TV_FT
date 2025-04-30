@@ -38,7 +38,7 @@ from utils.tools import (
     get_ip_address,
     convert_to_m3u,
     custom_print,
-    get_name_uri_from_dir
+    get_name_uri_from_dir, get_resolution_value
 )
 from utils.types import ChannelData, OriginType, CategoryChannelData
 
@@ -136,6 +136,7 @@ def get_channel_items() -> CategoryChannelData:
             try:
                 with gzip.open(constants.cache_path, "rb") as file:
                     old_result = pickle.load(file)
+                    min_resolution_value = config.min_resolution_value
                     for cate, data in channels.items():
                         if cate in old_result:
                             for name, info_list in data.items():
@@ -148,8 +149,10 @@ def get_channel_items() -> CategoryChannelData:
                                     for info in old_result[cate][name]:
                                         if info:
                                             try:
-                                                delay = info.get("delay")
-                                                if delay == -1:
+                                                resolution = info.get("resolution")
+                                                if info.get("delay") == -1 or info.get("speed") == 0 or (
+                                                        resolution and get_resolution_value(
+                                                    resolution) < min_resolution_value):
                                                     invalid_channels.add(info["url"])
                                                     continue
                                                 if info["origin"] == "whitelist" and not any(
@@ -720,7 +723,7 @@ async def test_speed(data, ipv6=False, callback=None):
     return grouped_results
 
 
-def sort_channel_result(channel_data, result, filter_host=False):
+def sort_channel_result(channel_data, result, filter_host=False, ipv6_support=True):
     """
     Sort channel result
     """
@@ -728,15 +731,22 @@ def sort_channel_result(channel_data, result, filter_host=False):
     logger = get_logger(constants.sort_log_path, level=INFO, init=True)
     for cate, obj in channel_data.items():
         for name, values in obj.items():
+            if not values:
+                continue
             if filter_host:
                 name_results = [
                     {**value, **get_speed_result(value["host"])}
                     for value in values
                 ]
             else:
-                name_results = ([value for value in values
-                                 if value["origin"] in ["whitelist", "live", "hls"]]
-                                + result[cate][name])
+                name_results = (
+                        [
+                            value for value in values
+                            if value["origin"] in ["whitelist", "live", "hls"] or
+                               (not ipv6_support and value["ipv_type"] == "ipv6")
+                        ]
+                        + result[cate][name]
+                )
             sort_result = get_sort_result(name_results, name=name, logger=logger)
             append_data_to_info_data(
                 channel_result,

@@ -435,13 +435,15 @@ def get_result_file_content(path=None, show_content=False, file_type=None):
     return response
 
 
-def remove_duplicates_from_list(data_list, seen, filter_host=False):
+def remove_duplicates_from_list(data_list, seen, filter_host=False, ipv6_support=True):
     """
     Remove duplicates from data list
     """
     unique_list = []
     for item in data_list:
         if item["origin"] in ["whitelist", "live", "hls"]:
+            continue
+        if not ipv6_support and item["ipv_type"] == "ipv6":
             continue
         part = item["host"] if filter_host else item["url"]
         if part not in seen:
@@ -450,15 +452,15 @@ def remove_duplicates_from_list(data_list, seen, filter_host=False):
     return unique_list
 
 
-def process_nested_dict(data, seen, filter_host=False):
+def process_nested_dict(data, seen, filter_host=False, ipv6_support=True):
     """
     Process nested dict
     """
     for key, value in data.items():
         if isinstance(value, dict):
-            process_nested_dict(value, seen, filter_host)
+            process_nested_dict(value, seen, filter_host, ipv6_support)
         elif isinstance(value, list):
-            data[key] = remove_duplicates_from_list(value, seen, filter_host)
+            data[key] = remove_duplicates_from_list(value, seen, filter_host, ipv6_support)
 
 
 def get_url_host(url):

@@ -135,7 +135,12 @@ class UpdateSource:
                 if config.open_speed_test:
                     urls_total = get_urls_len(self.channel_data)
                     test_data = copy.deepcopy(self.channel_data)
-                    process_nested_dict(test_data, seen=set(), filter_host=config.speed_test_filter_host)
+                    process_nested_dict(
+                        test_data,
+                        seen=set(),
+                        filter_host=config.speed_test_filter_host,
+                        ipv6_support=ipv6_support
+                    )
                     self.total = get_urls_len(test_data)
                     print(f"Total urls: {urls_total}, need to test speed: {self.total}")
                     self.update_progress(
@@ -150,8 +155,12 @@ class UpdateSource:
                         callback=lambda: self.pbar_update(name="测速", item_name="接口"),
                     )
                     cache_result = test_result
-                    self.channel_data = sort_channel_result(self.channel_data, test_result,
-                                                            filter_host=config.speed_test_filter_host)
+                    self.channel_data = sort_channel_result(
+                        self.channel_data,
+                        test_result,
+                        filter_host=config.speed_test_filter_host,
+                        ipv6_support=ipv6_support
+                    )
                     self.pbar.close()
                 self.update_progress(
                     f"正在生成结果文件",
