@@ -121,6 +121,7 @@ def get_channel_items() -> CategoryChannelData:
     local_data = get_name_urls_from_file(config.local_file, format_name_flag=True)
     whitelist = get_name_urls_from_file(constants.whitelist_path)
     whitelist_urls = get_urls_from_file(constants.whitelist_path)
+    blacklist = get_urls_from_file(constants.blacklist_path, pattern_search=False)
     whitelist_len = len(list(whitelist.keys()))
     if whitelist_len:
         print(f"Found {whitelist_len} channel in whitelist")
@@ -152,7 +153,8 @@ def get_channel_items() -> CategoryChannelData:
                                                 resolution = info.get("resolution")
                                                 if info.get("delay") == -1 or info.get("speed") == 0 or (
                                                         resolution and get_resolution_value(
-                                                    resolution) < min_resolution_value):
+                                                        resolution) < min_resolution_value) or check_url_by_keywords(
+                                                        url, blacklist):
                                                     invalid_channels.add(info["url"])
                                                     continue
                                                 if info["origin"] == "whitelist" and not any(
