@@ -747,7 +747,7 @@ def sort_channel_result(channel_data, result, filter_host=False, ipv6_support=Tr
                             if value["origin"] in ["whitelist", "live", "hls"] or
                                (not ipv6_support and value["ipv_type"] == "ipv6")
                         ]
-                        + result[cate][name]
+                        + result.get(cate, {}).get(name, [])
                 )
             sort_result = get_sort_result(name_results, name=name, ipv6_support=ipv6_support, logger=logger)
             append_data_to_info_data(
