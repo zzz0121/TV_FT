@@ -23,6 +23,7 @@ from online_search import OnlineSearchUI
 from epg import EpgUI
 from utils.speed import check_ffmpeg_installed_status
 import pystray
+from service.app import run_service
 
 
 class TkinterUI:
@@ -310,4 +311,6 @@ if __name__ == "__main__":
     root.after(0, config.copy)
     root.after(0, config.copy("utils/nginx-rtmp-win32"))
     root.after(0, config.copy("output"))
+    if config.open_service:
+        root.after(0, threading.Thread(target=run_service, daemon=True).start())
     root.mainloop()

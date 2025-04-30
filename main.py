@@ -8,7 +8,6 @@ from time import time
 from tqdm import tqdm
 
 import utils.constants as constants
-from service.app import run_service
 from updates.epg import get_epg
 from updates.fofa import get_channels_by_fofa
 from updates.hotel import get_channels_by_hotel
@@ -199,8 +198,6 @@ class UpdateSource:
                     True,
                     url=f"{get_ip_address()}" if open_service else None,
                 )
-                if open_service:
-                    run_service()
         except asyncio.exceptions.CancelledError:
             print("Update cancelled!")
 
