@@ -149,7 +149,7 @@ class UpdateSource:
                     self.start_time = time()
                     self.pbar = tqdm(total=self.total, desc="Speed test")
                     test_result = await test_speed(
-                        self.channel_data,
+                        test_data,
                         ipv6=ipv6_support,
                         callback=lambda: self.pbar_update(name="测速", item_name="接口"),
                     )
