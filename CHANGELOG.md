@@ -2,7 +2,7 @@
 
 ## v1.7.0
 
-### 2025/4/30
+### 2025/5/1
 
 ### 🚀 新功能 ###
 
@@ -11,6 +11,7 @@
 - 新增`频道别名`功能（`config/alias.txt`），提升频道名称匹配能力
 - 新增`EPG`功能（订阅文件配置`config/epg.txt`），显示频道预告信息
 - 支持`回放类接口`获取与生成
+- 新增`历史结果`的冻结与解冻，`冻结`：无效结果不参与测速，`解冻`：无结果时自动解冻重新测速
 - 新增`最大分辨率`限制`min_resolution`
 - 支持含`请求头`信息接口测速与生成，需播放器支持才可播放，可通过`open_headers`控制是否开启
 - 新增测速并发数量配置`speed_test_limit`，实现控制测速负载压力
@@ -23,7 +24,6 @@
 
 - 重构`测速与排序`逻辑，适配更多类型接口的测速（#1009）
 - 提供`内置结果`，解决首次运行等待期间无结果问题（可能不稳定，建议使用更新后结果）
-- 优化`历史结果`的使用，过滤历史无效接口，不再参与测速
 - 优化接口测速默认为`全接口测速`，解决Host共享结果部分接口测速不准确问题
 - 调整测速结果以`速率`排序，`分辨率`不再参与，解决部分低速率接口在前的问题
 - 默认开启`推流`，调整`HLS`分片配置，推荐使用`HLS`接口，缓解卡顿情况
@@ -60,6 +60,8 @@
 - Added `Channel Alias` feature (`config/alias.txt`) to improve channel name matching.
 - Added `EPG` feature (subscription file configuration `config/epg.txt`) to display channel program information.
 - Support for `Playback Interface` retrieval and generation.
+- Added `historical results` freezing and unfreezing. `Freezing`: Invalid results are excluded from speed testing.
+  `Unfreezing`: Automatically unfreezes and retests when no results are available.
 - Added `Maximum Resolution` limit `min_resolution`.
 - Support for speed testing and generation of interfaces with `Request Headers`. Requires player support for playback
   and can be controlled via `open_headers`.
@@ -75,8 +77,6 @@
 - Refactored `Speed Test and Sorting` logic to adapt to more types of interfaces (#1009).
 - Provided `Built-in Results` to address the issue of no results during the first run (may be unstable, recommended to
   use updated results).
-- Optimized the use of `Historical Results` by filtering out invalid historical interfaces, which will no longer
-  participate in speed tests.
 - Optimized interface speed testing to default to `Full Interface Speed Test`, resolving inaccuracies in speed tests for
   some interfaces with shared Host results.
 - Adjusted speed test results to sort by `Rate`, with `Resolution` no longer included, resolving the issue of low-rate
