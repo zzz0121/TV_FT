@@ -43,7 +43,7 @@ from utils.tools import (
 from utils.types import ChannelData, OriginType, CategoryChannelData
 
 channel_alias = Alias()
-invalid_channels = set()
+frozen_channels = set()
 
 
 def format_channel_data(url: str, origin: OriginType) -> ChannelData:
@@ -155,7 +155,7 @@ def get_channel_items() -> CategoryChannelData:
                                                         resolution and get_resolution_value(
                                                     resolution) < min_resolution_value) or check_url_by_keywords(
                                                     url, blacklist):
-                                                    invalid_channels.add(info["url"])
+                                                    frozen_channels.add(info["url"])
                                                     continue
                                                 if info["origin"] == "whitelist" and not any(
                                                         url in info["url"] for url in whitelist_urls):
@@ -528,7 +528,7 @@ def append_data_to_info_data(
 
             if not url_origin or not url:
                 continue
-            if url in invalid_channels or (url in existing_urls and (url_origin != "whitelist" and not headers)):
+            if url in frozen_channels or (url in existing_urls and (url_origin != "whitelist" and not headers)):
                 continue
 
             if not ipv_type:
