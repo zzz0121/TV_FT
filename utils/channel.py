@@ -737,7 +737,7 @@ def sort_channel_result(channel_data, result, filter_host=False, ipv6_support=Tr
     Sort channel result
     """
     channel_result = defaultdict(lambda: defaultdict(list))
-    logger = get_logger(constants.sort_log_path, level=INFO, init=True)
+    logger = get_logger(constants.speed_test_log_path, level=INFO, init=True)
     for cate, obj in channel_data.items():
         for name, values in obj.items():
             if not values:
