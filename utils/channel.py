@@ -136,6 +136,7 @@ def get_channel_items() -> CategoryChannelData:
             try:
                 with gzip.open(constants.cache_path, "rb") as file:
                     old_result = pickle.load(file)
+                    max_delay = config.speed_test_timeout * 1000
                     min_resolution_value = config.min_resolution_value
                     for cate, data in channels.items():
                         if cate in old_result:
@@ -149,8 +150,9 @@ def get_channel_items() -> CategoryChannelData:
                                     for info in old_result[cate][name]:
                                         if info:
                                             try:
+                                                delay = info.get("delay", -1)
                                                 resolution = info.get("resolution")
-                                                if info.get("delay") == -1 or info.get("speed") == 0 or (
+                                                if (delay == -1 or delay > max_delay) or info.get("speed") == 0 or (
                                                         resolution and get_resolution_value(
                                                     resolution) < min_resolution_value):
                                                     frozen_channels.add(info["url"])
