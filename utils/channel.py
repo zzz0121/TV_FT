@@ -150,7 +150,7 @@ def get_channel_items() -> CategoryChannelData:
                                     for info in old_result[cate][name]:
                                         if info:
                                             try:
-                                                delay = info.get("delay", -1)
+                                                delay = info.get("delay", 0)
                                                 resolution = info.get("resolution")
                                                 if (delay == -1 or delay > max_delay) or info.get("speed") == 0 or (
                                                         resolution and get_resolution_value(
