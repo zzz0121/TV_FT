@@ -59,7 +59,6 @@ other features, under development...
 - [suxuang/myIPTV](https://github.com/suxuang/myIPTV)
 - [kimwang1978/collect-tv-txt](https://github.com/kimwang1978/collect-tv-txt)
 - [asdjkl6/tv](https://github.com/asdjkl6/tv)
-- [yuanzl77/IPTV](https://github.com/yuanzl77/IPTV)
 - [fanmingming/live](https://github.com/fanmingming/live)
 - [vbskycn/iptv](https://github.com/vbskycn/iptv)
 
