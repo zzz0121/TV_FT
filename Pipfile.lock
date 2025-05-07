@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c8b9e564cccaa651eaf81f4487ae0735ac932a5b4d168d52d0eaa221c7161b62"
+            "sha256": "7058ef2c5558df7795d1fc869dd9664ad247f0f47406808456e6a1f65e7c016f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -809,6 +809,13 @@
             ],
             "index": "pypi",
             "version": "==2025.1"
+        },
+        "qqwry-py3": {
+            "hashes": [
+                "sha256:805060289974c8830c548da5b35030686943ce2054438457b20379a804e41dca"
+            ],
+            "index": "pypi",
+            "version": "==1.2.1"
         },
         "requests": {
             "hashes": [
