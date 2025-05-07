@@ -58,9 +58,9 @@ class IPChecker:
 
     def lookup(self, ip: str) -> tuple[str | None, str | None]:
         """
-        Lookup the IP address and return the country and organization
+        Lookup the IP address and return the location and ISP
         :param ip: The IP address to lookup
-        :return: A tuple of (country, organization)
+        :return: A tuple of (location, ISP)
         """
         try:
             result = self.q.lookup(ip)

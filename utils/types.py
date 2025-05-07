@@ -15,8 +15,8 @@ class ChannelData(TypedDict):
     resolution: NotRequired[str | None]
     origin: OriginType
     ipv_type: IPvType
-    country: NotRequired[str | None]
-    org: NotRequired[str | None]
+    location: NotRequired[str | None]
+    isp: NotRequired[str | None]
     headers: NotRequired[dict[str, str] | None]
     catchup: NotRequired[dict[str, str] | None]
     extra_info: NotRequired[str]

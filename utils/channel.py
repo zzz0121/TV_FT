@@ -45,8 +45,8 @@ from utils.types import ChannelData, OriginType, CategoryChannelData
 channel_alias = Alias()
 ip_checker = IPChecker()
 frozen_channels = set()
-country_list = config.country
-org_list = config.org
+location_list = config.location
+isp_list = config.isp
 
 
 def format_channel_data(url: str, origin: OriginType) -> ChannelData:
@@ -527,8 +527,8 @@ def append_data_to_info_data(
             resolution = item.get("resolution")
             url_origin = item.get("origin", origin)
             ipv_type = item.get("ipv_type")
-            country = item.get("country")
-            org = item.get("org")
+            location = item.get("location")
+            isp = item.get("isp")
             headers = item.get("headers")
             catchup = item.get("catchup")
             extra_info = item.get("extra_info", "")
@@ -546,15 +546,15 @@ def append_data_to_info_data(
                     if ipv_type_data is not None:
                         ipv_type_data[host] = ipv_type
 
-            if not country or not org:
+            if not location or not isp:
                 ip = ip_checker.get_ip(url)
                 if ip:
-                    country, org = ip_checker.lookup(ip)
+                    location, isp = ip_checker.lookup(ip)
 
-            if country and country_list and not any(item in country for item in country_list):
+            if location and location_list and not any(item in location for item in location_list):
                 continue
 
-            if org and org_list and not any(item in org for item in org_list):
+            if isp and isp_list and not any(item in isp for item in isp_list):
                 continue
 
             for idx, info in enumerate(info_data[category][name]):
@@ -579,8 +579,8 @@ def append_data_to_info_data(
                             "resolution": resolution,
                             "origin": origin,
                             "ipv_type": ipv_type,
-                            "country": country,
-                            "org": org,
+                            "location": location,
+                            "isp": isp,
                             "headers": headers,
                             "catchup": catchup,
                             "extra_info": extra_info
@@ -605,8 +605,8 @@ def append_data_to_info_data(
                     "resolution": resolution,
                     "origin": url_origin,
                     "ipv_type": ipv_type,
-                    "country": country,
-                    "org": org,
+                    "location": location,
+                    "isp": isp,
                     "headers": headers,
                     "catchup": catchup,
                     "extra_info": extra_info

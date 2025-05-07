@@ -9,30 +9,30 @@ class PreferUI:
         """
         Init prefer UI
         """
-        frame_country_org = tk.Frame(root)
-        frame_country_org.pack(fill=tk.X)
-        frame_country_org_column1 = tk.Frame(frame_country_org)
-        frame_country_org_column1.pack(side=tk.LEFT, fill=tk.Y)
-        frame_country_org_column2 = tk.Frame(frame_country_org)
-        frame_country_org_column2.pack(side=tk.RIGHT, fill=tk.Y)
+        frame_location_isp = tk.Frame(root)
+        frame_location_isp.pack(fill=tk.X)
+        frame_location_isp_column1 = tk.Frame(frame_location_isp)
+        frame_location_isp_column1.pack(side=tk.LEFT, fill=tk.Y)
+        frame_location_isp_column2 = tk.Frame(frame_location_isp)
+        frame_location_isp_column2.pack(side=tk.RIGHT, fill=tk.Y)
 
-        self.country_label = tk.Label(
-            frame_country_org_column1, text="归属地:", width=12
+        self.location_label = tk.Label(
+            frame_location_isp_column1, text="归属地:", width=12
         )
-        self.country_label.pack(side=tk.LEFT, padx=4, pady=8)
-        self.country_entry = tk.Entry(frame_country_org_column1, width=24)
-        self.country_entry.pack(side=tk.LEFT, padx=4, pady=8)
-        self.country_entry.insert(0, ",".join(config.country))
-        self.country_entry.bind("<KeyRelease>", self.update_country)
+        self.location_label.pack(side=tk.LEFT, padx=4, pady=8)
+        self.location_entry = tk.Entry(frame_location_isp_column1, width=24)
+        self.location_entry.pack(side=tk.LEFT, padx=4, pady=8)
+        self.location_entry.insert(0, ",".join(config.location))
+        self.location_entry.bind("<KeyRelease>", self.update_location)
 
-        self.org_label = tk.Label(
-            frame_country_org_column2, text="运营商:", width=12
+        self.isp_label = tk.Label(
+            frame_location_isp_column2, text="运营商:", width=12
         )
-        self.org_label.pack(side=tk.LEFT, padx=4, pady=8)
-        self.org_entry = tk.Entry(frame_country_org_column2, width=24)
-        self.org_entry.pack(side=tk.LEFT, padx=4, pady=8)
-        self.org_entry.insert(0, ",".join(config.org))
-        self.org_entry.bind("<KeyRelease>", self.update_org)
+        self.isp_label.pack(side=tk.LEFT, padx=4, pady=8)
+        self.isp_entry = tk.Entry(frame_location_isp_column2, width=24)
+        self.isp_entry.pack(side=tk.LEFT, padx=4, pady=8)
+        self.isp_entry.insert(0, ",".join(config.isp))
+        self.isp_entry.bind("<KeyRelease>", self.update_isp)
 
         config_options = [
             {"label_text": f"结果来源优先{i + 1}:", "combo_box_value": value}
@@ -101,18 +101,18 @@ class PreferUI:
             index_list[i] = origin_type_prefer_obj[item]
         return index_list
 
-    def update_country(self, event):
+    def update_location(self, event):
         config.set(
             "Settings",
-            "country",
-            self.country_entry.get(),
+            "location",
+            self.location_entry.get(),
         )
 
-    def update_org(self, event):
+    def update_isp(self, event):
         config.set(
             "Settings",
-            "org",
-            self.org_entry.get(),
+            "isp",
+            self.isp_entry.get(),
         )
 
     def update_ipv_type_prefer(self, event):
@@ -131,8 +131,8 @@ class PreferUI:
         self.prefer_ipv_type_combo.config(state=state)
         for input in self.ipv_type_input:
             input.change_state(state)
-        self.country_entry.config(state=state)
-        self.org_entry.config(state=state)
+        self.location_entry.config(state=state)
+        self.isp_entry.config(state=state)
         self.open_supply_checkbutton.config(state=state)
 
 

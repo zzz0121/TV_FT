@@ -388,7 +388,7 @@ def get_sort_result(results, name=None, supply=open_supply, filter_speed=open_fi
         try:
             if logger:
                 logger.info(
-                    f"Name: {name}, URL: {result["url"]}, IPv_Type: {result["ipv_type"]}, Country: {result.get('country')}, Org: {result.get('org')}, Date: {result["date"]}, Delay: {result_delay} ms, Speed: {result_speed:.2f} M/s, Resolution: {resolution}"
+                    f"Name: {name}, URL: {result["url"]}, IPv_Type: {result["ipv_type"]}, Location: {result.get('location')}, ISP: {result.get('isp')}, Date: {result["date"]}, Delay: {result_delay} ms, Speed: {result_speed:.2f} M/s, Resolution: {resolution}"
                 )
         except Exception as e:
             print(e)

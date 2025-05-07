@@ -68,13 +68,13 @@
 
 ## 特点
 
-- ✅ 自定义模板，生成您想要的频道
+- ✅ 自定义模板，支持别名，生成您想要的频道
 - ✅ 支持RTMP推流(live/hls)，提升播放体验
 - ✅ 支持多种获取源方式：本地源、组播源、酒店源、订阅源、关键字搜索
 - ✅ 支持回放类接口获取与生成
 - ✅ 支持EPG功能，显示频道预告内容
 - ✅ 接口测速验效，获取延迟、速率、分辨率，过滤无效接口
-- ✅ 偏好设置：IPv4、IPv6、接口来源排序优先级与数量配置、接口白名单
+- ✅ 偏好设置：IPv4、IPv6、接口来源排序优先级与数量配置、白名单、黑名单、归属地与运营商过滤
 - ✅ 定时执行，北京时间每日 6:00 与 18:00 执行更新
 - ✅ 支持多种运行方式：工作流、命令行、GUI 软件、Docker(amd64/arm64/arm v7)
 - ✨ 更多功能请见[配置参数](#配置)
@@ -131,7 +131,7 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 | open_request           | 开启查询请求，数据来源于网络（仅针对酒店源与组播源）                                                                                                                                            | False             |
 | open_rtmp              | 开启RTMP推流功能，需要安装FFmpeg，利用本地带宽提升接口播放体验                                                                                                                                  | False             |
 | open_service           | 开启页面服务，用于控制是否启动结果页面服务；如果使用青龙等平台部署，有专门设定的定时任务，需要更新完成后停止运行，可以关闭该功能                                                                                                      | True              |
-| open_speed_test        | 开启测速排序功能（响应速度、日期、分辨率）                                                                                                                                                 | True              |
+| open_speed_test        | 开启测速功能，获取响应时间、速率、分辨率                                                                                                                                                  | True              |
 | open_subscribe         | 开启订阅源功能                                                                                                                                                               | False             |
 | open_supply            | 开启补偿机制模式，用于控制当频道接口数量不足时，自动将不满足条件（例如低于最小速率）但可能可用的接口添加至结果中，从而避免结果为空的情况                                                                                                  | True              |
 | open_update            | 开启更新，用于控制是否更新接口，若关闭则所有工作模式（获取接口和测速）均停止                                                                                                                                | True              |
@@ -142,7 +142,7 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 | open_headers           | 开启使用M3U内含的请求头验证信息，用于测速等操作，注意：只有个别播放器支持播放这类含验证信息的接口，默认为关闭                                                                                                              | False             |
 | app_port               | 页面服务端口，用于控制页面服务的端口号                                                                                                                                                   | 8000              |
 | cdn_url                | CDN代理加速地址，用于订阅源、频道图标等资源的加速访问                                                                                                                                          |                   |
-| country                | 接口归属地，用于控制结果只包含填写的归属地类型，支持关键字过滤，英文逗号分隔，不填写表示不指定归属地，建议使用靠近使用者的归属地，能提升播放体验                                                                                              |                   |
+| location               | 接口归属地，用于控制结果只包含填写的归属地类型，支持关键字过滤，英文逗号分隔，不填写表示不指定归属地，建议使用靠近使用者的归属地，能提升播放体验                                                                                              |                   |
 | final_file             | 生成结果文件路径                                                                                                                                                              | output/result.txt |
 | hotel_num              | 结果中偏好的酒店源接口数量                                                                                                                                                         | 10                |
 | hotel_page_num         | 酒店地区获取分页数量                                                                                                                                                            | 1                 |
@@ -162,7 +162,7 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 | multicast_region_list  | 组播源地区列表，"全部"表示所有地区                                                                                                                                                    | 全部                |
 | online_search_num      | 结果中偏好的关键字搜索接口数量                                                                                                                                                       | 0                 |
 | online_search_page_num | 关键字搜索频道获取分页数量                                                                                                                                                         | 1                 |
-| org                    | 接口运营商，用于控制结果中只包含填写的运营商类型，支持关键字过滤，英文逗号分隔，不填写表示不指定运营商                                                                                                                   |                   |
+| isp                    | 接口运营商，用于控制结果中只包含填写的运营商类型，支持关键字过滤，英文逗号分隔，不填写表示不指定运营商                                                                                                                   |                   |
 | origin_type_prefer     | 结果偏好的接口来源，结果优先按该顺序进行排序，逗号分隔，例如：local,hotel,multicast,subscribe,online_search；local：本地源，hotel：酒店源，multicast：组播源，subscribe：订阅源，online_search：关键字搜索；不填写则表示不指定来源，按照接口速率排序 |                   |
 | recent_days            | 获取最近时间范围内更新的接口（单位天），适当减小可避免出现匹配问题                                                                                                                                     | 30                |
 | request_timeout        | 查询请求超时时长，单位秒(s)，用于控制查询接口文本链接的超时时长以及重试时长，调整此值能优化更新时间                                                                                                                   | 10                |
