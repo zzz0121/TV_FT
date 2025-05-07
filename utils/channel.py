@@ -772,7 +772,8 @@ def sort_channel_result(channel_data, result, filter_host=False, ipv6_support=Tr
             test_result = [] if filter_host or not result else result.get(cate, {}).get(name, [])
             for value in values:
                 if value["origin"] in ["whitelist", "live", "hls"] or (
-                        not ipv6_support and value["ipv_type"] == "ipv6"):
+                        not ipv6_support and result and value["ipv_type"] == "ipv6"
+                ):
                     whitelist_result.append(value)
                 elif filter_host or not result:
                     test_result.append({**value, **get_speed_result(value["host"])} if filter_host else value)
