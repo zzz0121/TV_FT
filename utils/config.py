@@ -367,6 +367,26 @@ class ConfigManager:
     def speed_test_limit(self):
         return self.config.getint("Settings", "speed_test_limit", fallback=10)
 
+    @property
+    def country(self):
+        return [
+            c.strip()
+            for c in self.config.get(
+                "Settings", "country", fallback=""
+            ).split(",")
+            if c.strip()
+        ]
+
+    @property
+    def org(self):
+        return [
+            o.strip()
+            for o in self.config.get(
+                "Settings", "org", fallback=""
+            ).split(",")
+            if o.strip()
+        ]
+
     def load(self):
         """
         Load the config
