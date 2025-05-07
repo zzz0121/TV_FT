@@ -758,7 +758,7 @@ async def test_speed(data, ipv6=False, callback=None):
     return grouped_results
 
 
-def sort_channel_result(channel_data, result, filter_host=False, ipv6_support=True):
+def sort_channel_result(channel_data, result=None, filter_host=False, ipv6_support=True):
     """
     Sort channel result
     """
