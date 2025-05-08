@@ -2,6 +2,7 @@ dist
 build
 docs
 tkinter_ui
+**/*.log
 **/*.md
 **/*.jpg
 **/*.png
