@@ -549,7 +549,7 @@ def append_data_to_info_data(
             if not location or not isp:
                 ip = ip_checker.get_ip(url)
                 if ip:
-                    location, isp = ip_checker.lookup(ip)
+                    location, isp = ip_checker.find_map(ip)
 
             if location and location_list and not any(item in location for item in location_list):
                 continue

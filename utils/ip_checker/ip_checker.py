@@ -1,13 +1,12 @@
 import socket
 from urllib.parse import urlparse
 
-from qqwry import QQwry
+import ipdb
 
 
 class IPChecker:
     def __init__(self):
-        self.q = QQwry()
-        self.q.load_file("utils/ip_checker/data/qqwry.dat")
+        self.db = ipdb.City("utils/ip_checker/data/qqwry.ipdb")
         self.url_host = {}
         self.host_ip = {}
         self.host_ipv_type = {}
@@ -31,13 +30,8 @@ class IPChecker:
         if host in self.host_ip:
             return self.host_ip[host]
 
-        try:
-            ip = socket.gethostbyname(host)
-        except socket.gaierror:
-            ip = None
-
-        self.host_ip[host] = ip
-        return ip
+        self.get_ipv_type(url)
+        return self.host_ip.get(host)
 
     def get_ipv_type(self, url: str) -> str:
         """
@@ -49,25 +43,38 @@ class IPChecker:
 
         try:
             addr_info = socket.getaddrinfo(host, None, socket.AF_UNSPEC, socket.SOCK_STREAM)
+            ip = next((info[4][0] for info in addr_info if info[0] == socket.AF_INET6), None)
+            if not ip:
+                ip = next((info[4][0] for info in addr_info if info[0] == socket.AF_INET), None)
             ipv_type = "ipv6" if any(info[0] == socket.AF_INET6 for info in addr_info) else "ipv4"
         except socket.gaierror:
+            ip = None
             ipv_type = "ipv4"
 
+        self.host_ip[host] = ip
         self.host_ipv_type[host] = ipv_type
         return ipv_type
 
-    def lookup(self, ip: str) -> tuple[str | None, str | None]:
+    def find_map(self, ip: str) -> tuple[str | None, str | None]:
         """
-        Lookup the IP address and return the location and ISP
-        :param ip: The IP address to lookup
+        Find the IP address and return the location and ISP
+        :param ip: The IP address to find
         :return: A tuple of (location, ISP)
         """
         try:
-            result = self.q.lookup(ip)
-            if result:
-                return result[0], result[1]
-            else:
+            result = self.db.find_map(ip, "CN")
+            if not result:
                 return None, None
+
+            location_parts = [
+                result.get('country_name', ''),
+                result.get('region_name', ''),
+                result.get('city_name', '')
+            ]
+            location = "-".join(filter(None, location_parts))
+            isp = result.get('isp_domain', None)
+
+            return location, isp
         except Exception as e:
-            print(f"Error on lookup: {e}")
+            print(f"Error on finding ip location and ISP: {e}")
             return None, None
