@@ -369,10 +369,16 @@ async def get_speed(data, headers=None, ipv6_proxy=None, filter_resolution=open_
         return result
 
 
-def get_sort_result(results, name=None, supply=open_supply, filter_speed=open_filter_speed,
-                    min_speed=min_speed_value,
-                    filter_resolution=open_filter_resolution, min_resolution=min_resolution_value,
-                    max_resolution=max_resolution_value, ipv6_support=True, logger=None) -> list[ChannelTestResult]:
+def get_sort_result(
+        results,
+        supply=open_supply,
+        filter_speed=open_filter_speed,
+        min_speed=min_speed_value,
+        filter_resolution=open_filter_resolution,
+        min_resolution=min_resolution_value,
+        max_resolution=max_resolution_value,
+        ipv6_support=True
+) -> list[ChannelTestResult]:
     """
     get the sort result
     """
@@ -385,13 +391,6 @@ def get_sort_result(results, name=None, supply=open_supply, filter_speed=open_fi
             result.get("delay") or -1,
             result.get("resolution")
         )
-        try:
-            if logger:
-                logger.info(
-                    f"Name: {name}, URL: {result["url"]}, IPv_Type: {result["ipv_type"]}, Location: {result.get('location')}, ISP: {result.get('isp')}, Date: {result["date"]}, Delay: {result_delay} ms, Speed: {result_speed:.2f} M/s, Resolution: {resolution}"
-                )
-        except Exception as e:
-            print(e)
         if result_delay < 0:
             continue
         if not supply:

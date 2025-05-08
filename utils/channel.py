@@ -777,12 +777,7 @@ def sort_channel_result(channel_data, result=None, filter_host=False, ipv6_suppo
                     whitelist_result.append(value)
                 elif filter_host or not result:
                     test_result.append({**value, **get_speed_result(value["host"])} if filter_host else value)
-            total_result = whitelist_result + get_sort_result(
-                test_result,
-                name=name,
-                ipv6_support=ipv6_support,
-                logger=logger
-            )
+            total_result = whitelist_result + get_sort_result(test_result, ipv6_support=ipv6_support)
             append_data_to_info_data(
                 channel_result,
                 cate,
@@ -790,6 +785,10 @@ def sort_channel_result(channel_data, result=None, filter_host=False, ipv6_suppo
                 total_result,
                 check=False,
             )
+            for result in total_result:
+                logger.info(
+                    f"Name: {name}, URL: {result.get('url')}, IPv_Type: {result.get("ipv_type")}, Location: {result.get('location')}, ISP: {result.get('isp')}, Date: {result["date"]}, Delay: {result.get('delay') or -1} ms, Speed: {result.get('speed') or 0:.2f} M/s, Resolution: {result.get('resolution')}"
+                )
     logger.handlers.clear()
     return channel_result
 
