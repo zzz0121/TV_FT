@@ -1,6 +1,5 @@
 dist
 build
-**/*.log
 docs
 tkinter_ui
 **/*.md
