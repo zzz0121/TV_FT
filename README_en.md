@@ -86,8 +86,8 @@ other features, under development...
 ## Latest results
 
 > [!IMPORTANT]\
-> The following addresses may fail to be accessed domestically. It is recommended to prepend a proxy address for use.
-> The public account can reply with `CDN` to obtain it.
+> The following addresses may not be stable for access within China. It is recommended to prepend a proxy address for
+> use. You can reply with `cdn` in the public account to obtain it.
 
 ### Live Sources
 
