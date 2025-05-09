@@ -36,8 +36,9 @@
 - 移除无效的`IPv6订阅源`
 
 > [!NOTE]
-> 有小伙伴对部署后首次更新时间变长有疑问，其实这是正常的，因为从`v1.7.0`
-> 开始，为了提升频道测速准确性，默认对接口进行全量测速，目前首次运行一般`30分钟`左右，如果是新增的频道比较多首次运行时间会比较长。
+> 有小伙伴对部署后首次更新时间变长有疑问，其实这是正常的。
+> 因为从`v1.7.0`开始，为了提升频道测速准确性，默认对接口进行全量测速。
+> 目前首次运行一般`30分钟`左右，如果是新增的频道比较多首次运行时间会比较长。
 > 但这并不会影响使用，由于默认模板已经内置了部分更新结果（`output/cache.pkl.gz`），部署后可立即访问使用。
 > 同时测速阶段可根据历史数据跳过无效接口，无需担心，后续更新所需时间会明显减少。
 > 如果你介意，可开启Host共享模式（`speed_test_filter_host = True`），相同Host的接口会共享测速结果，可以大幅降低测速所需时间，但结果准确性也会下降。
@@ -79,16 +80,17 @@
 - Removed invalid `IPv6 subscription sources`.
 
 > [!NOTE]
-> Some users have raised concerns about the longer initial update time after deployment. This is normal because,
-> starting from `v1.7.0`, to improve the accuracy of channel speed testing, all interfaces are tested by default. The
-> first run usually takes about `30 minutes`, and it may take longer if there are many new channels.
-> However, this does not affect usage, as the default template already includes some updated results (
-`output/cache.pkl.gz`), allowing immediate access after deployment.
-> During the speed testing phase, invalid interfaces can be skipped based on historical data, so there is no need to
-> worry. Subsequent updates will take significantly less time.
+> Some users have raised concerns about the longer initial update time after deployment. This is actually normal.
+> Starting from `v1.7.0`, to improve the accuracy of channel speed tests,
+> full speed testing of interfaces is enabled by default.
+> The first run usually takes about `30 minutes`. If there are many new channels, the initial run time may be longer.
+> However, this does not affect usage, as the default template already includes some pre-updated results
+> (`output/cache.pkl.gz`), allowing immediate access after deployment.
+> During the speed test phase, invalid interfaces can be skipped based on historical data, so there is no need to worry.
+> Subsequent updates will take significantly less time.
 > If you are concerned, you can enable Host sharing mode (`speed_test_filter_host = True`), where interfaces with the
-> same Host share speed test results. This can greatly reduce the time required for speed testing, but the accuracy of the
-> results may decrease.
+> same Host share speed test results. This can greatly reduce the time required for speed testing,
+> but the accuracy of the results may decrease.
 
 </details>
 
