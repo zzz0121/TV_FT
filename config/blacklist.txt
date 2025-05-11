@@ -2,3 +2,9 @@
 # This is the interface blacklist list, the interface matching the keyword will be blocked, one keyword line
 /audio/
 freetv
+hebtv
+bkpcp
+jwplay
+ldncctvwbcdcnc
+jdshipin
+huuc
