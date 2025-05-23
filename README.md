@@ -176,6 +176,7 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 | subscribe_num          | 结果中偏好的订阅源接口数量                                                                                                                                                         | 10                |
 | time_zone              | 时区，可用于控制更新时间显示的时区，可选值：Asia/Shanghai 或其它时区编码                                                                                                                           | Asia/Shanghai     |
 | urls_limit             | 单个频道接口数量                                                                                                                                                              | 10                |
+| update_interval        | 定时执行更新时间间隔，单位小时，设置0或空则只运行一次，不作用于工作流                                                                                                                                   | 12                |
 | update_time_position   | 更新时间显示位置，需要开启 open_update_time 才能生效，可选值：top、bottom，top: 显示于结果顶部，bottom: 显示于结果底部                                                                                       | top               |
 
 ## 快速上手
@@ -251,11 +252,10 @@ docker run -d -p 8000:8000 guovern/iptv-api
 
 ##### 环境变量：
 
-| 变量          | 描述                 | 默认值                |
-|:------------|:-------------------|:-------------------|
-| APP_HOST    | 服务host地址，可修改使用公网域名 | "http://localhost" |
-| APP_PORT    | 服务端口               | 8000               |
-| UPDATE_CRON | 定时任务执行时间           | "0 22,10 * * *"    |
+| 变量       | 描述                 | 默认值                |
+|:---------|:-------------------|:-------------------|
+| APP_HOST | 服务host地址，可修改使用公网域名 | "http://localhost" |
+| APP_PORT | 服务端口               | 8000               |
 
 #### 3. 更新结果
 
