@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<tv date="20250625063032 +0800">
+<tv date="20250625070911 +0800">
 	<channel id="CCTV-1">
 		<display-name lang="zh">CCTV-1</display-name>
 	</channel>
@@ -5769,6 +5769,12 @@
 	<programme channel="黑莓动画" start="20250625105000 +0800" stop="20250625121700 +0800">
 		<title lang="zh">葫芦兄弟电影版</title>
 	</programme>
+	<programme channel="黑莓动画" start="20250625121700 +0800" stop="20250625131700 +0800">
+		<title lang="zh">哪吒闹海</title>
+	</programme>
+	<programme channel="黑莓动画" start="20250625131700 +0800" stop="20250625143900 +0800">
+		<title lang="zh">邋遢大王奇遇记电影版</title>
+	</programme>
 	<channel id="黑莓电影">
 		<display-name lang="zh">黑莓电影</display-name>
 	</channel>
@@ -5792,6 +5798,12 @@
 	</programme>
 	<programme channel="黑莓电影" start="20250625105000 +0800" stop="20250625122400 +0800">
 		<title lang="zh">见习女警</title>
+	</programme>
+	<programme channel="黑莓电影" start="20250625122400 +0800" stop="20250625135700 +0800">
+		<title lang="zh">袁天罡之异域妖踪</title>
+	</programme>
+	<programme channel="黑莓电影" start="20250625135700 +0800" stop="20250625152600 +0800">
+		<title lang="zh">西游降魔篇之快活城</title>
 	</programme>
 	<channel id="黑龙江卫视">
 		<display-name lang="zh">黑龙江卫视</display-name>
