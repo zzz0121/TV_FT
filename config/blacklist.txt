@@ -6,3 +6,5 @@ http://z.b.bkpcp.top
 http://j.x.bkpcp.top
 http://jwplay.hebyun.com.cn
 https://ldncctvwbcdcnc.v.wscdns.com
+http://[2409:8087:1a01:df::4033]
+http://[2409:8087:1a0a:df::404b]
