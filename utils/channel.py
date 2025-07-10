@@ -536,7 +536,7 @@ def append_data_to_info_data(
 
             if not url_origin or not url:
                 continue
-            if url in frozen_channels or (url in existing_urls and (url_origin != "whitelist" and not headers)):
+            if url in frozen_channels or (url in existing_urls and not headers):
                 continue
 
             if not ipv_type:
