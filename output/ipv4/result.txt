@@ -3,10 +3,7 @@ CCTV-4,https://global.cgtn.cicc.media.caton.cloud/master/cgtn-america.m3u8
 CCTV-5,http://omnix.cn:4000/udp/225.1.8.89:8000
 CCTV-7,http://omnix.cn:4000/udp/225.1.8.7:8104
 北京卫视,http://satellitepull.cnr.cn/live/wxbtv/playlist.m3u8
-湖南卫视,http://drive.mxmy.net:8888/udp/239.3.1.132:8012
-东方卫视,http://drive.mxmy.net:8888/udp/239.3.1.136:8032
 东方卫视,http://omnix.cn:4000/udp/225.1.8.45:8032
-天津卫视,http://drive.mxmy.net:8888/udp/239.3.1.141:1234
 安徽卫视,http://satellitepull.cnr.cn/live/wxahws/playlist.m3u8
 安徽卫视,http://drive.mxmy.net:8888/udp/239.3.1.211:8064
 山东卫视,http://satellitepull.cnr.cn/live/wxsdws/playlist.m3u8
@@ -14,7 +11,6 @@ CCTV-7,http://omnix.cn:4000/udp/225.1.8.7:8104
 深圳卫视,http://satellitepull.cnr.cn/live/wxszws/playlist.m3u8
 深圳卫视,http://38.64.72.148:80/hls/modn/list/4007/playlist.m3u8
 广东卫视,http://satellitepull.cnr.cn/live/wxgdws/playlist.m3u8
-广东卫视,http://drive.mxmy.net:8888/udp/239.3.1.142:8048
 重庆卫视,http://satellitepull.cnr.cn/live/wxcqws/playlist.m3u8
 重庆卫视,http://drive.mxmy.net:8888/udp/239.3.1.122:8160
 江西卫视,http://satellitepull.cnr.cn/live/wx32jiangxws/playlist.m3u8
@@ -24,9 +20,7 @@ CCTV-7,http://omnix.cn:4000/udp/225.1.8.7:8104
 河南卫视,http://satellitepull.cnr.cn/live/wxhnws/playlist.m3u8
 河南卫视,http://1.94.31.214/php/hntv.php?id=hnws
 湖北卫视,http://satellitepull.cnr.cn/live/wx32hubws/playlist.m3u8
-湖北卫视,http://drive.mxmy.net:8888/udp/239.3.1.138:8044
 东南卫视,http://satellitepull.cnr.cn/live/wx32fjws/playlist.m3u8
-东南卫视,http://drive.mxmy.net:8888/udp/239.3.1.156:8148
 贵州卫视,http://satellitepull.cnr.cn/live/wx32gzws/playlist.m3u8
 贵州卫视,http://drive.mxmy.net:8888/udp/239.3.1.149:8076
 海南卫视,http://satellitepull.cnr.cn/live/wxhainlyws/playlist.m3u8
@@ -56,7 +50,9 @@ CCTV-15,url
 CCTV-16,url
 CCTV-17,url
 浙江卫视,url
+湖南卫视,url
 四川卫视,url
+天津卫视,url
 香港卫视,url
 卡酷少儿,url
 金鹰卡通,url
