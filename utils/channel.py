@@ -103,10 +103,12 @@ def get_channel_data_from_file(channels, file, whitelist, open_local=config.open
                     if url:
                         category_dict[name].append(format_channel_data(url, "local"))
                     if local_data:
-                        format_key = format_name(name)
-                        if format_key in local_data:
-                            for local_url in local_data[format_key]:
-                                category_dict[name].append(format_channel_data(local_url, "local"))
+                        alias_names = channel_alias.get(name)
+                        alias_names.add(format_name(name))
+                        for alias_name in alias_names:
+                            if alias_name in local_data:
+                                for local_url in local_data[alias_name]:
+                                    category_dict[name].append(format_channel_data(local_url, "local"))
     return channels
 
 
@@ -121,7 +123,7 @@ def get_channel_items() -> CategoryChannelData:
     if config.open_rtmp:
         live_data = get_name_uri_from_dir(constants.live_path)
         hls_data = get_name_uri_from_dir(constants.hls_path)
-    local_data = get_name_urls_from_file(config.local_file, format_name_flag=True)
+    local_data = get_name_urls_from_file(config.local_file)
     whitelist = get_name_urls_from_file(constants.whitelist_path)
     whitelist_urls = get_urls_from_file(constants.whitelist_path)
     whitelist_len = len(list(whitelist.keys()))
