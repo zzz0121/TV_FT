@@ -538,7 +538,9 @@ def append_data_to_info_data(
 
             if not url_origin or not url:
                 continue
-            if url in frozen_channels or (url in existing_urls and not headers):
+
+            if (url in frozen_channels or (url in existing_urls and not headers) or
+                    (check and check_url_by_keywords(url, blacklist))):
                 continue
 
             if not ipv_type:
@@ -548,6 +550,9 @@ def append_data_to_info_data(
                     ipv_type = ip_checker.get_ipv_type(url)
                     if ipv_type_data is not None:
                         ipv_type_data[host] = ipv_type
+
+            if check and not check_ipv_type_match(ipv_type):
+                continue
 
             if not location or not isp:
                 ip = ip_checker.get_ip(url)
@@ -561,63 +566,60 @@ def append_data_to_info_data(
                 continue
 
             host_exist = False
-            for idx, info in enumerate(channel_list):
-                if not info.get("url"):
-                    continue
-
-                info_host = get_url_host(info["url"])
-                if info_host == host:
-                    host_exist = True
-                    info_url = info["url"]
-                    # Replace if new URL is longer or has headers
-                    if len(info_url) < len(url) or headers:
-                        if info_url in existing_urls:
-                            existing_urls.remove(info_url)
-                        existing_urls.add(url)
-                        channel_list[idx] = {
-                            "id": channel_id,
-                            "url": url,
-                            "host": host,
-                            "date": date,
-                            "delay": delay,
-                            "speed": speed,
-                            "resolution": resolution,
-                            "origin": origin,
-                            "ipv_type": ipv_type,
-                            "location": location,
-                            "isp": isp,
-                            "headers": headers,
-                            "catchup": catchup,
-                            "extra_info": extra_info
-                        }
-                    break
-                continue
-
-            if not host_exist:
+            if check:
                 if whitelist and check_url_by_keywords(url, whitelist):
                     url_origin = "whitelist"
+                if url_origin not in ["whitelist", "live", "hls"]:
+                    for idx, info in enumerate(channel_list):
+                        if not info.get("url"):
+                            continue
 
-                if (not check or
-                        url_origin in ["whitelist", "live", "hls"] or
-                        (check_ipv_type_match(ipv_type) and
-                         not check_url_by_keywords(url, blacklist))):
-                    channel_list.append({
-                        "id": channel_id,
-                        "url": url,
-                        "host": host,
-                        "date": date,
-                        "delay": delay,
-                        "speed": speed,
-                        "resolution": resolution,
-                        "origin": url_origin,
-                        "ipv_type": ipv_type,
-                        "location": location,
-                        "isp": isp,
-                        "headers": headers,
-                        "catchup": catchup,
-                        "extra_info": extra_info
-                    })
-                    existing_urls.add(url)
+                        info_host = get_url_host(info["url"])
+                        if info_host == host:
+                            host_exist = True
+                            info_url = info["url"]
+                            # Replace if new URL is longer or has headers
+                            if len(info_url) < len(url) or headers:
+                                if info_url in existing_urls:
+                                    existing_urls.remove(info_url)
+                                existing_urls.add(url)
+                                channel_list[idx] = {
+                                    "id": channel_id,
+                                    "url": url,
+                                    "host": host,
+                                    "date": date,
+                                    "delay": delay,
+                                    "speed": speed,
+                                    "resolution": resolution,
+                                    "origin": origin,
+                                    "ipv_type": ipv_type,
+                                    "location": location,
+                                    "isp": isp,
+                                    "headers": headers,
+                                    "catchup": catchup,
+                                    "extra_info": extra_info
+                                }
+                            break
+                        continue
+
+            if not host_exist:
+                channel_list.append({
+                    "id": channel_id,
+                    "url": url,
+                    "host": host,
+                    "date": date,
+                    "delay": delay,
+                    "speed": speed,
+                    "resolution": resolution,
+                    "origin": url_origin,
+                    "ipv_type": ipv_type,
+                    "location": location,
+                    "isp": isp,
+                    "headers": headers,
+                    "catchup": catchup,
+                    "extra_info": extra_info
+                })
+                existing_urls.add(url)
 
         except Exception as e:
             print(f"Error processing channel data: {e}")
