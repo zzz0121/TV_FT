@@ -125,6 +125,12 @@ def get_channel_data_from_file(channels, file, whitelist, open_local=config.open
                             if alias_name in local_data:
                                 for local_url in local_data[alias_name]:
                                     category_dict[name].append(format_channel_data(local_url, "local"))
+                            elif '*' in alias_name:
+                                pattern = '^' + re.escape(alias_name).replace('\\*', '.*') + '$'
+                                for local_name in local_data:
+                                    if re.match(pattern, local_name):
+                                        for local_url in local_data[local_name]:
+                                            category_dict[name].append(format_channel_data(local_url, "local"))
     return channels
 
 
