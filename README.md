@@ -59,8 +59,6 @@
 - [iptv-org/iptv](https://github.com/iptv-org/iptv)
 - [suxuang/myIPTV](https://github.com/suxuang/myIPTV)
 - [kimwang1978/collect-tv-txt](https://github.com/kimwang1978/collect-tv-txt)
-- [asdjkl6/tv](https://github.com/asdjkl6/tv)
-- [fanmingming/live](https://github.com/fanmingming/live)
 - [vbskycn/iptv](https://github.com/vbskycn/iptv)
 
 📍频道图标来自：
