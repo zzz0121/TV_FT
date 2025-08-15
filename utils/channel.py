@@ -20,7 +20,8 @@ from utils.speed import (
     get_speed,
     get_speed_result,
     get_sort_result,
-    check_ffmpeg_installed_status
+    check_ffmpeg_installed_status,
+    logger as speed_test_logger
 )
 from utils.tools import (
     format_name,
@@ -40,13 +41,15 @@ from utils.tools import (
     custom_print,
     get_name_uri_from_dir, get_resolution_value
 )
-from utils.types import ChannelData, OriginType, CategoryChannelData
+from utils.types import ChannelData, OriginType, CategoryChannelData, TestResult
 
 channel_alias = Alias()
 ip_checker = IPChecker()
 frozen_channels = set()
 location_list = config.location
 isp_list = config.isp
+max_delay = config.speed_test_timeout * 1000
+min_resolution_value = config.min_resolution_value
 
 
 def format_channel_data(url: str, origin: OriginType) -> ChannelData:
@@ -67,6 +70,19 @@ def format_channel_data(url: str, origin: OriginType) -> ChannelData:
         "ipv_type": None,
         "extra_info": info
     }
+
+
+def check_channel_need_frozen(info: TestResult) -> bool:
+    """
+    Check if the channel need to be frozen
+    """
+    delay = info.get("delay", 0)
+    if (delay == -1 or delay > max_delay) or info.get("speed", 0) == 0:
+        return True
+    if info.get("resolution"):
+        if get_resolution_value(info["resolution"]) < min_resolution_value:
+            return True
+    return False
 
 
 def get_channel_data_from_file(channels, file, whitelist, open_local=config.open_local,
@@ -104,7 +120,7 @@ def get_channel_data_from_file(channels, file, whitelist, open_local=config.open
                         category_dict[name].append(format_channel_data(url, "local"))
                     if local_data:
                         alias_names = channel_alias.get(name)
-                        alias_names.add(format_name(name))
+                        alias_names.update([name, format_name(name)])
                         for alias_name in alias_names:
                             if alias_name in local_data:
                                 for local_url in local_data[alias_name]:
@@ -141,8 +157,6 @@ def get_channel_items() -> CategoryChannelData:
             try:
                 with gzip.open(constants.cache_path, "rb") as file:
                     old_result = pickle.load(file)
-                    max_delay = config.speed_test_timeout * 1000
-                    min_resolution_value = config.min_resolution_value
                     for cate, data in channels.items():
                         if cate in old_result:
                             for name, info_list in data.items():
@@ -152,14 +166,11 @@ def get_channel_items() -> CategoryChannelData:
                                     if (url := item["url"])
                                 ]
                                 if name in old_result[cate]:
+                                    channel_data = channels[cate][name]
                                     for info in old_result[cate][name]:
                                         if info:
                                             try:
-                                                delay = info.get("delay", 0)
-                                                resolution = info.get("resolution")
-                                                if (delay == -1 or delay > max_delay) or info.get("speed") == 0 or (
-                                                        resolution and get_resolution_value(
-                                                    resolution) < min_resolution_value):
+                                                if check_channel_need_frozen(info):
                                                     frozen_channels.add(info["url"])
                                                     continue
                                                 if info["origin"] == "whitelist" and not any(
@@ -168,12 +179,18 @@ def get_channel_items() -> CategoryChannelData:
                                             except:
                                                 pass
                                             if info["url"] not in urls:
-                                                channels[cate][name].append(info)
-                                    if not channels[cate][name]:
+                                                channel_data.append(info)
+
+                                    if not channel_data:
                                         for info in old_result[cate][name]:
                                             if info and info["url"] not in urls:
-                                                channels[cate][name].append(info)
+                                                channel_data.append(info)
                                                 frozen_channels.discard(info["url"])
+
+                                    channel_urls = {d["url"] for d in channel_data}
+                                    if channel_urls.issubset(frozen_channels):
+                                        frozen_channels.difference_update(channel_urls)
+
             except Exception as e:
                 print(f"Error loading cache file: {e}")
                 pass
@@ -747,11 +764,14 @@ async def test_speed(data, ipv6=False, callback=None):
     for cate, channel_obj in data.items():
         for name, info_list in channel_obj.items():
             for info in info_list:
+                info['name'] = name
                 task = asyncio.create_task(limited_get_speed(info))
                 tasks.append(task)
                 channel_map[task] = (cate, name, info)
 
     results = await asyncio.gather(*tasks)
+
+    speed_test_logger.handlers.clear()
 
     grouped_results = {}
 
