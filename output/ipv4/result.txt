@@ -1,6 +1,6 @@
 📺央视频道,#genre#
 CCTV-1,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv1
-CCTV-3,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv3
+CCTV-2,http://113.26.202.52:1299/tsfile/live/0002_1.m3u8
 CCTV-4,https://global.cgtn.cicc.media.caton.cloud/master/cgtn-america.m3u8
 CCTV-5+,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv5p
 CCTV-6,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv6
@@ -9,10 +9,11 @@ CCTV-9,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv9
 CCTV-13,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv13
 CCTV-14,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv14
 CCTV-15,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv15
-CCTV-16,http://121.60.56.116:10001/rtp/239.69.1.247:11124
 CCTV-17,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv17
 北京卫视,http://satellitepull.cnr.cn/live/wxbtv/playlist.m3u8
+湖南卫视,http://113.26.202.52:1299/tsfile/live/0128_1.m3u8
 山东卫视,http://satellitepull.cnr.cn/live/wxsdws/playlist.m3u8
+山东卫视,http://113.26.202.52:1299/tsfile/live/0131_1.m3u8
 山西卫视,http://satellitepull.cnr.cn/live/wxssxws/playlist.m3u8
 深圳卫视,http://satellitepull.cnr.cn/live/wxszws/playlist.m3u8
 深圳卫视,http://38.64.72.148:80/hls/modn/list/4007/playlist.m3u8
@@ -21,9 +22,9 @@ CCTV-17,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv17
 重庆卫视,http://satellitepull.cnr.cn/live/wxcqws/playlist.m3u8
 江西卫视,http://satellitepull.cnr.cn/live/wx32jiangxws/playlist.m3u8
 河北卫视,http://satellitepull.cnr.cn/live/wxhebws/playlist.m3u8
-河南卫视,http://satellitepull.cnr.cn/live/wxhnws/playlist.m3u8
 河南卫视,http://1.94.31.214/php/hntv.php?id=hnws
 河南卫视,http://lxajh.top/tv/hn.php?id=hnws
+河南卫视,http://satellitepull.cnr.cn/live/wxhnws/playlist.m3u8
 东南卫视,http://satellitepull.cnr.cn/live/wx32fjws/playlist.m3u8
 贵州卫视,http://satellitepull.cnr.cn/live/wx32gzws/playlist.m3u8
 海南卫视,http://satellitepull.cnr.cn/live/wxhainlyws/playlist.m3u8
@@ -34,14 +35,14 @@ CCTV-17,http://mg.hmysapp.cn:177/ckmg/zb.php?id=cctv17
 哒啵赛事,http://fjcm-2118.live.iptv.darwinchow.com/PLTV/88888888/224/3221227331/index.m3u8
 
 🈳无结果频道,#genre#
-CCTV-2,url
+CCTV-3,url
 CCTV-5,url
 CCTV-8,url
 CCTV-10,url
 CCTV-11,url
 CCTV-12,url
+CCTV-16,url
 浙江卫视,url
-湖南卫视,url
 东方卫视,url
 四川卫视,url
 天津卫视,url
