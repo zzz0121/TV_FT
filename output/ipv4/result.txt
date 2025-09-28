@@ -1,14 +1,7 @@
 📺央视频道,#genre#
 CCTV-1,https://p2.bdstatic.com/rtmp.liveshow.lss-user.baidubce.com/live/stream_bduid_6488563992_8982723413/merged_1707497046297_88536_25144_41936.m3u8
-CCTV-1,http://1.180.2.93:9901/tsfile/live/0001_1.m3u8?key=txiptv
-CCTV-2,http://1.180.2.93:9901/tsfile/live/0002_1.m3u8?key=txiptv
-CCTV-3,http://1.180.2.93:9901/tsfile/live/0003_1.m3u8?key=txiptv
-CCTV-4,http://1.180.2.93:9901/tsfile/live/0004_1.m3u8?key=txiptv
 CCTV-4,https://global.cgtn.cicc.media.caton.cloud/master/cgtn-america.m3u8
-CCTV-5,http://1.180.2.93:9901/tsfile/live/0005_1.m3u8?key=txiptv
-CCTV-15,http://111.227.196.164:9901/tsfile/live/0015_1.m3u8
 北京卫视,http://satellitepull.cnr.cn/live/wxbtv/playlist.m3u8
-东方卫视,http://171.121.65.54:9901/tsfile/live/0107_1.m3u8?key=txiptv&playlive=1&authid=0
 山东卫视,http://satellitepull.cnr.cn/live/wxsdws/playlist.m3u8
 山西卫视,http://satellitepull.cnr.cn/live/wxssxws/playlist.m3u8
 深圳卫视,http://satellitepull.cnr.cn/live/wxszws/playlist.m3u8
@@ -16,9 +9,9 @@ CCTV-15,http://111.227.196.164:9901/tsfile/live/0015_1.m3u8
 重庆卫视,http://satellitepull.cnr.cn/live/wxcqws/playlist.m3u8
 江西卫视,http://satellitepull.cnr.cn/live/wx32jiangxws/playlist.m3u8
 河北卫视,http://satellitepull.cnr.cn/live/wxhebws/playlist.m3u8
-河北卫视,http://171.121.65.54:9901/tsfile/live/0128_1.m3u8?key=txiptv&playlive=1&authid=0
 河南卫视,http://1.94.31.214/php/hntv.php?id=hnws
 河南卫视,http://satellitepull.cnr.cn/live/wxhnws/playlist.m3u8
+河南卫视,http://223.167.230.34:4022/rtp/239.45.0.3:5140
 东南卫视,http://satellitepull.cnr.cn/live/wx32fjws/playlist.m3u8
 贵州卫视,http://satellitepull.cnr.cn/live/wx32gzws/playlist.m3u8
 海南卫视,http://satellitepull.cnr.cn/live/wxhainlyws/playlist.m3u8
@@ -28,6 +21,9 @@ CCTV-15,http://111.227.196.164:9901/tsfile/live/0015_1.m3u8
 新疆卫视,http://satellitepull.cnr.cn/live/wxxjws/playlist.m3u8
 
 🈳无结果频道,#genre#
+CCTV-2,url
+CCTV-3,url
+CCTV-5,url
 CCTV-5+,url
 CCTV-6,url
 CCTV-7,url
@@ -38,10 +34,12 @@ CCTV-11,url
 CCTV-12,url
 CCTV-13,url
 CCTV-14,url
+CCTV-15,url
 CCTV-16,url
 CCTV-17,url
 浙江卫视,url
 湖南卫视,url
+东方卫视,url
 四川卫视,url
 天津卫视,url
 安徽卫视,url
