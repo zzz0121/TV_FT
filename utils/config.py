@@ -391,6 +391,14 @@ class ConfigManager:
     def update_interval(self):
         return self.config.getfloat("Settings", "update_interval", fallback=12)
 
+    @property
+    def logo_url(self):
+        return self.config.get("Settings", "logo_url", fallback="")
+
+    @property
+    def logo_type(self):
+        return self.config.get("Settings", "logo_type", fallback="png")
+
     def load(self):
         """
         Load the config

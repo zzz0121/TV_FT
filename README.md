@@ -77,6 +77,7 @@
 | **RTMP推流**   |  ✅   | 支持Live与HLS模式，提升直播播放体验                        |
 | **回放类接口**    |  ✅   | 支持回放类接口的获取与生成                                |
 | **EPG电子节目单** |  ✅   | 显示频道预告内容                                     |
+| **频道台标**     |  ✅   | 支持自定义频道台标库来源                                 |
 | **接口测速验效**   |  ✅   | 获取延迟、速率、分辨率，并过滤无效接口                          |
 | **高级偏好设置**   |  ✅   | IPv4/IPv6、接口排序优先级、数量配置、黑白名单、归属地与运营商过滤        |
 | **定时任务**     |  ✅   | 默认北京时间每日 6:00 与 18:00 自动更新，可自定义时间或间歇更新       |
@@ -159,6 +160,8 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 | location               | 接口归属地，用于控制结果只包含填写的归属地类型，支持关键字过滤，英文逗号分隔，不填写表示不指定归属地，建议使用靠近使用者的归属地，能提升播放体验                                                                                              |                   |
 | local_file             | 本地源文件路径                                                                                                                                                               | config/local.txt  |
 | local_num              | 结果中偏好的本地源接口数量                                                                                                                                                         | 10                |
+| logo_url               | 频道台标库地址                                                                                                                                                               |                   |
+| logo_type              | 频道台标文件类型                                                                                                                                                              | png               |
 | min_resolution         | 接口最小分辨率，需要开启 open_filter_resolution 才能生效                                                                                                                              | 1920x1080         |
 | max_resolution         | 接口最大分辨率，需要开启 open_filter_resolution 才能生效                                                                                                                              | 1920x1080         |
 | min_speed              | 接口最小速率（单位M/s），需要开启 open_filter_speed 才能生效                                                                                                                             | 0.5               |
