@@ -120,6 +120,10 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 
 ## Config
 
+> [!NOTE]\
+> All configuration items below are located in the `config/config.ini` file. After modifying and saving, rerun to take
+> effect.
+
 | Configuration Item     | Description                                                                                                                                                                                                                                                                                                                                                                                                                      | Default Value     |
 |:-----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|
 | open_driver            | Enable browser execution, If there are no updates, this mode can be enabled, which consumes more performance                                                                                                                                                                                                                                                                                                                     | False             |
