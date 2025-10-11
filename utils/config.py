@@ -39,6 +39,7 @@ class ConfigManager:
     def __init__(self):
         self.config = None
         self.load()
+        self.override_config_with_env()
 
     def __getattr__(self, name, *args, **kwargs):
         return getattr(self.config, name, *args, **kwargs)
@@ -413,6 +414,13 @@ class ConfigManager:
             if os.path.exists(config_file):
                 with open(config_file, "r", encoding="utf-8") as f:
                     self.config.read_file(f)
+
+    def override_config_with_env(self):
+        for section in self.config.sections():
+            for key in self.config[section]:
+                env_val = os.getenv(key)
+                if env_val is not None:
+                    self.config.set(section, key, env_val)
 
     def set(self, section, key, value):
         """

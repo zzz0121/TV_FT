@@ -121,8 +121,8 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 ## Config
 
 > [!NOTE]\
-> The following configuration items are located in the `config/config.ini` file. After modifying and saving, restart to
-> take effect.
+> The following configuration items are located in the `config/config.ini` file. You can modify them via the
+> configuration file or environment variables (with the same item name). After saving changes, restart to take effect.
 
 | Configuration Item     | Description                                                                                                                                                                                                                                                                                                                                                                                                                      | Default Value     |
 |:-----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|
