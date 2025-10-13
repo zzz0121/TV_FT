@@ -34,6 +34,7 @@ other features, under development...
 - [🔗 Latest results](#latest-results)
 - [⚙️ Config parameter](#Config)
 - [🚀 Quick Start](#quick-start)
+    - [Directory Description](#directory-description)
     - [Workflow](#workflow)
     - [Command Line](#command-line)
     - [GUI Software](#gui-software)
@@ -192,6 +193,35 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 
 ## Quick Start
 
+### Directory Description
+
+| Directory Path            | Description                                                           |
+|:--------------------------|:----------------------------------------------------------------------|
+| config                    | Configuration files directory, includes config files, templates, etc. |
+| config/config.ini         | Configuration parameters file                                         |
+| config/rtp                | Multicast IPs for each region/operator                                |
+| config/demo.txt           | Channel template                                                      |
+| config/alias.txt          | Channel aliases                                                       |
+| config/blacklist.txt      | Interface blacklist                                                   |
+| config/whitelist.txt      | Interface whitelist                                                   |
+| config/subscribe.txt      | Channel subscription sources list                                     |
+| config/local.txt          | Local source file                                                     |
+| config/epg.txt            | EPG subscription sources list                                         |
+| output                    | Output files directory, includes generated result files, etc.         |
+| output/data               | Result data cache directory                                           |
+| output/epg                | EPG result directory                                                  |
+| output/ipv4               | IPv4 result directory                                                 |
+| output/ipv6               | IPv6 result directory                                                 |
+| output/result(.m3u/txt)   | m3u/txt result                                                        |
+| output/live(.m3u/txt)     | RTMP live stream result                                               |
+| output/hls(.m3u/txt)      | RTMP hls stream result                                                |
+| output/log                | Log files directory                                                   |
+| output/log/result.log     | Valid result log                                                      |
+| output/log/speed_test.log | Speed test log                                                        |
+| output/log/statistic.log  | Statistics result log                                                 |
+| output/log/nomatch.log    | Unmatched channel records                                             |
+| source.json               | VOD source configuration file                                         |
+
 ### Workflow
 
 Fork this project and initiate workflow updates, detailed steps are available
@@ -287,6 +317,8 @@ Taking the host path /etc/docker as an example:
 | /content        | Endpoint content                                |
 | /log/result     | Log of valid results                            |
 | /log/speed-test | Log of all interfaces involved in speed testing |
+| /log/statistic  | Log of statistics results                       |
+| /log/nomatch    | Log of unmatched channels                       |
 
 - RTMP Streaming:
 

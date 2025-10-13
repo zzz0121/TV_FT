@@ -33,6 +33,7 @@
 - [🔗 最新结果](#最新结果)
 - [⚙️ 配置参数](#配置)
 - [🚀 快速上手](#快速上手)
+    - [目录说明](#目录说明)
     - [工作流](#工作流)
     - [命令行](#命令行)
     - [GUI软件](#GUI-软件)
@@ -188,6 +189,35 @@ https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 
 ## 快速上手
 
+### 目录说明
+
+| 目录路径                      | 说明                  |
+|:--------------------------|:--------------------|
+| config                    | 配置文件目录，包含配置文件、模板文件等 |
+| config/config.ini         | 配置参数文件              |
+| config/rtp                | 各地区运营商组播源ip         |
+| config/demo.txt           | 频道模板                |
+| config/alias.txt          | 频道别名                |
+| config/blacklist.txt      | 接口黑名单               |
+| config/whitelist.txt      | 接口白名单               |
+| config/subscribe.txt      | 频道订阅源列表             |
+| config/local.txt          | 本地源文件               |
+| config/epg.txt            | EPG订阅源列表            |
+| output                    | 结果文件目录，包含生成的结果文件等   |
+| output/data               | 结果数据缓存目录            |
+| output/epg                | EPG结果目录             |
+| output/ipv4               | IPv4结果目录            |
+| output/ipv6               | IPv6结果目录            |
+| output/result(.m3u/txt)   | m3u/txt结果           |
+| output/live(.m3u/txt)     | RTMP推流live结果        |
+| output/hls(.m3u/txt)      | RTMP推流hls结果         |
+| output/log                | 日志文件目录              |
+| output/log/result.log     | 有效结果日志              |
+| output/log/speed_test.log | 测速日志                |
+| output/log/statistic.log  | 统计结果日志              |
+| output/log/nomatch.log    | 未匹配频道记录             |
+| source.json               | 点播源配置文件             |
+
 ### 工作流
 
 Fork 本项目并开启工作流更新，具体步骤请见[详细教程](./docs/tutorial.md)
@@ -280,6 +310,8 @@ docker run -d -p 8000:8000 guovern/iptv-api
 | /content        | 接口文本内容      |
 | /log/result     | 有效结果的日志     |
 | /log/speed-test | 所有参与测速接口的日志 |
+| /log/statistic  | 统计结果的日志     |
+| /log/nomatch    | 未匹配频道的日志    |
 
 - RTMP 推流：
 
