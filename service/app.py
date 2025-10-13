@@ -205,6 +205,18 @@ def show_speed_log():
     return response
 
 
+@app.route("/log/statistic")
+def show_statistic_log():
+    if os.path.exists(constants.statistic_log_path):
+        with open(constants.statistic_log_path, "r", encoding="utf-8") as file:
+            content = file.read()
+    else:
+        content = constants.waiting_tip
+    response = make_response(content)
+    response.mimetype = "text/plain"
+    return response
+
+
 def get_channel_data(channel_id):
     conn = get_db_connection(constants.rtmp_data_path)
     channel_data = {}
