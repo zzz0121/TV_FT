@@ -217,6 +217,18 @@ def show_statistic_log():
     return response
 
 
+@app.route("/log/nomatch")
+def show_nomatch_log():
+    if os.path.exists(constants.nomatch_log_path):
+        with open(constants.nomatch_log_path, "r", encoding="utf-8") as file:
+            content = file.read()
+    else:
+        content = constants.waiting_tip
+    response = make_response(content)
+    response.mimetype = "text/plain"
+    return response
+
+
 def get_channel_data(channel_id):
     conn = get_db_connection(constants.rtmp_data_path)
     channel_data = {}
