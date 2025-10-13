@@ -3,6 +3,7 @@ import base64
 import gzip
 import json
 import logging
+import math
 import os
 import pickle
 import re
@@ -40,7 +41,8 @@ from utils.tools import (
     get_ip_address,
     convert_to_m3u,
     custom_print,
-    get_name_uri_from_dir, get_resolution_value
+    get_name_uri_from_dir,
+    get_resolution_value
 )
 from utils.types import ChannelData, OriginType, CategoryChannelData, TestResult
 
@@ -848,14 +850,19 @@ def generate_channel_statistic(logger, cate, name, values):
     ipv4_count = len([v for v in values if v.get("ipv_type") == "ipv4"])
     ipv6_count = len([v for v in values if v.get("ipv_type") == "ipv6"])
     min_delay = min((v.get("delay") for v in values if (v.get("delay") or -1) != -1), default=-1)
-    max_speed = max((v.get("speed") for v in values if (v.get("speed") or 0) > 0), default=0)
-    avg_speed = (sum((v.get("speed") or 0) for v in values if (v.get("speed") or 0) > 0) / valid) if valid > 0 else 0
+    max_speed = max((v.get("speed") for v in values if (v.get("speed") or 0) > 0 and not math.isinf(v.get("speed"))),
+                    default=0)
+    avg_speed = (
+        sum((v.get("speed") or 0) for v in values if
+            (v.get("speed") or 0) > 0 and not math.isinf(v.get("speed"))) / valid
+        if valid > 0 else 0
+    )
     max_resolution = max(
         (v.get("resolution") for v in values if v.get("resolution")),
         key=lambda r: get_resolution_value(r),
         default="None"
     )
-    content = f"Category: {cate}, Name: {name}, Total: {total}, Valid: {valid}, Valid Rate: {valid_rate:.2f}%, Whitelist: {whitelist_count}, IPv4: {ipv4_count}, IPv6: {ipv6_count}, Min Delay: {min_delay} ms, Max Speed: {max_speed:.2f} M/s, Avg Speed: {avg_speed:.2f} M/s, Max Resolution: {max_resolution}"
+    content = f"Category: {cate}, Name: {name}, Total: {total}, Valid: {valid}, Valid Percent: {valid_rate:.2f}%, Whitelist: {whitelist_count}, IPv4: {ipv4_count}, IPv6: {ipv6_count}, Min Delay: {min_delay} ms, Max Speed: {max_speed:.2f} M/s, Avg Speed: {avg_speed:.2f} M/s, Max Resolution: {max_resolution}"
     print(f"\n{content}")
     logger.info(content)
 
