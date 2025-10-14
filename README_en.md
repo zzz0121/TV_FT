@@ -75,7 +75,7 @@ other features, under development...
 | Feature                               | Status | Description                                                                                                |
 |:--------------------------------------|:------:|:-----------------------------------------------------------------------------------------------------------|
 | **Custom Templates**                  |   ✅    | Generate personalized channels as you wish                                                                 |
-| **Channel Aliases**                   |   ✅    | Improve channel result acquisition and accuracy                                                            |
+| **Channel Alias**                     |   ✅    | Improves channel result coverage and accuracy, supports regular expressions                                |
 | **Multiple Source Types**             |   ✅    | Supports local sources, multicast, hotel sources, subscriptions, and keyword search                        |
 | **RTMP Streaming**                    |   ✅    | Supports Live and HLS modes to enhance live playback experience                                            |
 | **Playback Interfaces**               |   ✅    | Supports acquisition and generation of playback interfaces                                                 |
