@@ -22,8 +22,7 @@ from utils.speed import (
     get_speed,
     get_speed_result,
     get_sort_result,
-    check_ffmpeg_installed_status,
-    logger as speed_test_logger
+    check_ffmpeg_installed_status
 )
 from utils.tools import (
     format_name,
@@ -767,6 +766,7 @@ async def test_speed(data, ipv6=False, callback=None):
     open_headers = config.open_headers
     get_resolution = config.open_filter_resolution and check_ffmpeg_installed_status()
     semaphore = asyncio.Semaphore(config.speed_test_limit)
+    logger = get_logger(constants.speed_test_log_path, level=INFO, init=True)
 
     async def limited_get_speed(channel_info):
         """
@@ -779,6 +779,7 @@ async def test_speed(data, ipv6=False, callback=None):
                 headers=headers,
                 ipv6_proxy=ipv6_proxy_url,
                 filter_resolution=get_resolution,
+                logger=logger,
                 callback=callback,
             )
 
@@ -795,7 +796,7 @@ async def test_speed(data, ipv6=False, callback=None):
 
     results = await asyncio.gather(*tasks)
 
-    speed_test_logger.handlers.clear()
+    logger.handlers.clear()
 
     grouped_results = {}
 
