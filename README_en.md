@@ -4,7 +4,9 @@
 </div>
 
 <div align="center">A highly customizable IPTV interface update project 📺, with customizable channel menus, automatic live stream acquisition, speed testing, and validation to generate usable results, achieving 『✨instant playback experience🚀』</div>
-<br>
+<p align="center">
+<a href="https://trendshift.io/repositories/12327" target="_blank"><img src="https://trendshift.io/api/badge/repositories/12327" alt="Guovin%2Fiptv-api | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</p>
 <p align="center">
   <a href="https://github.com/Guovin/iptv-api/releases/latest">
     <img src="https://img.shields.io/github/v/release/guovin/iptv-api" />
