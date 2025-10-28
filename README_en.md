@@ -52,7 +52,7 @@ other features, under development...
 - [📖 Detailed Tutorial](./docs/tutorial_en.md)
 - [🗓️ Changelog](./CHANGELOG.md)
 - [❤️ Appreciate](#appreciate)
-- [👀 Follow the public account](#follow)
+- [👀 Follow](#follow)
 - [⭐️ Star History](#star-history)
 - [📣 Disclaimer](#disclaimer)
 - [⚖️ License](#license)
