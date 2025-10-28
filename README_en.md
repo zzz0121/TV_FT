@@ -370,7 +370,13 @@ Taking the host path /etc/docker as an example:
 
 ## Follow
 
-Wechat public account search for Govin, or scan the code to receive updates and learn more tips:
+### GitHub
+
+Follow my GitHub account [Guovin](https://github.com/Guovin) to find more useful projects
+
+### WeChat public account
+
+WeChat public account search for Govin, or scan the code to receive updates and learn more tips:
 
 ![Wechat public account](./static/images/qrcode.jpg)
 
