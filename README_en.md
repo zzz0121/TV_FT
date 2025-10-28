@@ -3,8 +3,8 @@
   <h1 align="center">IPTV-API</h1>
 </div>
 
-📺 IPTV live-source auto-update platform — 『🤖 Fully automated collection, filtering, speed-testing, and generation
-pipeline 🚀』 — supports extensive customization; enter the result URL into a player to watch
+📺 IPTV live-source auto-update platform — 🤖 fully automated collection, filtering, speed-testing, and generation
+pipeline 🚀. Supports extensive customization; paste the resulting URL into your player to watch
 
 <p align="center">
     <br>
