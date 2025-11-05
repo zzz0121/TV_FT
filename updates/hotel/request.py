@@ -82,7 +82,7 @@ async def get_channels_by_hotel(callback=None):
                             name=f"Foodie hotel search:{name}",
                         )
                     except Exception as e:
-                        page_soup = get_soup_requests(page_url, data=post_form)
+                        print(e)
                     if not page_soup:
                         print(f"{name}:Request fail.")
                         return info_list
@@ -185,7 +185,7 @@ async def get_channels_by_hotel(callback=None):
             for item in result
         ]
         request_channels = await get_channels_by_subscribe_urls(
-            urls, hotel=True, retry=False, error_print=False
+            urls, hotel=True, retry=False, error_print=False, pbar_desc="Processing get hotel json"
         )
         channels = merge_objects(channels, request_channels)
         pbar.close()
