@@ -58,6 +58,8 @@ async def get_channels_by_hotel(callback=None):
             name = f"{region}"
             info_list = []
             driver = None
+            page_soup = None
+            code = None
             try:
                 if open_driver:
                     driver = setup_driver()
@@ -67,15 +69,14 @@ async def get_channels_by_hotel(callback=None):
                             name=f"Foodie hotel search:{name}",
                         )
                     except Exception as e:
+                        print(e)
                         driver.close()
                         driver.quit()
                         driver = setup_driver()
                         driver.get(page_url)
                     search_submit(driver, name)
                 else:
-                    page_soup = None
                     post_form = {"saerch": name}
-                    code = None
                     try:
                         page_soup = retry_func(
                             lambda: get_soup_requests(page_url, data=post_form),
