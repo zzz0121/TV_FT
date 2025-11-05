@@ -97,7 +97,7 @@ async def get_channels_by_multicast(names, callback=None):
                             name=f"multicast search:{name}",
                         )
                     except Exception as e:
-                        page_soup = get_soup_requests(pageUrl, data=post_form)
+                        print(e)
                     if not page_soup:
                         print(f"{name}:Request fail.")
                         return {"region": region, "type": type, "data": info_list}
