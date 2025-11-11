@@ -2,12 +2,12 @@ name: 'Update schedule'
 
 on:
   schedule:
-    - cron: '0 22,10 * * *'
+    - cron: '0 3 * * 2,6'  # 每周二（2）和周六（6）的 UTC 时间 3:00 触发
   workflow_dispatch:
     branches:
       - master
       - dev
-      - gd
+      - gd    
 jobs:
   push:
     runs-on: ${{ matrix.operating-system }}
