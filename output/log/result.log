@@ -1,3 +1,269 @@
+Name: CCTV1, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-1H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV2, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-2H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV3, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-3H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV4, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-4H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV5, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-5H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV5+, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-5plusH265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV6, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-6H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV7, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-7H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV8, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-8H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV9, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-9H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV10, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-10H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV11, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-11-H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV12, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-12H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV13, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-xw_4000.m3u8?E&U&A&K&P&S
+Name: CCTV14, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-14H265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV15, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-15-yyH265_4000.m3u8?E&U&A&K&P&S
+Name: CCTV16, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-16_4000.m3u8?E&U&A&K&P&S
+Name: CCTV16-4k, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-16-4K_8000.m3u8?E&U&A&K&P&S
+Name: CCTV17, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CCTV-17_4000.m3u8?E&U&A&K&P&S
+Name: CCTV4K, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ys4Kcq_2000.m3u8?E&U&A&K&P&S
+Name: 中国天气, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/zgqx_4000.m3u8?E&U&A&K&P&S
+Name: CETV1, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CETV-1H264_4000.m3u8?E&U&A&K&P&S
+Name: CETV2, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CETV-2_4000.m3u8?E&U&A&K&P&S
+Name: CETV4, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CETV-4H264_2000.m3u8?E&U&A&K&P&S
+Name: 北京卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/bjwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 东方卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dfwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 天津卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/tjwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 重庆卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/cqwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 黑龙江卫视， URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hljwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 吉林卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jlwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 辽宁卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lnwsHDH264_4000.m3u8?E&U&A&K&P&S
+Name: 内蒙古卫视， URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/nmgws_4000.m3u8?E&U&A&K&P&S
+Name: 甘肃卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gsws_4000.m3u8?E&U&A&K&P&S
+Name: 青海卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/qhwsH264_2000.m3u8?E&U&A&K&P&S
+Name: 陕西卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/sxws_4000.m3u8?E&U&A&K&P&S
+Name: 山西卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/sxws42_4000.m3u8?E&U&A&K&P&S
+Name: 山东卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/sdwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 安徽卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ahwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 河南卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hnws35_4000.m3u8?E&U&A&K&P&S
+Name: 湖北卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hbwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 湖南卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hnwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 江西卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jxwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 江苏卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jswsH265_4000.m3u8?E&U&A&K&P&S
+Name: 浙江卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/zjwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 东南卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dnwsfjwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 广东卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gdwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 深圳卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/szwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 广西卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gxws_4000.m3u8?E&U&A&K&P&S
+Name: 云南卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ynws_4000.m3u8?E&U&A&K&P&S
+Name: 贵州卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gzwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 四川卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/scwsH265_4000.m3u8?E&U&A&K&P&S
+Name: 康巴卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/kbwsH264_2000.m3u8?E&U&A&K&P&S
+Name: 新疆卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xjws_4000.m3u8?E&U&A&K&P&S
+Name: 兵团卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/btws_4000.m3u8?E&U&A&K&P&S
+Name: 西藏卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xzwsH264_2000.m3u8?E&U&A&K&P&S
+Name: 海南卫视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hnws_4000.m3u8?E&U&A&K&P&S
+Name: CHC影迷电影, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lnwsCHC-HDH265_4000.m3u8?E&U&A&K&P&S
+Name: CHC动作电影, URL:http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wqCHCdzdyH265_4000.m3u8?E&U&A&K&P&S
+Name: CHC家庭影院, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jbtygqCHCjtyyH265_4000.m3u8?E&U&A&K&P&S
+Name: 北京纪实科教, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/bjjs_2000.m3u8?E&U&A&K&P&S
+Name: 四海钓鱼, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/shdy_4000.m3u8?E&U&A&K&P&S
+Name: 卡酷少儿, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/kkkt_4000.m3u8?E&U&A&K&P&S
+Name: 证劵服务, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jz_2000.m3u8?E&U&A&K&P&S
+Name: 东方财经, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dfcj_4000.m3u8?E&U&A&K&P&S
+Name: 动漫秀场, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/yybb-dmxc-H265_4000.m3u8?E&U&A&K&P&S
+Name: 都市剧场, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/yxfydsjcHDH265_4000.m3u8?E&U&A&K&P&S
+Name: 法治天地, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/fztx_4000.m3u8?E&U&A&K&P&S
+Name: 劲爆体育, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lqhxjcHDH265_4000.m3u8?E&U&A&K&P&S
+Name: 金色学堂, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jspd_4000.m3u8?E&U&A&K&P&S
+Name: 欢笑剧场, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hxjc-4k_8000.m3u8?E&U&A&K&P&S
+Name: 魅力足球, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/mlyy_4000.m3u8?E&U&A&K&P&S
+Name: 生活时尚, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/shssH265_4000.m3u8?E&U&A&K&P&S
+Name: 新视觉,h URL: ttp://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ycxsjH265_4000.m3u8?E&U&A&K&P&S
+Name: 汽摩,ht URL: tp://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/qmpdH264_2000.m3u8?E&U&A&K&P&S
+Name: 家有购物, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jygw_4000.m3u8?E&U&A&K&P&S
+Name: 家庭理财, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jtlc_4000.m3u8?E&U&A&K&P&S
+Name: 优购物,h URL: ttp://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ygw_4000.m3u8?E&U&A&K&P&S
+Name: 山东教育, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/sdjy_4000.m3u8?E&U&A&K&P&S
+Name: 梨园频道, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ly_4000.m3u8?E&U&A&K&P&S
+Name: 武术世界, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wssj_4000.m3u8?E&U&A&K&P&S
+Name: 文物宝库, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wwbk_4000.m3u8?E&U&A&K&P&S
+Name: 茶频道,h URL: ttp://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/cpd_4000.m3u8?E&U&A&K&P&S
+Name: 金鹰纪实, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jyjsHDH265_4000.m3u8?E&U&A&K&P&S
+Name: 金鹰卡通, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jykt_2000.m3u8?E&U&A&K&P&S
+Name: 快乐垂钓, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/fyzqklcdHDH265_4000.m3u8?E&U&A&K&P&S
+Name: 先锋乒羽, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xfpy_4000.m3u8?E&U&A&K&P&S
+Name: 财富天下, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/cftx_4000.m3u8?E&U&A&K&P&S
+Name: 嘉佳卡通, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jjkt_2000.m3u8?E&U&A&K&P&S
+Name: 天元围棋, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/tywq_2000.m3u8?E&U&A&K&P&S
+Name: 重温经典, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CWJD_4000.m3u8?E&U&A&K&P&S
+Name: 四川经济, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/SCTV-2-H265_4000.m3u8?E&U&A&K&P&S
+Name: 四川文化, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/SCTV-3-H265_4000.m3u8?E&U&A&K&P&S
+Name: 四川新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/SCTV-4H265_4000.m3u8?E&U&A&K&P&S
+Name: 四川影视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/SCTV-5-scysH265_4000.m3u8?E&U&A&K&P&S
+Name: 四川妇女, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/SCTV-7-_4000.m3u8?E&U&A&K&P&S
+Name: 四川科教, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/SCTV-ggSCTV-8_4000.m3u8?E&U&A&K&P&S
+Name: 四川乡村, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/SCTV-kjSCTV-9-_4000.m3u8?E&U&A&K&P&S
+Name: 星空购物. URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xkgwgq_4000.m3u8?E&U&A&K&P&S
+Name: 峨嵋电影, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/emdygqH265_4000.m3u8?E&U&A&K&P&S
+Name: 精品导视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jpdsH265_4000.m3u8?E&U&A&K&P&S
+Name: 精品导视2 URL: ,http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jpdsgq-hkkp_4000.m3u8?E&U&A&K&P&S
+Name: 川网导视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/cwdsHDH264_4000.m3u8?E&U&A&K&P&S
+Name: 4K电影, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/emdy4k_8000.m3u8?E&U&A&K&P&S
+Name: 成都新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CDTV-1_4000.m3u8?E&U&A&K&P&S
+Name: 成都经济, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CDTV-2_4000.m3u8?E&U&A&K&P&S
+Name: 成都都市, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CDTV-3_4000.m3u8?E&U&A&K&P&S
+Name: 成都影视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CDTV-4_4000.m3u8?E&U&A&K&P&S
+Name: 成都公共, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CDTV-5_4000.m3u8?E&U&A&K&P&S
+Name: 成都少儿, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/CDTV-6_2000.m3u8?E&U&A&K&P&S
+Name: 成都购物, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/mrgw_4000.m3u8?E&U&A&K&P&S
+Name: 成都高新, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/cdgxdstgq_2000.m3u8?E&U&A&K&P&S
+Name: 龙泉新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lqxw_2000.m3u8?E&U&A&K&P&S
+Name: 郫都新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pxds1_2000.m3u8?E&U&A&K&P&S
+Name: 蒲江综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pjxw_4000.m3u8?E&U&A&K&P&S
+Name: 彭州综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pzxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 邛崃综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/qlds1t_2000.m3u8?E&U&A&K&P&S
+Name: 双流综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/slgq_2000.m3u8?E&U&A&K&P&S
+Name: 温江新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wjytH264_2000.m3u8?E&U&A&K&P&S
+Name: 新都综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xdzhpd_2000.m3u8?E&U&A&K&P&S
+Name: 新津综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xjzh_4000.m3u8?E&U&A&K&P&S
+Name: 绵阳新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/myytH265_4000.m3u8?E&U&A&K&P&S
+Name: 绵阳科技, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/myetH265_4000.m3u8?E&U&A&K&P&S
+Name: 安州综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/azgq_2000.m3u8?E&U&A&K&P&S
+Name: 北川综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/bcxwHD_2000.m3u8?E&U&A&K&P&S
+Name: 涪城综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/fcgq_2000.m3u8?E&U&A&K&P&S
+Name: 江油综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jyxwHD_2000.m3u8?E&U&A&K&P&S
+Name: 平武综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pwgq_4000.m3u8?E&U&A&K&P&S
+Name: 三台一套, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/stxwHD_2000.m3u8?E&U&A&K&P&S
+Name: 盐亭综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ytzh_2000.m3u8?E&U&A&K&P&S
+Name: 梓潼综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ztgq_2000.m3u8?E&U&A&K&P&S
+Name: 攀钢新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pgxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 米易综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/myxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 盐边综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ybtgq_2000.m3u8?E&U&A&K&P&S
+Name: 仁和新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/rhxwH264_2000.m3u8?E&U&A&K&P&S
+Name: 广元综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gyzhH265_4000.m3u8?E&U&A&K&P&SName: 朝天综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ctxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 苍溪综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/cxxwgqH265_4000.m3u8?E&U&A&K&P&S
+Name: 剑阁综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jgxwzhH265_4000.m3u8?E&U&A&K&P&S
+Name: 利州综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lzxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 青川综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/qcxwzhH265_4000.m3u8?E&U&A&K&P&S
+Name: 旺苍新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wcxwzhH265_4000.m3u8?E&U&A&K&P&S
+Name: 昭化综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/zhxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 古蔺新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/glxwzhgq_2000.m3u8?E&U&A&K&P&S
+Name: 合江新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hjxw_2000.m3u8?E&U&A&K&P&S
+Name: 泸县综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lxxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 叙永综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xyxw_2000.m3u8?E&U&A&K&P&S
+Name: 德阳新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dyxwgq-HD-_2000.m3u8?E&U&A&K&P&S
+Name: 德阳文旅, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dygggq-HD-_2000.m3u8?E&U&A&K&P&S
+Name: 广汉综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ghxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 旌阳综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jyxwgq-HD-_2000.m3u8?E&U&A&K&P&S
+Name: 罗江综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ljxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 绵竹综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/mzxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 中江新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/zjxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 宜宾新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ybytH264_2000.m3u8?E&U&A&K&P&S
+Name: 宜宾公共, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ybetH264_2000.m3u8?E&U&A&K&P&S
+Name: 宜宾导视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ybds_2000.m3u8?E&U&A&K&P&S
+Name: 珙县新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gxzh_2000.m3u8?E&U&A&K&P&S
+Name: 高县一套, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gxt_2000.m3u8?E&U&A&K&P&S
+Name: 江安综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jat_2000.m3u8?E&U&A&K&P&S
+Name: 南溪综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/nxt_2000.m3u8?E&U&A&K&P&S
+Name: 屏山新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/psxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 兴文综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xwt_2000.m3u8?E&U&A&K&P&S
+Name: 叙州新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ybx_2000.m3u8?E&U&A&K&P&S
+Name: 筠连新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ylyt_2000.m3u8?E&U&A&K&P&S
+Name: 长宁综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/znzh_2000.m3u8?E&U&A&K&P&S
+Name: 宁新综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/snxwzhHDH265_4000.m3u8?E&U&A&K&P&S
+Name: 遂宁文化, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/sngggq_2000.m3u8?E&U&A&K&P&S
+Name: 安居综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ajxw_2000.m3u8?E&U&A&K&P&S
+Name: 船山综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/csxw_2000.m3u8?E&U&A&K&P&S
+Name: 大英新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dyxwzhH265_4000.m3u8?E&U&A&K&P&S
+Name: 蓬溪新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pxxw_2000.m3u8?E&U&A&K&P&S
+Name: 射洪综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/shzhH264_2000.m3u8?E&U&A&K&P&S
+Name: 乐山新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lsxwzh_4000.m3u8?E&U&A&K&P&S
+Name: 乐山文旅, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lsggpd_4000.m3u8?E&U&A&K&P&S
+Name: 峨边综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ebdst_2000.m3u8?E&U&A&K&P&S
+Name: 峨眉山综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/emsxw_2000.m3u8?E&U&A&K&P&S
+Name: 夹江新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jjxw_2000.m3u8?E&U&A&K&P&S
+Name: 金口河综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jkhdst_2000.m3u8?E&U&A&K&P&S
+Name: 井研新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/jyxwzh162_2000.m3u8?E&U&A&K&P&S
+Name: 马边综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/mbxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 沐川综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/mcxw_2000.m3u8?E&U&A&K&P&S
+Name: 犍为新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/qwxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 沙湾融媒, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/swxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 五通桥综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wtqxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 内江综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/njzh_4000.m3u8?E&U&A&K&P&S
+Name: 内江公共, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/njgg_4000.m3u8?E&U&A&K&P&S
+Name: 东兴综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dxxwzh_4000.m3u8?E&U&A&K&P&S
+Name: 隆昌综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lcxw_2000.m3u8?E&U&A&K&P&S
+Name: 资中综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/zzzh_2000.m3u8?E&U&A&K&P&S
+Name: 南充综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ncxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 南充科教, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/nckj_4000.m3u8?E&U&A&K&P&S
+Name: 阆中综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lzxw_2000.m3u8?E&U&A&K&P&S
+Name: 南部综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/nbxw_2000.m3u8?E&U&A&K&P&S
+Name: 蓬安综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pazh_2000.m3u8?E&U&A&K&P&S
+Name: 西充新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xczh_2000.m3u8?E&U&A&K&P&S
+Name: 仪陇新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ylxw_2000.m3u8?E&U&A&K&P&S
+Name: 营山综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ysxw_2000.m3u8?E&U&A&K&P&S
+Name: 达州新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dzxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 达州文化, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dzgg_2000.m3u8?E&U&A&K&P&S
+Name: 达州导视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dzds_2000.m3u8?E&U&A&K&P&S
+Name: 达川新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dcxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 大竹新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dzxwzh137_2000.m3u8?E&U&A&K&P&S
+Name: 开江新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/kjxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 渠县新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/qxxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 通川综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xcxwzhH264_2000.m3u8?E&U&A&K&P&S
+Name: 通川综合2, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xcxwzhH264_2000.m3u8?E&U&A&K&P&S
+Name: 万源综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wyxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 宣汉新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xhxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 雅安新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/yazh_2000.m3u8?E&U&A&K&P&S
+Name: 雅安公共, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/yagg_2000.m3u8?E&U&A&K&P&S
+Name: 雅安雨城, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ycpd_2000.m3u8?E&U&A&K&P&S
+Name: 宝兴综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/bxdst_2000.m3u8?E&U&A&K&P&S
+Name: 汉源新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hyxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 芦山新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lszh_2000.m3u8?E&U&A&K&P&S
+Name: 名山综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/msdstH265_2000.m3u8?E&U&A&K&P&S
+Name: 石棉综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/smxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 天全新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/tqzh_2000.m3u8?E&U&A&K&P&S
+Name: 荥经综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xjdst_2000.m3u8?E&U&A&K&P&S
+Name: 广安新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gaxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 广安公共, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gagg_2000.m3u8?E&U&A&K&P&S
+Name: 广安区综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gaqxw_2000.m3u8?E&U&A&K&P&S
+Name: 华蓥综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hyxw_2000.m3u8?E&U&A&K&P&S
+Name: 邻水综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lsxw_2000.m3u8?E&U&A&K&P&S
+Name: 前锋综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/qfxw_2000.m3u8?E&U&A&K&P&S
+Name: 武胜综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wsxw_2000.m3u8?E&U&A&K&P&S
+Name: 岳池综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ycxw_2000.m3u8?E&U&A&K&P&S
+Name: 巴中综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/bzytH265_4000.m3u8?E&U&A&K&P&S
+Name: 巴中文旅, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/bzetH264_2000.m3u8?E&U&A&K&P&S
+Name: 巴州电视, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/bzxw_4000.m3u8?E&U&A&K&P&S
+Name: 恩阳新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/eyxw_2000.m3u8?E&U&A&K&P&S
+Name: 南江综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/njxw_2000.m3u8?E&U&A&K&P&S
+Name: 平昌综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pcxw_2000.m3u8?E&U&A&K&P&S
+Name: 通江综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/tjxwH265_4000.m3u8?E&U&A&K&P&S
+Name: 眉山综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/msxwzhgq_2000.m3u8?E&U&A&K&P&S
+Name: 眉山文旅乡, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/msgg_2000.m3u8?E&U&A&K&P&S
+Name: 丹棱新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dlxwzhH265_4000.m3u8?E&U&A&K&P&S
+Name: 洪雅新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hyzh_2000.m3u8?E&U&A&K&P&S
+Name: 彭山综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pszh_2000.m3u8?E&U&A&K&P&S
+Name: 青神综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/qszh_2000.m3u8?E&U&A&K&P&S
+Name: 仁寿综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/msrszh_2000.m3u8?E&U&A&K&P&S
+Name: 凉山新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lsxwHDH265_4000.m3u8?E&U&A&K&P&S
+Name: 凉山彝语, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/yyzh_2000.m3u8?E&U&A&K&P&S
+Name: 德昌综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/dcxw_4000.m3u8?E&U&A&K&P&S
+Name: 会理新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hlyt_4000.m3u8?E&U&A&K&P&S
+Name: 木里综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/mltHD_4000.m3u8?E&U&A&K&P&S
+Name: 冕宁综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/mnxw_2000.m3u8?E&U&A&K&P&S
+Name: 宁南综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/nnt_4000.m3u8?E&U&A&K&P&S
+Name: 普格新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/pgt_4000.m3u8?E&U&A&K&P&S
+Name: 西昌综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xctHD_2000.m3u8?E&U&A&K&P&S
+Name: 喜德综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/xdxw_4000.m3u8?E&U&A&K&P&S
+Name: 越西综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/yxt_4000.m3u8?E&U&A&K&P&S
+Name: 资阳新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/zyxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 雁江综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/yjxw_2000.m3u8?E&U&A&K&P&S
+Name: 安岳新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ayxwzh_4000.m3u8?E&U&A&K&P&S
+Name: 乐至综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/lezhixwzh_4000.m3u8?E&U&A&K&P&S
+Name: 自贡新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/zgxw_4000.m3u8?E&U&A&K&P&S
+Name: 自贡文化生,URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/zggg_4000.m3u8?E&U&A&K&P&S
+Name: 富顺综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/fszh_2000.m3u8?E&U&A&K&P&S
+Name: 荣县综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/rxzh_2000.m3u8?E&U&A&K&P&S
+Name: 甘孜新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gzxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 泸定综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/ldxw_4000.m3u8?E&U&A&K&P&S
+Name: 康定综合, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/gzkdxwzh_2000.m3u8?E&U&A&K&P&S
+Name: 阿坝新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/abxwzhpdgq_2000.m3u8?E&U&A&K&P&S
+Name: 阿坝藏语, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/wypdgqH265_4000.m3u8?E&U&A&K&P&S
+Name: 黑水新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/hsxwzhpdH264_2000.m3u8?E&U&A&K&P&S
+Name: 马尔康新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/mekxwzhpd_2000.m3u8?E&U&A&K&P&S
+Name: 松潘新闻, URL: http://116.169.72.12:2380/hw1live.rxip.sc96655.com.huan.tv/live/spxwzhpdH264_2000.m3u8?E&U&A&K&P&S
 Name: CCTV-1, URL: http://php.jdshipin.com/TVOD/iptv.php?id=rthk33, From: subscribe, IPv_Type: ipv6, Location: 美国, ISP: CloudFlare Inc., Date: None, Delay: 0.1 ms, Speed: inf M/s, Resolution: 1920x1080
 Name: CCTV-1, URL: http://iptv.huuc.edu.cn/hls/cctv1hd.m3u8, From: subscribe, IPv_Type: ipv6, Location: 中国, ISP: 教育网, Date: None, Delay: 0.1 ms, Speed: inf M/s, Resolution: 1920x1080
 Name: CCTV-1, URL: https://www.freetv.top/migu/608807420.m3u8?migutoken=5b04cf0d91179ab2d3d71703f0a8bc3d32dd02f7d8fb55ee70e05c216b8a9d1a73d911fbde798459fb66d94934157c996f8306c0dd37917775f2ed73dcc22cf84b25ca500bff5c636ff48d6344, From: subscribe, IPv_Type: ipv6, Location: 美国-加利福尼亚州-圣克拉拉, ISP: DigitalOcean, Date: None, Delay: 0.1 ms, Speed: inf M/s, Resolution: 1920x1080
